@@ -1,28 +1,22 @@
-# <a href="https://shainsethi.github.io/portfolio.in/" target="_blank">My Portfolio</a>
+# shainsethi.github.io
 
-:star: Star me on GitHub — it helps!
+Personal site of Shain Sethi. One hand-written `index.html`, no framework, no build step.
 
-# Sections 📚
+## Deploy (GitHub Pages)
 
-✔️ Mini intro\
-✔️ About me \
-✔️ Skills\
-✔️ Projects\
-✔️ Contact me
+1. On GitHub, signed in as **shainsethi**, create a public repo named exactly `shainsethi.github.io`.
+2. From this folder:
+   ```bash
+   git init -b main
+   git add .
+   git commit -m "New portfolio"
+   git remote add origin https://github.com/shainsethi/shainsethi.github.io.git
+   git push -u origin main
+   ```
+3. Repo Settings > Pages: Source "Deploy from a branch", branch `main`, folder `/ (root)`.
+4. Live in a minute or two at https://shainsethi.github.io/
 
-## Installation & Deployment 📦
-- Clone the repository and modify the content of <b>index.html</b> according to your requirement.
-- Push the generated code to the `master` branch of this repository.
-- ⚠️<b>NOTE:</b> Make sure to remove `analyticsId` & `google search console Id` from `<head>` tag, and set yours, if you want to use your own Google Analytics & search console account.⚠️
+## To do
 
-
-## License 📄
-This project is licensed under the MIT License - see the [LICENSE.md](./LICENSE) file for details.
-
-## Tools Used 🛠️
-* [<b>GitHub</b>](https://github.com/) - To host my static website (HTML, CSS, JS).
-* [<b>Animate on scroll library</b>](https://github.com/michalsnik/aos) - To animate my website while scrolling.
-* [<b>Animista</b>](https://animista.net/) - To use Interactive animations
-
-
-Please contact me at shainsethi1000@gmail.com if you have any feedback for the website. :star: Star it, if you like it!
+- Project screenshots: add `assets/oil-dashboard.png` and `assets/flowforge.png` (1280x800) and put an `<img>` back at the top of each project card.
+- Resume: add `assets/resume.pdf` and a "Resume" button in the hero, if you want one public.

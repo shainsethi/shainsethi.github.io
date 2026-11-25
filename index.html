@@ -1,684 +1,253 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<!-- 
-
-██╗░░░██╗██╗███╗░░██╗░█████╗░██████╗░
-██║░░░██║██║████╗░██║██╔══██╗██╔══██╗
-╚██╗░██╔╝██║██╔██╗██║██║░░██║██║░░██║
-░╚████╔╝░██║██║╚████║██║░░██║██║░░██║
-░░╚██╔╝░░██║██║░╚███║╚█████╔╝██████╔╝
-░░░╚═╝░░░╚═╝╚═╝░░╚══╝░╚════╝░╚═════╝░
-░░░░░██╗░█████╗░███╗░░██╗░██████╗░██╗██████╗░
-░░░░░██║██╔══██╗████╗░██║██╔════╝░██║██╔══██╗
-░░░░░██║███████║██╔██╗██║██║░░██╗░██║██║░░██║
-██╗░░██║██╔══██║██║╚████║██║░░╚██╗██║██║░░██║
-╚█████╔╝██║░░██║██║░╚███║╚██████╔╝██║██████╔╝
-░╚════╝░╚═╝░░╚═╝╚═╝░░╚══╝░╚═════╝░╚═╝╚═════╝░
-What are you doing here?! you sneaky developer...
--->
-
 <head>
-  <!-- don't forget to remove this >>>>(google tag manager) script, if you are using this page/code -->
-  <!-- don't forget to remove this >>>>(google tag manager) script, if you are using this page/code -->
-  <!-- don't forget to remove this >>>>(google tag manager) script, if you are using this page/code -->
-  <!-- don't forget to remove this >>>>(google tag manager) script, if you are using this page/code -->
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YMWDE0VTD3"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shain Sethi · Full Stack Engineer</title>
+<meta name="description" content="Shain Sethi is a full stack engineer in Bengaluru building fast web apps with React, Node.js and PostgreSQL, and writing about how they work.">
+<meta property="og:title" content="Shain Sethi · Full Stack Engineer">
+<meta property="og:description" content="I build fast web apps and write about how they work.">
+<meta property="og:image" content="https://shainsethi.github.io/assets/og.png">
+<meta property="og:url" content="https://shainsethi.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f1720'/%3E%3Ctext x='32' y='44' font-family='monospace' font-size='34' font-weight='700' text-anchor='middle' fill='%2358c4dc'%3ES%3C/text%3E%3C/svg%3E">
+<style>
+:root {
+  --bg: #0f1720; --panel: #172230; --line: #22344a;
+  --text: #e8edf3; --muted: #9fb0c2; --dim: #6f8193;
+  --accent: #58c4dc; --code: #82e0f5;
+  --sans: system-ui, -apple-system, "Segoe UI", "Noto Sans", Roboto, sans-serif;
+  --mono: ui-monospace, "SFMono-Regular", "Noto Sans Mono", Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font: 17px/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+.wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
 
-    gtag("config", "G-YMWDE0VTD3");
-  </script>
-  <!-- don't forget to remove this >>(google site verification meta tag) tag, if you are using this page/code -->
-  <!-- don't forget to remove this >>(google site verification meta tag) tag, if you are using this page/code -->
-  <!-- don't forget to remove this >>(google site verification meta tag) tag, if you are using this page/code -->
-  <!-- don't forget to remove this >>(google site verification meta tag) tag, if you are using this page/code -->
-  <meta name="google-site-verification" content="zMNl24ruDnyqiliYwKNU_r09OkPCDKz0kMBtF9nqiCc" />
-  <!-- don't forget to remove this >>(google site verification meta tag) tag, if you are using this page/code -->
-  <!-- don't forget to remove this >>(google site verification meta tag) tag, if you are using this page/code -->
-  <!-- don't forget to remove this >>(google site verification meta tag) tag, if you are using this page/code -->
+/* nav */
+nav { position: sticky; top: 0; z-index: 10; background: rgba(15,23,32,.85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.logo { font: 700 18px var(--mono); text-decoration: none; color: var(--accent); }
+nav ul { display: flex; gap: 26px; list-style: none; }
+nav ul a { text-decoration: none; color: var(--muted); font-size: 15px; }
+nav ul a:hover { color: var(--text); }
 
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="index, follow" />
-  <meta name="theme-color" content="#000" />
-  <title>Shain Sethi | Portfolio</title>
-  <link rel="icon" type="image/x-icon" href="src/png/main-favicon.png" />
-  <!-- aos cdn -->
-  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-  <!-- stylesheet -->
-  <link rel="stylesheet" href="style.css" />
-  <!-- google fonts-->
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Passions+Conflict&family=Orbitron&family=Fira+Code&family=Six+Caps" />
+/* hero */
+.hero { padding-top: 96px; padding-bottom: 72px; }
+.tag { font: 700 14px var(--sans); color: var(--accent); letter-spacing: 2.5px; text-transform: uppercase; }
+h1 { font-size: clamp(36px, 6.4vw, 60px); line-height: 1.06; letter-spacing: -1.5px; font-weight: 800; margin: 16px 0 22px; }
+h1 em { font-style: normal; color: var(--accent); }
+.lead { font-size: 19px; color: var(--muted); max-width: 640px; }
+.lead b { color: var(--text); font-weight: 600; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 12px; font-weight: 600; font-size: 15px; text-decoration: none; border: 1.5px solid var(--line); background: var(--panel); transition: border-color .15s, transform .15s; }
+.btn:hover { border-color: var(--accent); transform: translateY(-1px); }
+.btn.primary { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+.code-note { margin-top: 56px; font: 15px/1.7 var(--mono); color: #3a5470; }
+.code-note span { color: var(--dim); }
 
-<body class="body">
-  <audio loop="" id="audioPlayer" style="display: none">
-    <source src="src/mp3/preloader.mp3" type="audio/mp3" />
-  </audio>
-  <div id="preloader"></div>
-  <noscript>Allow Javascript</noscript>
+/* sections */
+section { padding: 72px 0; border-top: 1px solid var(--line); }
+h2 { font-size: 32px; letter-spacing: -.5px; margin-bottom: 8px; }
+.sub { color: var(--muted); margin-bottom: 36px; }
 
-  <header>
-    <div class="cursor-inner" id="cursor-inner"></div>
-    <div class="cursor-outer" id="cursor-outer"></div>
+/* work timeline */
+.job { display: grid; grid-template-columns: 180px 1fr; gap: 24px; padding: 22px 0; border-bottom: 1px solid var(--line); }
+.job:last-child { border-bottom: 0; }
+.when { font: 14px var(--mono); color: var(--dim); padding-top: 3px; }
+.job h3 { font-size: 19px; }
+.job h3 span { color: var(--accent); font-weight: 600; }
+.job ul { margin: 8px 0 0 18px; color: var(--muted); }
+.job li { margin: 3px 0; }
+.award { display: inline-block; margin-top: 10px; font-size: 14px; color: #7be0a4; background: #173a2a; padding: 4px 12px; border-radius: 999px; }
 
-    <div class="navbar" id="navbar">
-      <div class="hey">Hey!</div>
-      <div class="logo" tabindex="0" aria-label="Shain Sethi logo">
-        <div class="logo-top">
-          <img src="src/png/nav-avatar.png" alt="animation-head" id="nav-avatar"/>
-        </div>
-      </div>
-      <div class="navbar-tabs" id="navbar-tabs">
-        <ul class="navbar-tabs-ul">
-          <li class="home activeThistab" class="navbar-tabs-li" data-aos="fade-down" data-aos-delay="100">
-            <a href="#home" tabindex="0" aria-label="Home menu button">
-              &#60;/Home&#62;
-            </a>
-          </li>
+/* projects */
+.projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px; }
+.card { background: var(--panel); border: 1.5px solid var(--line); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; transition: border-color .15s; }
+.card:hover { border-color: #33506d; }
+.card img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; border-bottom: 1.5px solid var(--line); background: #0b121a; }
+.card .body { padding: 22px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.card h3 { font-size: 21px; }
+.card p { color: var(--muted); font-size: 16px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font: 13px var(--mono); color: var(--code); background: var(--bg); border: 1px solid var(--line); padding: 4px 10px; border-radius: 8px; }
+.links { display: flex; gap: 18px; margin-top: auto; padding-top: 6px; }
+.links a { font-weight: 600; font-size: 15px; color: var(--accent); text-decoration: none; }
+.links a:hover { text-decoration: underline; }
 
-          <li class="about" class="navbar-tabs-li" data-aos="fade-down" data-aos-delay="300">
-            <a href="#about" aria-label="about menu button">
-              &#60;/AboutMe&#62;
-            </a>
-          </li>
+/* skills */
+.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 22px; }
+.skills h3 { font-size: 15px; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; }
 
-          <li class="skills" class="navbar-tabs-li" data-aos="fade-down" data-aos-delay="500">
-            <a href="#skills" aria-label="skills menu button">
-              &#60;/Skills&#62;
-            </a>
-          </li>
+/* writing + contact */
+.writing { background: var(--panel); border: 1.5px solid var(--line); border-radius: 18px; padding: 30px; }
+.writing p { color: var(--muted); max-width: 680px; margin-bottom: 18px; }
+footer { border-top: 1px solid var(--line); padding: 72px 0 48px; }
+footer h2 { font-size: clamp(30px, 5vw, 44px); }
+footer .small { margin-top: 48px; color: var(--dim); font-size: 14px; }
 
-          <li class="projects" class="navbar-tabs-li" data-aos="fade-down" data-aos-delay="700">
-            <a href="#projects" aria-label="projects menu button">
-              &#60;/Projects&#62;
-            </a>
-          </li>
-        </ul>
-      </div>
-      <!-- navbar tabs ends -->
+@media (max-width: 640px) {
+  nav ul { gap: 16px; }
+  nav ul li:nth-child(n+3) { display: none; }
+  .hero { padding-top: 64px; padding-bottom: 48px; }
+  .job { grid-template-columns: 1fr; gap: 4px; }
+  section { padding: 56px 0; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn, .card { transition: none; } }
+</style>
+</head>
+<body>
+
+<nav aria-label="Main">
+  <div class="wrap">
+    <a class="logo" href="#top">shain.dev()</a>
+    <ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="top">
+  <header class="hero wrap">
+    <div class="tag">Full Stack Engineer · Bengaluru</div>
+    <h1>I build fast web apps<br>and write about <em>how they work.</em></h1>
+    <p class="lead">I'm <b>Shain Sethi</b>, a full stack engineer working across <b>React, Node.js and PostgreSQL</b>. I care about performance you can feel, clean component architecture, and shipping with confidence. Right now I'm going deeper into system design, cloud and AI engineering.</p>
+    <div class="cta">
+      <a class="btn primary" href="mailto:shainsethi1000@gmail.com">Email me</a>
+      <a class="btn" href="https://www.linkedin.com/in/shain-sethi/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/shainsethi" target="_blank" rel="noopener">GitHub</a>
     </div>
+    <p class="code-note" aria-hidden="true">const shain = { role: <span>"full stack"</span>, learning: <span>"in public"</span> };</p>
   </header>
-  <!-- header ends here -->
 
-  <main>
-    <!-- hamburger -->
-    <div class="hamburger" id="hamburger" data-aos="fade">
-      <div class="hamburgerbase">
-        <button id="hamburger-button" onclick="hamburgerMenu()" tabindex="0" aria-label="Menu Button">
-          <span class="burger-bar" id="burger-bar1"></span>
-          <span class="burger-bar" id="burger-bar2"></span>
-          <span class="burger-bar" id="burger-bar3"></span>
-        </button>
-      </div>
-    </div>
-    <!-- hamburger -->
-    <div class="mobiletogglemenu" id="mobiletogglemenu">
-      <ul class="mobile-navbar-tabs-ul" id="mobile-ul">
-        <li id="home-mobile-tab" class="mobile-navbar-tabs-li home activeThismobiletab" onclick="hidemenubyli()">
-          <a href="#home" tabindex="0" aria-label="Home menu button">
-            &#60;/Home&#62;
-          </a>
-        </li>
+  <section id="work">
+    <div class="wrap">
+      <h2>Work</h2>
+      <p class="sub">Where I've been building.</p>
 
-        <li id="aboutme-mobile-tab" class="mobile-navbar-tabs-li about" onclick="hidemenubyli()">
-          <a href="#about" tabindex="0" aria-label="about menu button">
-            &#60;/AboutMe&#62;
-          </a>
-        </li>
-        <li id="skills-mobile-tab" class="mobile-navbar-tabs-li skills" onclick="hidemenubyli()">
-          <a href="#skills" tabindex="0" aria-label="skills menu button">
-            &#60;/Skills&#62;
-          </a>
-        </li>
-        <li id="projects-mobile-tab" class="mobile-navbar-tabs-li projects" onclick="hidemenubyli()">
-          <a href="#projects" tabindex="0" aria-label="projects menu button">
-            &#60;/Projects&#62;
-          </a>
-        </li>
-      </ul>
-    </div>
-    <!-- mobile toggle menu ends -->
-
-    <section class="landing-page-container" id="home">
-      <div class="blob"></div>
-
-      <div class="text-content">
-        <article id="hello-friend" data-aos="fade-up" data-aos-delay="0">
-          <p class="jello">N</p>
-          <p class="jello">a</p>
-          <p class="jello">m</p>
-          <p class="jello">a</p>
-          <p class="jello">s</p>
-          <p class="jello">t</p>
-          <p class="jello">e</p>
-          <p class="jello">(</p>
-          <p class="jello">)</p>
-          <p class="jello">;</p>
-          &nbsp;
-          <p class="jello">I</p>
-          <p class="jello">'</p>
-          <p class="jello">m</p>
-        </article>
-        <article id="name" data-aos="fade-up" data-aos-delay="200">
-          <p class="jello">S</p>
-          <p class="jello">h</p>
-          <p class="jello">a</p>
-          <p class="jello">i</p>
-          <p class="jello">n</p>
-          &nbsp;
-          <p class="jello">S</p>
-          <p class="jello">e</p>
-          <p class="jello">t</p>
-          <p class="jello">h</p>
-          <p class="jello">i</p>
-          <p class="jello">.</p>
-        </article>
-
-        <article id="work" data-aos="fade-up" data-aos-delay="400">
-          <div>
-            <p class="jello">I</p>
-          </div>
-          <div>
-            <p class="jello">d</p>
-            <p class="jello">e</p>
-            <p class="jello">s</p>
-            <p class="jello">i</p>
-            <p class="jello">g</p>
-            <p class="jello">n</p>
-          </div>
-          <div>
-            <p class="jello">&</p>
-          </div>
-          <div>
-            <p class="jello">c</p>
-            <p class="jello">o</p>
-            <p class="jello">d</p>
-            <p class="jello">e</p>
-          </div>
-          <div>
-            <p class="jello">f</p>
-            <p class="jello">o</p>
-            <p class="jello">r</p>
-          </div>
-          <div>
-            <p class="jello">w</p>
-            <p class="jello">e</p>
-            <p class="jello">b</p>
-            <p class="jello">.</p>
-          </div>
-        </article>
-        <p id="info-para" data-aos="fade-up" data-aos-delay="600">
-          Web Developer with experience of Web
-          Designs and Development. I Love fun Web UI, collaboration and making products.<br />
-          <br />
-          I value simple content structure, clean design patterns, and
-          thoughtful interactions.
-        </p>
-        <div class="contact-btn-div" data-aos="fade-up" data-aos-delay="800">
-          <a href="mailto:shainsethi1000@gmail.com" tabindex="-1">
-            <button class="letsTalkBtn">
-              <p class="letsTalkBtn-text">Let's Talk!</p>
-              <span class="letsTalkBtn-BG"></span>
-            </button></a>
-          <div class="setting-container" id="setting-container">
-            <input type="checkbox" id="switchforsetting" onclick="settingtoggle()" />
-
-            <label for="switchforsetting" class="needtobeinvert" id="labelforsetting" tabindex="0"
-              aria-label="settings for sound and appearance"></label>
-
-            <div class="visualmodetogglebuttoncontainer" id="visualmodetogglebuttoncontainer">
-              <input type="checkbox" id="switchforvisualmode" onclick="visualmode()" />
-              <label for="switchforvisualmode" id="labelforvisualmode" tabindex="0"
-                aria-label="switch appearance"></label>
-            </div>
-
-            <div class="soundtogglebuttoncontainer" id="soundtogglebuttoncontainer">
-              <input type="checkbox" id="switchforsound" onclick="playpause()" />
-              <label for="switchforsound" id="labelforsound" tabindex="0" aria-label="switch sound"
-                class="needtobeinvert"></label>
-            </div>
-          </div>
-          <!-- setting div ends -->
-        </div>
-        <!-- contact-btn-div -->
-      </div>
-     
-    </section>
-    <!-- landing page ends here -->
-    <section class="about-section-container" id="about" data-aos="fade-up">
-      <div class="about-section">
-        <div class="section-heading">
-          <h2 class="section-heading-article" tabindex="0" aria-label="About me heading">
-            &#60;/AboutMe&#62;
-          </h2>
-          <p class="sectionHeadingP"></p>
-        </div>
-
-        <div class="info-dp-section">
-          <div class="about-info">
-            <p tabindex="0">
-              Hi! My name is Shain. I'm a web developer. I love creating things that exist on the internet. My interest in web development started in 2021.
-            </p>
-            <br />
-            <p tabindex="0">
-              I started
-              enjoying web development. Creating custom things for web taught
-              me a lot about design & development!
-            </p>
-            <br />
-            <p tabindex="0">
-              My main focus these days is building interesting & creative web
-              designs, I like to code things from scratch, and enjoy bringing
-              ideas to life in the browser.
-            </p>
-             <!-- Resume button -->
-      <button class="resume-btn" id="resume-btn" onclick="openURL()">
-        <div class="sign">
-          <svg viewBox="0 0 640 512">
-            <path
-              d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 138.7 80.2C409.9 102 428.3 96 448 96c53 0 96 43 96 96c0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128H144zm79-167l80 80c9.4 9.4 24.6 9.4 33.9 0l80-80c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-39 39V184c0-13.3-10.7-24-24-24s-24 10.7-24 24V318.1l-39-39c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9z" />
-          </svg>
-        </div>
-
-        <div class="text">Resume</div>
-      </button>
-          </div>
-
-          <div class="dp" data-aos="fade-up">
-            <img src="src/png/main-favicon.png" alt="Shain Sethi" tabindex="0" aria-label="image of vinod" />
-          </div>
+      <div class="job">
+        <div class="when">Jul 2025 – now</div>
+        <div>
+          <h3>Full Stack Developer <span>· CEAT (Taabi Mobility)</span></h3>
+          <ul>
+            <li>Build full stack analytics modules on real-time IoT data with React, Node.js, PostgreSQL and Apollo GraphQL</li>
+            <li>Optimize backend APIs and data streams for lower latency</li>
+            <li>Set up CI/CD with Docker and GitHub Actions; mentor developers and run code reviews</li>
+          </ul>
+          <span class="award">Excellence in Execution Award, 2026</span>
         </div>
       </div>
-    </section>
-    <!-- about section ends  -->
 
-    <section class="skills-section-container" id="skills">
-      <div class="skills-section">
-        <div class="section-heading" data-aos="fade-up">
-          <h2 class="section-heading-article" tabindex="0" aria-label="skills heading">
-            &#60;/Skills&#62;
-          </h2>
-          <p class="sectionHeadingP"></p>
-        </div>
-
-        <div class="frontend-dev-section">
-          <h3 class="frontend-dev-heading" data-aos="fade-up" tabindex="0"
-            aria-label="As a frontend a developer these are the skills i have">
-            Tech Stack
-          </h3>
-          <ul class="tech-stack-wrapper">
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/png/htmllogo.png" alt="Html skill" class="tech-stack-logo" />
-              <span class="tooltip">HTML</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/png/csslogo.png" alt="css skill" class="tech-stack-logo" />
-              <span class="tooltip">CSS</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/png/sass.png" alt="css skill" class="tech-stack-logo" />
-              <span class="tooltip">SASS</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/png/Tailwind_CSS.png" alt="bootstrap skill" class="tech-stack-logo" />
-              <span class="tooltip">Tailwind CSS</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/png/bootstraplogo.png" alt="bootstrap skill" class="tech-stack-logo" />
-              <span class="tooltip">BOOTSTRAP</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/png/jslogo.png" alt="js skill" class="tech-stack-logo" />
-              <span class="tooltip">JS</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/png/TS.png" alt="js skill" class="tech-stack-logo" />
-              <span class="tooltip">TS</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/png/reactlogo.png" alt="react skill" class="tech-stack-logo" />
-              <span class="tooltip">REACT</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/png/nodejs.png" alt="canva skill" class="tech-stack-logo" />
-              <span class="tooltip">
-                Node.js</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/png/githublogo.png" alt="github skill" class="tech-stack-logo needtobeinvert" />
-              <span class="tooltip">GITHUB</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/png/gitlogo.png" alt="git skill" class="tech-stack-logo" />
-              <span class="tooltip">GIT</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/png/clogo.png" alt="c language skill" class="tech-stack-logo" />
-              <span class="tooltip">C</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/png/sql.png" alt="c language skill" class="tech-stack-logo" />
-              <span class="tooltip">SQL</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/png/pslogo.png" alt="photoshop skill" class="tech-stack-logo" />
-              <span class="tooltip">ADOBE PS</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/png/figmalogo.png" alt="figma skill" class="tech-stack-logo" />
-              <span class="tooltip">FIGMA</span>
-            </li>
-<!-- 
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/png/canvalogo.png" alt="canva skill" class="tech-stack-logo" />
-              <span class="tooltip">CANVA</span>
-            </li> -->
+      <div class="job">
+        <div class="when">Aug 2024 – Jul 2025</div>
+        <div>
+          <h3>Frontend Developer <span>· CEAT (Taabi Mobility)</span></h3>
+          <ul>
+            <li>Built a React and TypeScript operations platform for internal teams</li>
+            <li>Improved load time with code splitting, lazy loading and bundle optimization</li>
           </ul>
         </div>
       </div>
-    </section>
-    <!-- skills section ends -->
-    <section class="projects-section-container" id="projects">
-      <div class="projects-section-div">
-        <div class="section-heading" data-aos="fade-up">
-          <h2 class="section-heading-article" tabindex="0" aria-label="My projects starts from here">
-            &#60;/Projects&#62;
-          </h2>
-          <p class="sectionHeadingP"></p>
-        </div>
-        <div class="project-boxes-div">
-          <div data-aos="fade-up" class="project-box-wrapper">
-            <div class="project-box project-box2" id="project-box2">
-              <div class="info-div">
-                <!-- <img src="src/webp/pexelicon-favicon.webp" alt="pexelicon website favicon" class="faviconforProject" /> -->
-                <article class="ProjectHeading">Golf Pride</article>
-                <p class="ProjectDescription">
-                  Today, Golf Pride® has laid claim to more major wins than any other grip company. More than 80% of Tour professionals choose to play our grips and not one is paid to do so. 
-                </p>
-                <div class="project-buttons">
-                  <!-- <a href="https://github.com/vinodjangid07/Pexelicons" target="_blank" class="github-redirect"
-                    aria-label="Visit Pexelicons on GitHub">
-                    <img src="src/svg/github.svg" alt="github redirect button" />
-                  </a> -->
-                  <a href="https://www.golfpride.com/" target="_blank" class="cta"
-                    aria-label="Visit Pexelicons Live">
-                    <span>Live view</span>
-                    <svg viewBox="0 0 13 10" height="10px" width="15px">
-                      <path d="M1,5 L11,5"></path>
-                      <polyline points="8 1 12 5 8 9"></polyline>
-                    </svg>
-                  </a>
-                </div>
-              </div>
-              <div class="image-div">
-                <img src="src/png/Screenshot1.png" alt="Golf Pride® website preview image" />
-              </div>
-            </div>
-          </div>
 
-          <div class="project-box-wrapper" data-aos="fade-up">
-            <div class="project-box project-box5" id="project-box5">
-              <div class="info-div">
-                <!-- <img src="src/webp/cropped-1086600-192x192.webp" alt="comickaze website favicon"
-                  class="faviconforProject" /> -->
-                <article class="ProjectHeading">Eaton </article>
-                <p class="ProjectDescription">
-                  Eaton is an intelligent power management company dedicated to improving the quality of life and protecting the environment for people everywhere
-                </p>
-                <div class="project-buttons">
-                  <a href="https://www.eaton.com/in/en-us.html" target="_blank" class="cta" aria-label="Visit Comickaze live">
-                    <span>Live view</span>
-                    <svg viewBox="0 0 13 10" height="10px" width="15px">
-                      <path d="M1,5 L11,5"></path>
-                      <polyline points="8 1 12 5 8 9"></polyline>
-                    </svg>
-                  </a>
-                </div>
-              </div>
-              <div class="image-div">
-                <img src="src/png/Screenshot.png" alt="Eaton website preview image" />
-              </div>
-            </div>
-          </div>
-
-          <!-- ---------------------- -->
-          <!-- ---------------------- -->
-          <!-- <div class="project-box-wrapper" data-aos="fade-up">
-            <div class="project-box project-box4" id="project-box4">
-              <div class="info-div">
-                <img src="src/webp/qr-favicon.webp" alt="Qr generator website favicon" class="faviconforProject" />
-                <article class="ProjectHeading">QR Generator</article>
-                <p class="ProjectDescription">
-                  A webpage to make a QR Code from text using API.
-                </p>
-                <div class="project-buttons">
-                  <a href="https://github.com/vinodjangid07/QR-Generator" target="_blank" class="github-redirect"
-                    aria-label="Visit qr generator on github">
-                    <img src="src/svg/github.svg" alt="github redirect button" />
-                  </a>
-                  <a href="https://vinodjangid.site/QR-Generator/" target="_blank" class="cta"
-                    aria-label="Visit qr generator live">
-                    <span>Live view</span>
-                    <svg viewBox="0 0 13 10" height="10px" width="15px">
-                      <path d="M1,5 L11,5"></path>
-                      <polyline points="8 1 12 5 8 9"></polyline>
-                    </svg>
-                  </a>
-                </div>
-              </div>
-              <div class="image-div">
-                <img src="src/webp/QRgeneratorProject.webp" alt="qr generator website preview image" />
-              </div>
-            </div>
-          </div> -->
-
-          <!-- ---------------------- -->
-          <!-- <div class="project-box-wrapper" data-aos="fade-up">
-            <div class="project-box project-box3" id="project-box3">
-              <div class="info-div">
-                <img src="src/ico/netflixfavicon.ico" alt="netflix website favicon" class="faviconforProject" />
-                <article class="ProjectHeading">React Netflix Clone</article>
-                <p class="ProjectDescription">
-                  A webpage to categorize the shows to redirect user to watch
-                  the show.
-                </p>
-                <div class="project-buttons">
-                  <a href="https://github.com/vinodjangid07/Netflix-clone" target="_blank" class="github-redirect"
-                    aria-label="Visit Netflix clone on GitHub">
-                    <img src="src/svg/github.svg" alt="github redirect button" />
-                  </a>
-                  <a href="https://react-project-20.netlify.app/" target="_blank" class="cta"
-                    aria-label="Visit netflix clone live">
-                    <span>Live view</span>
-                    <svg viewBox="0 0 13 10" height="10px" width="15px">
-                      <path d="M1,5 L11,5"></path>
-                      <polyline points="8 1 12 5 8 9"></polyline>
-                    </svg>
-                  </a>
-                </div>
-              </div>
-              <div class="image-div">
-                <img src="src/webp/NetflixCloneProject.webp" alt="netflix clone website preview image" />
-              </div>
-            </div>
-          </div> -->
-
-          <!-- ---------------------- -->
-
-            <!-- <div class="project-box-wrapper" data-aos="fade-up">
-            <div class="project-box project-box1" id="project-box1">
-              <div class="info-div">
-                <img src="src/webp/axocean-favicon.webp" alt="Axocean website favicon" class="faviconforProject" />
-                <article class="ProjectHeading">AXOCEAN</article>
-                <p class="ProjectDescription">
-                  E-commerce website frontend work to choose people their
-                  favorite design of product and redirect to flipkart shopping
-                  site.
-                </p>
-                <div class="project-buttons">
-                  <a href="https://github.com/vinodjangid07/AXOCEAN" target="_blank" class="github-redirect"
-                    aria-label="Visit axocean on GitHub">
-                    <img src="src/svg/github.svg" alt="github redirect button" />
-                  </a>
-                  <a href="https://www.vinodjangid.site/AXOCEAN/" target="_blank" class="cta"
-                    aria-label="Visit axocean live">
-                    <span>Live view</span>
-                    <svg viewBox="0 0 13 10" height="10px" width="15px">
-                      <path d="M1,5 L11,5"></path>
-                      <polyline points="8 1 12 5 8 9"></polyline>
-                    </svg>
-                  </a>
-                </div>
-              </div>
-              <div class="image-div">
-                <img src="src/webp/AXOCEAN-project.webp" alt="Axocean website preview image" />
-              </div>
-            </div>
-          </div> -->
-          <!-- ---------------------- -->
+      <div class="job">
+        <div class="when">Sep 2023 – Aug 2024</div>
+        <div>
+          <h3>Frontend Web Developer <span>· HeaLink</span></h3>
+          <ul>
+            <li>Built a personal health records app with React and Vite</li>
+            <li>Improved Lighthouse scores through accessibility, SEO and performance work</li>
+          </ul>
         </div>
       </div>
-    </section>
-  </main>
-  <!-- main ends here -->
 
-  <footer id="footer">
-    <button class="fas" id="backtotopbutton" onclick="scrolltoTopfunction()">
-      <article aria-label="Back to top">&#8592;BACK TO TOP</article>
-    </button>
-    <div class="footer-background">
-      <div class="footer-blob"></div>
-    </div>
-    <div class="footer-foreground">
-      <div class="footercontainer">
-        <div class="two-words">
-          <article tabindex="0" aria-label="Learning, Living, and Leveling Up, my quote">
-            "Learning, Living, and Leveling Up."
-          </article>
-        </div>
-        <div class="social-media-container">
-          <div class="getintouch-heading">
-            <article>GetinTouch();</article>
-          </div>
-          <div class="logos">
-            <a href="https://www.instagram.com/shain.sethi/" target="_blank" tabindex="0"
-              aria-label="My instagram"><svg viewBox="0 0 448 512" class="SocialHandle">
-                <path
-                  d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
-              </svg></a>
-
-            <a href="https://www.linkedin.com/in/shain-sethi" target="_blank"
-              aria-label="My Linkdin"><svg class="SocialHandle" viewBox="0 0 448 512">
-                <path
-                  d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z" />
-              </svg></a>
-
-            <a href="https://github.com/shainsethi" target="_blank" aria-label="My github"><svg viewBox="0 0 496 512"
-                class="SocialHandle">
-                <path
-                  d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
-              </svg></a>
-
-            <a href="mailto:shainsethi1000@gmail.com" target="_blank" aria-label="My G mail"><svg id="GmailLogo"
-                viewBox="0 0 512 512">
-                <path
-                  d="M64 112c-8.8 0-16 7.2-16 16v22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1V128c0-8.8-7.2-16-16-16H64zM48 212.2V384c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V212.2L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64H448c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z" />
-              </svg></a>
-          </div>
-        </div>
-        <div class="footer-avatar-container">
-          <img src="src/png/footer-avatar-vinod.png" alt="animation-head" class="footer-avatar-img" id="footer-wala-avatar"/>
-          <div class="footer-avatar-face">
-            <div class="footer-avatar-eye footer-left-eye">
-              <div class="footer-pupil"></div>
-            </div>
-            <div class="footer-avatar-eye footer-right-eye">
-              <div class="footer-pupil"></div>
-            </div>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <article>
-            Design & Built by Shain Sethi
-            &#169; twentyone
-          </article>
+      <div class="job">
+        <div class="when">Feb 2022 – Sep 2022</div>
+        <div>
+          <h3>Frontend Developer Intern <span>· Visa2Fly</span></h3>
+          <ul>
+            <li>Built reusable Angular components for travel booking apps</li>
+          </ul>
         </div>
       </div>
     </div>
-  </footer>
-  <!-- footer ends here -->
+  </section>
 
-  <script src="main.js"></script>
+  <section id="projects">
+    <div class="wrap">
+      <h2>Projects</h2>
+      <p class="sub">Things I've built end to end.</p>
+      <div class="projects">
 
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script>
-    AOS.init();
-  </script>
+        <article class="card">
+          <div class="body">
+            <h3>Oil Drilling Dashboard</h3>
+            <p>An AI-powered dashboard for drilling data. Upload Excel well logs, explore Gamma Ray, Delta-T and rock composition charts by depth, and ask a chatbot questions about the well.</p>
+            <div class="chips"><span class="chip">Next.js</span><span class="chip">Recharts</span><span class="chip">PostgreSQL (Neon)</span><span class="chip">Prisma</span><span class="chip">GPT-4o</span><span class="chip">Tailwind</span></div>
+            <div class="links">
+              <a href="https://oil-drilling-dashboard-ntl1.vercel.app/" target="_blank" rel="noopener">Live demo ↗</a>
+              <a href="https://github.com/shainsethi/Oil-Drilling-Dashboard" target="_blank" rel="noopener">Code ↗</a>
+            </div>
+          </div>
+        </article>
 
-  <script>
-    function openURL() {
-      var url = "src/pdf/shainresume.pdf";
+        <article class="card">
+          <div class="body">
+            <h3>FlowForge</h3>
+            <p>A drag-and-drop pipeline builder. Wire nodes together on a canvas in React, and a FastAPI backend checks the pipeline is a valid directed acyclic graph.</p>
+            <div class="chips"><span class="chip">React</span><span class="chip">FastAPI</span><span class="chip">Python</span><span class="chip">Graphs (DAG)</span></div>
+            <div class="links">
+              <a href="https://flow-forge-three.vercel.app/" target="_blank" rel="noopener">Live demo ↗</a>
+              <a href="https://github.com/shainsethi/FlowForge" target="_blank" rel="noopener">Code ↗</a>
+            </div>
+          </div>
+        </article>
 
-      window.open(url, "_blank");
-    }
-  </script>
+      </div>
+    </div>
+  </section>
 
-  <script>
-    const cursorInner = document.getElementById("cursor-inner");
-    const cursorOuter = document.getElementById("cursor-outer");
-    const links = document.querySelectorAll("a,label,button");
+  <section id="skills">
+    <div class="wrap">
+      <h2>Skills</h2>
+      <p class="sub">What I reach for.</p>
+      <div class="skills">
+        <div><h3>Frontend</h3><div class="chips"><span class="chip">React</span><span class="chip">Next.js</span><span class="chip">TypeScript</span><span class="chip">JavaScript</span><span class="chip">Redux</span><span class="chip">React Query</span><span class="chip">Accessibility</span><span class="chip">Web performance</span></div></div>
+        <div><h3>Backend</h3><div class="chips"><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">Apollo GraphQL</span><span class="chip">REST APIs</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">Prisma</span></div></div>
+        <div><h3>Tooling</h3><div class="chips"><span class="chip">Docker</span><span class="chip">GitHub Actions</span><span class="chip">CI/CD</span><span class="chip">Git</span><span class="chip">Jest</span><span class="chip">Vite</span></div></div>
+        <div><h3>Learning now</h3><div class="chips"><span class="chip">System design</span><span class="chip">AWS</span><span class="chip">AI engineering</span><span class="chip">RAG</span></div></div>
+      </div>
+    </div>
+  </section>
 
-    document.addEventListener("mousemove", function (e) {
-      const posX = e.clientX;
-      const posY = e.clientY;
+  <section id="writing">
+    <div class="wrap">
+      <div class="writing">
+        <h2>Writing</h2>
+        <p>I write on LinkedIn about React internals, frontend performance and what AI gets right and wrong in real codebases. Short, practical, and occasionally a meme.</p>
+        <a class="btn" href="https://www.linkedin.com/in/shain-sethi/recent-activity/all/" target="_blank" rel="noopener">Read my posts ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
 
-      cursorInner.style.left = `${posX}px`;
-      cursorInner.style.top = `${posY}px`;
+<footer id="contact">
+  <div class="wrap">
+    <div class="tag">Contact</div>
+    <h2>Let's build something fast.</h2>
+    <p class="sub" style="margin-top:12px">Open to full stack and frontend roles, collaborations, and good conversations about code.</p>
+    <div class="cta">
+      <a class="btn primary" href="mailto:shainsethi1000@gmail.com">shainsethi1000@gmail.com</a>
+      <a class="btn" href="https://www.linkedin.com/in/shain-sethi/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/shainsethi" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <p class="small">© 2026 Shain Sethi · Hand-written HTML and CSS, no framework, no build step.</p>
+  </div>
+</footer>
 
-      // cursorOuter.style.left = `${posX}px`;
-      // cursorOuter.style.top = `${posY}px`;
-
-      cursorOuter.animate(
-        {
-          left: `${posX}px`,
-          top: `${posY}px`,
-        },
-        { duration: 500, fill: "forwards" }
-      );
-
-      links.forEach((link) => {
-        link.addEventListener("mouseenter", () => {
-          cursorInner.classList.add("hover");
-          cursorOuter.classList.add("hover");
-        });
-        link.addEventListener("mouseleave", () => {
-          cursorInner.classList.remove("hover");
-          cursorOuter.classList.remove("hover");
-        });
-      });
-    });
-  </script>
 </body>
-
 </html>
