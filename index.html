@@ -4,250 +4,512 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Shain Sethi · Full Stack Engineer</title>
-<meta name="description" content="Shain Sethi is a full stack engineer in Bengaluru building fast web apps with React, Node.js and PostgreSQL, and writing about how they work.">
+<meta name="description" content="Shain Sethi is a full stack engineer who designs and builds systems end to end: React and Next.js, Node.js and NestJS microservices, PostgreSQL, AWS with Terraform, and LLM pipelines.">
 <meta property="og:title" content="Shain Sethi · Full Stack Engineer">
-<meta property="og:description" content="I build fast web apps and write about how they work.">
+<meta property="og:description" content="I design and build systems, from the React UI down to the AWS infra.">
 <meta property="og:image" content="https://shainsethi.github.io/assets/og.png">
 <meta property="og:url" content="https://shainsethi.github.io/">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f1720'/%3E%3Ctext x='32' y='44' font-family='monospace' font-size='34' font-weight='700' text-anchor='middle' fill='%2358c4dc'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b1118'/%3E%3Ctext x='32' y='44' font-family='monospace' font-size='34' font-weight='700' text-anchor='middle' fill='%2358c4dc'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0f1720; --panel: #172230; --line: #22344a;
-  --text: #e8edf3; --muted: #9fb0c2; --dim: #6f8193;
-  --accent: #58c4dc; --code: #82e0f5;
-  --sans: system-ui, -apple-system, "Segoe UI", "Noto Sans", Roboto, sans-serif;
-  --mono: ui-monospace, "SFMono-Regular", "Noto Sans Mono", Menlo, Consolas, monospace;
+  --bg: #0b1118; --panel: #111a24; --line: #1d2b3a; --line-2: #2a3d52;
+  --text: #e6ecf2; --muted: #9aabbd; --dim: #637588;
+  --accent: #58c4dc; --accent-dim: rgba(88,196,220,.14); --ok: #6fdc9b;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { background: var(--bg); color: var(--text); font: 17px/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
+body { background: var(--bg); color: var(--text); font: 17px/1.65 var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 a { color: inherit; }
-a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
-.wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+.mono { font-family: var(--mono); }
+
+/* blueprint grid, brighter near the cursor */
+.grid-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 40px 40px; opacity: .35;
+  -webkit-mask-image: radial-gradient(600px circle at var(--mx, 70%) var(--my, 20%), #000 0%, rgba(0,0,0,.35) 45%, rgba(0,0,0,.15) 100%);
+          mask-image: radial-gradient(600px circle at var(--mx, 70%) var(--my, 20%), #000 0%, rgba(0,0,0,.35) 45%, rgba(0,0,0,.15) 100%); }
 
 /* nav */
-nav { position: sticky; top: 0; z-index: 10; background: rgba(15,23,32,.85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
-nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-.logo { font: 700 18px var(--mono); text-decoration: none; color: var(--accent); }
-nav ul { display: flex; gap: 26px; list-style: none; }
+nav { position: sticky; top: 0; z-index: 10; background: rgba(11,17,24,.82); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 62px; }
+.logo { font: 500 15px var(--mono); text-decoration: none; color: var(--text); }
+.logo span { color: var(--accent); }
+nav ul { display: flex; gap: 26px; list-style: none; align-items: center; }
 nav ul a { text-decoration: none; color: var(--muted); font-size: 15px; }
 nav ul a:hover { color: var(--text); }
+nav ul a.resume { color: var(--accent); font-family: var(--mono); font-size: 14px; border: 1px solid var(--line-2); padding: 5px 12px; border-radius: 8px; }
 
 /* hero */
-.hero { padding-top: 96px; padding-bottom: 72px; }
-.tag { font: 700 14px var(--sans); color: var(--accent); letter-spacing: 2.5px; text-transform: uppercase; }
-h1 { font-size: clamp(36px, 6.4vw, 60px); line-height: 1.06; letter-spacing: -1.5px; font-weight: 800; margin: 16px 0 22px; }
+.hero { display: grid; grid-template-columns: 1fr 1.08fr; gap: 48px; align-items: center; padding-top: 72px; padding-bottom: 80px; }
+.status { display: inline-flex; align-items: center; gap: 8px; font: 13px var(--mono); color: var(--muted); border: 1px solid var(--line-2); padding: 4px 12px; border-radius: 999px; }
+.status i { width: 7px; height: 7px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 0 rgba(111,220,155,.6); animation: ping 2s infinite; }
+@keyframes ping { 70% { box-shadow: 0 0 0 7px rgba(111,220,155,0); } 100% { box-shadow: 0 0 0 0 rgba(111,220,155,0); } }
+h1 { font-size: clamp(34px, 4.6vw, 52px); line-height: 1.1; letter-spacing: -1.2px; font-weight: 700; margin: 22px 0 20px; }
 h1 em { font-style: normal; color: var(--accent); }
-.lead { font-size: 19px; color: var(--muted); max-width: 640px; }
-.lead b { color: var(--text); font-weight: 600; }
-.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
-.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 12px; font-weight: 600; font-size: 15px; text-decoration: none; border: 1.5px solid var(--line); background: var(--panel); transition: border-color .15s, transform .15s; }
+.lead { font-size: 18px; color: var(--muted); max-width: 540px; }
+.lead b { color: var(--text); font-weight: 500; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; border-radius: 10px; font-weight: 500; font-size: 15px; text-decoration: none; border: 1px solid var(--line-2); background: var(--panel); transition: border-color .15s, transform .15s; }
 .btn:hover { border-color: var(--accent); transform: translateY(-1px); }
-.btn.primary { background: var(--accent); color: var(--bg); border-color: var(--accent); }
-.code-note { margin-top: 56px; font: 15px/1.7 var(--mono); color: #3a5470; }
-.code-note span { color: var(--dim); }
+.btn.primary { background: var(--accent); color: var(--bg); border-color: var(--accent); font-weight: 600; }
+
+/* architecture diagram */
+.arch { border: 1px solid var(--line-2); border-radius: 16px; background: rgba(17,26,36,.7); padding: 14px 14px 0; }
+.arch-head { display: flex; justify-content: space-between; font: 12px var(--mono); color: var(--dim); padding: 0 4px 8px; }
+.arch svg { display: block; width: 100%; height: auto; }
+.node rect { fill: var(--bg); stroke: var(--line-2); stroke-width: 1.2; transition: stroke .2s, fill .2s; }
+.node .t { fill: var(--text); font: 500 13px var(--sans); }
+.node .s { fill: var(--dim); font: 10.5px var(--mono); }
+.node { cursor: default; outline: none; opacity: 0; animation: nodeIn .5s ease forwards; animation-delay: var(--d); }
+.node:hover rect, .node:focus rect, .node.on rect { stroke: var(--accent); fill: #0f1c27; }
+.node:focus-visible rect { stroke-width: 2; }
+@keyframes nodeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.edge { fill: none; stroke: var(--line-2); stroke-width: 1.4; stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw .9s ease forwards; animation-delay: var(--d); }
+.edge.deploy { stroke-dasharray: none; stroke-dashoffset: 0; animation: fade .6s ease forwards; opacity: 0; }
+.edge.deploy-dash { stroke-dasharray: 4 5; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes fade { to { opacity: 1; } }
+.pkt { fill: var(--accent); }
+.pkt.slow { fill: var(--ok); }
+.arch-info { border-top: 1px solid var(--line); margin: 6px -14px 0; padding: 12px 18px 14px; min-height: 66px; font-size: 14.5px; color: var(--muted); }
+.arch-info b { color: var(--text); font-weight: 600; }
+.arch-info .k { font: 12px var(--mono); color: var(--accent); display: block; margin-bottom: 2px; }
 
 /* sections */
-section { padding: 72px 0; border-top: 1px solid var(--line); }
-h2 { font-size: 32px; letter-spacing: -.5px; margin-bottom: 8px; }
-.sub { color: var(--muted); margin-bottom: 36px; }
+section { padding: 88px 0; border-top: 1px solid var(--line); }
+.label { font: 13px var(--mono); color: var(--accent); margin-bottom: 10px; }
+.label span { color: var(--dim); }
+h2 { font-size: clamp(28px, 3.4vw, 36px); letter-spacing: -.6px; line-height: 1.2; margin-bottom: 10px; }
+.sub { color: var(--muted); max-width: 620px; margin-bottom: 44px; }
 
-/* work timeline */
-.job { display: grid; grid-template-columns: 180px 1fr; gap: 24px; padding: 22px 0; border-bottom: 1px solid var(--line); }
-.job:last-child { border-bottom: 0; }
-.when { font: 14px var(--mono); color: var(--dim); padding-top: 3px; }
-.job h3 { font-size: 19px; }
-.job h3 span { color: var(--accent); font-weight: 600; }
-.job ul { margin: 8px 0 0 18px; color: var(--muted); }
+/* case studies */
+.case { display: grid; grid-template-columns: 1.35fr 1fr; gap: 44px; padding: 40px 0; border-top: 1px dashed var(--line-2); }
+.case:first-of-type { border-top: 0; padding-top: 8px; }
+.case-tag { font: 12.5px var(--mono); color: var(--dim); }
+.case h3 { font-size: 26px; letter-spacing: -.3px; margin: 4px 0 6px; }
+.case .one { color: var(--muted); margin-bottom: 20px; }
+.case h4 { font: 500 12.5px var(--mono); color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin: 18px 0 8px; }
+.case p { color: var(--muted); }
+.decisions { list-style: none; }
+.decisions li { position: relative; padding-left: 22px; margin: 8px 0; color: var(--muted); font-size: 16px; }
+.decisions li::before { content: "→"; position: absolute; left: 0; color: var(--accent); font-family: var(--mono); }
+.decisions b { color: var(--text); font-weight: 500; }
+.chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 18px; }
+.chip { font: 12.5px var(--mono); color: #8fd8ea; background: var(--accent-dim); padding: 3px 9px; border-radius: 6px; }
+.metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 6px; }
+.metric { border: 1px solid var(--line-2); border-radius: 10px; padding: 12px 14px; background: var(--panel); }
+.metric b { display: block; font: 600 24px var(--mono); color: var(--text); }
+.metric span { font-size: 13.5px; color: var(--dim); }
+
+/* request flow (vertical) */
+.flow { position: relative; align-self: start; border: 1px solid var(--line-2); border-radius: 14px; background: rgba(17,26,36,.7); padding: 18px 18px 8px; }
+.flow-head { font: 12px var(--mono); color: var(--dim); margin-bottom: 14px; display: flex; justify-content: space-between; }
+.flow ol { list-style: none; position: relative; }
+.flow ol::before { content: ""; position: absolute; left: 15px; top: 14px; bottom: 26px; width: 1px; background: var(--line-2); }
+.flow li { position: relative; display: flex; gap: 14px; align-items: flex-start; padding-bottom: 14px; }
+.flow li i { flex: none; width: 31px; height: 31px; border-radius: 8px; border: 1px solid var(--line-2); background: var(--bg); display: grid; place-items: center; font: normal 11px var(--mono); color: var(--dim); z-index: 1; transition: border-color .3s, color .3s; }
+.flow li div { font-size: 15px; line-height: 1.35; padding-top: 1px; }
+.flow li small { display: block; font: 12px var(--mono); color: var(--dim); margin-top: 2px; }
+.flow .dot { position: absolute; left: 12px; top: 10px; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); opacity: 0; z-index: 2; }
+.flow.live .dot { animation: travel 3.2s cubic-bezier(.5,0,.5,1) infinite; }
+@keyframes travel { 0% { transform: translate(0, 0); opacity: 0; } 8% { opacity: 1; } 88% { opacity: 1; } 100% { transform: translate(0, var(--h, 260px)); opacity: 0; } }
+.flow.live li i { border-color: var(--line-2); }
+
+/* small projects */
+.side { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 36px; }
+.mini { border: 1px solid var(--line-2); border-radius: 12px; padding: 18px 20px; background: var(--panel); transition: border-color .15s; }
+.mini:hover { border-color: var(--accent); }
+.mini h3 { font-size: 17px; margin-bottom: 4px; }
+.mini p { font-size: 15px; color: var(--muted); }
+.mini .links { margin-top: 10px; display: flex; gap: 16px; font: 13px var(--mono); }
+.mini .links a { color: var(--accent); text-decoration: none; }
+.mini .links a:hover { text-decoration: underline; }
+
+/* experience */
+.job { display: grid; grid-template-columns: 170px 1fr; gap: 28px; padding: 22px 0; border-top: 1px solid var(--line); }
+.job:first-of-type { border-top: 0; }
+.when { font: 13px var(--mono); color: var(--dim); padding-top: 4px; }
+.job h3 { font-size: 18px; font-weight: 600; }
+.job h3 span { color: var(--muted); font-weight: 400; }
+.job .where { font: 12.5px var(--mono); color: var(--dim); }
+.job ul { margin: 8px 0 0 18px; color: var(--muted); font-size: 16px; }
 .job li { margin: 3px 0; }
-.award { display: inline-block; margin-top: 10px; font-size: 14px; color: #7be0a4; background: #173a2a; padding: 4px 12px; border-radius: 999px; }
+.award { display: inline-block; margin-top: 10px; font: 12.5px var(--mono); color: var(--ok); border: 1px solid rgba(111,220,155,.35); padding: 3px 10px; border-radius: 6px; }
 
-/* projects */
-.projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px; }
-.card { background: var(--panel); border: 1.5px solid var(--line); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; transition: border-color .15s; }
-.card:hover { border-color: #33506d; }
-.card img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; border-bottom: 1.5px solid var(--line); background: #0b121a; }
-.card .body { padding: 22px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
-.card h3 { font-size: 21px; }
-.card p { color: var(--muted); font-size: 16px; }
-.chips { display: flex; flex-wrap: wrap; gap: 8px; }
-.chip { font: 13px var(--mono); color: var(--code); background: var(--bg); border: 1px solid var(--line); padding: 4px 10px; border-radius: 8px; }
-.links { display: flex; gap: 18px; margin-top: auto; padding-top: 6px; }
-.links a { font-weight: 600; font-size: 15px; color: var(--accent); text-decoration: none; }
-.links a:hover { text-decoration: underline; }
-
-/* skills */
-.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 22px; }
-.skills h3 { font-size: 15px; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; }
+/* stack */
+.stack { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line-2); border-radius: 14px; overflow: hidden; }
+.stack > div { padding: 22px; border-right: 1px solid var(--line); }
+.stack > div:last-child { border-right: 0; }
+.stack h3 { font: 500 12.5px var(--mono); color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+.stack ul { list-style: none; color: var(--muted); font-size: 15.5px; }
+.stack li { padding: 3px 0; }
 
 /* writing + contact */
-.writing { background: var(--panel); border: 1.5px solid var(--line); border-radius: 18px; padding: 30px; }
-.writing p { color: var(--muted); max-width: 680px; margin-bottom: 18px; }
-footer { border-top: 1px solid var(--line); padding: 72px 0 48px; }
-footer h2 { font-size: clamp(30px, 5vw, 44px); }
-footer .small { margin-top: 48px; color: var(--dim); font-size: 14px; }
+.writing { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+.writing p { color: var(--muted); max-width: 640px; }
+footer { border-top: 1px solid var(--line); padding: 88px 0 40px; }
+footer h2 { font-size: clamp(30px, 4.6vw, 46px); }
+.small { margin-top: 64px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; color: var(--dim); font: 12.5px var(--mono); }
 
-@media (max-width: 640px) {
-  nav ul { gap: 16px; }
-  nav ul li:nth-child(n+3) { display: none; }
-  .hero { padding-top: 64px; padding-bottom: 48px; }
-  .job { grid-template-columns: 1fr; gap: 4px; }
-  section { padding: 56px 0; }
+/* reveal on scroll */
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; padding-top: 52px; }
+  .case { grid-template-columns: 1fr; gap: 28px; }
+  .stack { grid-template-columns: 1fr 1fr; }
+  .stack > div:nth-child(2) { border-right: 0; }
+  .stack > div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
 }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn, .card { transition: none; } }
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+  nav ul { gap: 14px; }
+  nav ul li.hide-sm { display: none; }
+  section { padding: 64px 0; }
+  .job { grid-template-columns: 1fr; gap: 4px; }
+  .metrics { grid-template-columns: 1fr 1fr 1fr; }
+  .metric b { font-size: 19px; }
+  .stack { grid-template-columns: 1fr; }
+  .stack > div { border-right: 0; border-bottom: 1px solid var(--line); }
+  .stack > div:last-child { border-bottom: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .node, .edge, .edge.deploy { animation: none; opacity: 1; stroke-dashoffset: 0; }
+  .pkt, .flow .dot { display: none; }
+  .status i { animation: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .btn { transition: none; }
+}
 </style>
 </head>
 <body>
+<div class="grid-bg" aria-hidden="true"></div>
 
 <nav aria-label="Main">
   <div class="wrap">
-    <a class="logo" href="#top">shain.dev()</a>
+    <a class="logo" href="#top">shain<span>.sethi</span></a>
     <ul>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#skills">Skills</a></li>
+      <li class="hide-sm"><a href="#systems">Systems</a></li>
+      <li class="hide-sm"><a href="#experience">Experience</a></li>
+      <li class="hide-sm"><a href="#stack">Stack</a></li>
       <li><a href="#contact">Contact</a></li>
+      <li><a class="resume" href="assets/Shain_Sethi_Resume.pdf" target="_blank" rel="noopener">resume.pdf</a></li>
     </ul>
   </div>
 </nav>
 
 <main id="top">
   <header class="hero wrap">
-    <div class="tag">Full Stack Engineer · Bengaluru</div>
-    <h1>I build fast web apps<br>and write about <em>how they work.</em></h1>
-    <p class="lead">I'm <b>Shain Sethi</b>, a full stack engineer working across <b>React, Node.js and PostgreSQL</b>. I care about performance you can feel, clean component architecture, and shipping with confidence. Right now I'm going deeper into system design, cloud and AI engineering.</p>
-    <div class="cta">
-      <a class="btn primary" href="mailto:shainsethi1000@gmail.com">Email me</a>
-      <a class="btn" href="https://www.linkedin.com/in/shain-sethi/" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="btn" href="https://github.com/shainsethi" target="_blank" rel="noopener">GitHub</a>
+    <div>
+      <span class="status"><i></i>open to remote roles</span>
+      <h1>I design and build systems, from the <em>React UI</em> down to the <em>AWS infra</em>.</h1>
+      <p class="lead">I'm <b>Shain Sethi</b>, a full stack engineer in Bengaluru. 3+ years shipping <b>React, Node.js and PostgreSQL</b> in production, and lately <b>microservices on AWS</b> and <b>LLM pipelines</b> with LangGraph.</p>
+      <div class="cta">
+        <a class="btn primary" href="#systems">See the systems</a>
+        <a class="btn" href="assets/Shain_Sethi_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+        <a class="btn" href="https://github.com/shainsethi" target="_blank" rel="noopener">GitHub</a>
+      </div>
     </div>
-    <p class="code-note" aria-hidden="true">const shain = { role: <span>"full stack"</span>, learning: <span>"in public"</span> };</p>
+
+    <figure class="arch" aria-labelledby="arch-cap">
+      <div class="arch-head"><span>architecture.svg</span><span>hover a component</span></div>
+      <svg viewBox="0 0 560 400" role="img" aria-labelledby="arch-cap">
+        <defs>
+          <path id="e1" d="M150 212 H205"/>
+          <path id="e2" d="M345 212 H400"/>
+          <path id="e3" d="M500 254 V316"/>
+          <path id="e4" d="M440 254 V286 H275 V316"/>
+          <path id="e5" d="M472 170 V108"/>
+        </defs>
+        <use href="#e1" class="edge" pathLength="1" style="--d:.5s"/>
+        <use href="#e2" class="edge" pathLength="1" style="--d:.8s"/>
+        <use href="#e3" class="edge" pathLength="1" style="--d:1.1s"/>
+        <use href="#e4" class="edge" pathLength="1" style="--d:1.2s"/>
+        <use href="#e5" class="edge" pathLength="1" style="--d:1.3s"/>
+        <path class="edge deploy deploy-dash" d="M345 76 H372 V196 H400" style="--d:1.6s"/>
+
+        <g class="node" tabindex="0" style="--d:.1s" data-k="client" data-t="Browser · React / Next.js" data-i="TypeScript UIs with Zustand, Redux, React Query and Apollo. Code splitting and lazy loading took 40% off page load on a production dashboard.">
+          <rect x="10" y="180" width="140" height="64" rx="10"/><text class="t" x="24" y="207">Browser</text><text class="s" x="24" y="227">react · next.js</text></g>
+        <g class="node" tabindex="0" style="--d:.4s" data-k="edge" data-t="API Gateway · HTTP API + VPC Link" data-i="Single public entry point. Traffic goes through a VPC Link to private services, so there is no load balancer to pay for.">
+          <rect x="205" y="180" width="140" height="64" rx="10"/><text class="t" x="219" y="207">API Gateway</text><text class="s" x="219" y="227">http api · vpc link</text></g>
+        <g class="node" tabindex="0" style="--d:.7s" data-k="compute" data-t="ECS Fargate · NestJS services" data-i="14 NestJS microservices (auth, appointments, billing, records, video consult...) behind an nginx router, packed into one ARM64 Fargate task.">
+          <rect x="400" y="170" width="150" height="84" rx="10"/><text class="t" x="414" y="200">ECS Fargate</text><text class="s" x="414" y="220">nestjs × 14 · arm64</text><text class="s" x="414" y="238">node.js · graphql</text></g>
+        <g class="node" tabindex="0" style="--d:1s" data-k="data" data-t="RDS PostgreSQL" data-i="Private subnets only. One schema per service, migrated by Prisma on start. Query tuning cut API latency by 30% on a real-time IoT workload.">
+          <rect x="400" y="316" width="150" height="64" rx="10"/><text class="t" x="414" y="343">PostgreSQL</text><text class="s" x="414" y="363">rds · prisma</text></g>
+        <g class="node" tabindex="0" style="--d:1.1s" data-k="storage" data-t="S3" data-i="Files and records stored in S3 with presigned URLs, so uploads never pass through the API.">
+          <rect x="205" y="316" width="140" height="64" rx="10"/><text class="t" x="219" y="343">S3</text><text class="s" x="219" y="363">presigned urls</text></g>
+        <g class="node" tabindex="0" style="--d:1.2s" data-k="ai" data-t="LLM pipeline · LangGraph" data-i="FastAPI + LangGraph pipeline that maps legacy schemas to a new one, switchable between OpenAI, Anthropic and Gemini.">
+          <rect x="400" y="44" width="150" height="64" rx="10"/><text class="t" x="414" y="71">LLM pipeline</text><text class="s" x="414" y="91">langgraph · fastapi</text></g>
+        <g class="node" tabindex="0" style="--d:1.4s" data-k="ci/cd" data-t="CI/CD · GitHub Actions + Terraform" data-i="Docker builds through GitHub Actions cut deploy time in half. All AWS infra is Terraform modules, one state per environment.">
+          <rect x="205" y="44" width="140" height="64" rx="10"/><text class="t" x="219" y="71">CI/CD</text><text class="s" x="219" y="91">actions · terraform</text></g>
+
+        <g class="pkts" aria-hidden="true">
+          <circle class="pkt" r="3.5" opacity="0"><animateMotion id="p1" dur="1.1s" begin="2s;p3.end+0.8s"><mpath href="#e1"/></animateMotion><set attributeName="opacity" to="1" begin="p1.begin" end="p1.end"/></circle>
+          <circle class="pkt" r="3.5" opacity="0"><animateMotion id="p2" dur="1.1s" begin="p1.end"><mpath href="#e2"/></animateMotion><set attributeName="opacity" to="1" begin="p2.begin" end="p2.end"/></circle>
+          <circle class="pkt" r="3.5" opacity="0"><animateMotion id="p3" dur=".9s" begin="p2.end"><mpath href="#e3"/></animateMotion><set attributeName="opacity" to="1" begin="p3.begin" end="p3.end"/></circle>
+          <circle class="pkt slow" r="3" opacity="0"><animateMotion id="p4" dur="1.4s" begin="p2.end+0.2s"><mpath href="#e4"/></animateMotion><set attributeName="opacity" to="1" begin="p4.begin" end="p4.end"/></circle>
+          <circle class="pkt slow" r="3" opacity="0"><animateMotion id="p5" dur=".9s" begin="p2.end+0.4s"><mpath href="#e5"/></animateMotion><set attributeName="opacity" to="1" begin="p5.begin" end="p5.end"/></circle>
+        </g>
+      </svg>
+      <figcaption class="arch-info" id="arch-cap" aria-live="polite"><span class="k">// overview</span>A request from the browser through AWS to the data layer. The pieces I build and run, end to end.</figcaption>
+    </figure>
   </header>
 
-  <section id="work">
+  <section id="systems">
     <div class="wrap">
-      <h2>Work</h2>
-      <p class="sub">Where I've been building.</p>
+      <div class="label reveal">01 <span>/ systems</span></div>
+      <h2 class="reveal">Systems I've designed and built</h2>
+      <p class="sub reveal">Not just screens. What each system does, how a request moves through it, and the trade-offs behind it.</p>
 
-      <div class="job">
+      <article class="case reveal">
+        <div>
+          <div class="case-tag">project · 2026 · full stack + cloud</div>
+          <h3>MossMedAI, a hospital management platform</h3>
+          <p class="one">Appointments, patient records, billing, wards, nursing and video consultations in one platform.</p>
+          <h4>The problem</h4>
+          <p>Each hospital workflow changes at its own pace and needs its own data, but an early-stage product can't pay for a big cluster or 14 databases.</p>
+          <h4>Decisions</h4>
+          <ul class="decisions">
+            <li><b>14 NestJS services, one per domain,</b> sharing typed contracts from a monorepo library.</li>
+            <li><b>One PostgreSQL, one schema per service.</b> Clear ownership without 14 databases; each service runs its own Prisma migrations on start.</li>
+            <li><b>All containers in one ARM64 Fargate task</b> behind an nginx router, reached through API Gateway and a VPC Link.</li>
+            <li><b>No NAT gateway, no load balancer.</b> The two biggest fixed costs of a small AWS setup, removed. RDS stays in private subnets.</li>
+            <li><b>Everything in Terraform,</b> as reusable modules with one state per environment.</li>
+          </ul>
+          <div class="chips"><span class="chip">Next.js</span><span class="chip">TypeScript</span><span class="chip">Zustand</span><span class="chip">NestJS</span><span class="chip">Prisma</span><span class="chip">PostgreSQL</span><span class="chip">ECS Fargate</span><span class="chip">API Gateway</span><span class="chip">Terraform</span><span class="chip">Zoom SDK</span></div>
+        </div>
+        <div class="flow">
+          <div class="flow-head"><span>request path</span><span>GET /appointments</span></div>
+          <ol>
+            <li><i>01</i><div>Next.js app<small>react · zustand · recharts</small></div></li>
+            <li><i>02</i><div>API Gateway<small>http api · vpc link</small></div></li>
+            <li><i>03</i><div>nginx router<small>single entry point</small></div></li>
+            <li><i>04</i><div>appointment-service<small>nestjs · 1 of 14 on fargate</small></div></li>
+            <li><i>05</i><div>PostgreSQL<small>rds · schema: appointment</small></div></li>
+          </ol>
+          <span class="dot"></span>
+        </div>
+      </article>
+
+      <article class="case reveal">
+        <div>
+          <div class="case-tag">project · 2026 · ai engineering</div>
+          <h3>Metadata Mapper AI, LLM schema migration</h3>
+          <p class="one">Maps a legacy hospital system's data model onto a new 40-table schema, with a human reviewing every mapping.</p>
+          <h4>The problem</h4>
+          <p>Moving off a legacy system means matching many old tables and columns to a new design. By hand it's slow, and mistakes are easy to miss.</p>
+          <h4>Decisions</h4>
+          <ul class="decisions">
+            <li><b>A LangGraph pipeline of small steps</b> instead of one giant prompt, so each step can be checked.</li>
+            <li><b>A fixed target:</b> a normalized 40-table schema plus a business glossary the model maps onto.</li>
+            <li><b>Provider-agnostic through LangChain:</b> OpenAI, Anthropic or Gemini.</li>
+            <li><b>FastAPI service for mapping runs,</b> with SQLAlchemy, Alembic migrations and Docker, on Neon PostgreSQL.</li>
+            <li><b>Human in the loop:</b> a Next.js review UI parses the SQL and draws schema diagrams with Mermaid.</li>
+          </ul>
+          <div class="chips"><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">LangGraph</span><span class="chip">LangChain</span><span class="chip">SQLAlchemy</span><span class="chip">Next.js</span><span class="chip">Mermaid</span><span class="chip">Neon</span><span class="chip">Terraform</span></div>
+        </div>
+        <div class="flow">
+          <div class="flow-head"><span>pipeline</span><span>POST /mapping-runs</span></div>
+          <ol>
+            <li><i>01</i><div>Legacy metadata<small>sql · csv samples</small></div></li>
+            <li><i>02</i><div>FastAPI<small>mapping run created</small></div></li>
+            <li><i>03</i><div>LangGraph pipeline<small>step-by-step mapping</small></div></li>
+            <li><i>04</i><div>LLM<small>openai · anthropic · gemini</small></div></li>
+            <li><i>05</i><div>Review UI<small>next.js · mermaid diagrams</small></div></li>
+          </ol>
+          <span class="dot"></span>
+        </div>
+      </article>
+
+      <article class="case reveal">
+        <div>
+          <div class="case-tag">at work · 2024 to now · real-time data</div>
+          <h3>Real-time fleet analytics</h3>
+          <p class="one">Live dashboards for 1,000+ vehicles, fed by a constant stream of IoT data.</p>
+          <h4>The problem</h4>
+          <p>Operators need current data, not yesterday's report, and the dashboards have to stay fast as the data keeps coming.</p>
+          <h4>Results</h4>
+          <div class="metrics">
+            <div class="metric"><b>-30%</b><span>API latency</span></div>
+            <div class="metric"><b>-40%</b><span>page load time</span></div>
+            <div class="metric"><b>2×</b><span>faster deploys</span></div>
+          </div>
+          <ul class="decisions">
+            <li><b>Tuned APIs and queries</b> on the IoT data path to cut response latency.</li>
+            <li><b>Code splitting and lazy loading</b> so heavy dashboard views load only when opened.</li>
+            <li><b>Docker + GitHub Actions pipelines</b> for consistent releases.</li>
+          </ul>
+          <div class="chips"><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">Apollo GraphQL</span><span class="chip">Node.js</span><span class="chip">PostgreSQL</span><span class="chip">Docker</span><span class="chip">GitHub Actions</span></div>
+        </div>
+        <div class="flow">
+          <div class="flow-head"><span>data path</span><span>live</span></div>
+          <ol>
+            <li><i>01</i><div>Vehicles<small>iot devices · 1,000+</small></div></li>
+            <li><i>02</i><div>Ingest<small>real-time streams</small></div></li>
+            <li><i>03</i><div>Node.js API<small>apollo graphql</small></div></li>
+            <li><i>04</i><div>PostgreSQL<small>tuned queries</small></div></li>
+            <li><i>05</i><div>React dashboards<small>lazy-loaded views</small></div></li>
+          </ol>
+          <span class="dot"></span>
+        </div>
+      </article>
+
+      <div class="side reveal">
+        <div class="mini">
+          <h3>Oil Drilling Dashboard</h3>
+          <p>Upload Excel well logs, explore depth charts, and ask a GPT-4o chatbot about the well. Next.js, Prisma, Neon.</p>
+          <div class="links"><a href="https://oil-drilling-dashboard-ntl1.vercel.app/" target="_blank" rel="noopener">live ↗</a><a href="https://github.com/shainsethi/Oil-Drilling-Dashboard" target="_blank" rel="noopener">code ↗</a></div>
+        </div>
+        <div class="mini">
+          <h3>FlowForge</h3>
+          <p>Drag-and-drop pipeline builder in React; a FastAPI backend checks the graph is a valid DAG.</p>
+          <div class="links"><a href="https://flow-forge-three.vercel.app/" target="_blank" rel="noopener">live ↗</a><a href="https://github.com/shainsethi/FlowForge" target="_blank" rel="noopener">code ↗</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="label reveal">02 <span>/ experience</span></div>
+      <h2 class="reveal">Where I've shipped</h2>
+      <p class="sub reveal">Product teams, mostly remote, from frontend to full stack.</p>
+
+      <div class="job reveal">
         <div class="when">Jul 2025 – now</div>
         <div>
-          <h3>Full Stack Developer <span>· CEAT (Taabi Mobility)</span></h3>
+          <h3>Full Stack Developer <span>· CEAT, Taabi Mobility</span></h3>
+          <div class="where">bengaluru</div>
           <ul>
-            <li>Build full stack analytics modules on real-time IoT data with React, Node.js, PostgreSQL and Apollo GraphQL</li>
-            <li>Optimize backend APIs and data streams for lower latency</li>
-            <li>Set up CI/CD with Docker and GitHub Actions; mentor developers and run code reviews</li>
+            <li>Real-time fleet analytics on IoT data with React, Node.js, Apollo GraphQL and PostgreSQL</li>
+            <li>CI/CD with Docker and GitHub Actions; mentor 2 junior developers and run code reviews</li>
           </ul>
-          <span class="award">Excellence in Execution Award, 2026</span>
+          <span class="award">Excellence in Execution Award · 2026</span>
         </div>
       </div>
-
-      <div class="job">
-        <div class="when">Aug 2024 – Jul 2025</div>
+      <div class="job reveal">
+        <div class="when">Aug 2024 – Jun 2025</div>
         <div>
-          <h3>Frontend Developer <span>· CEAT (Taabi Mobility)</span></h3>
-          <ul>
-            <li>Built a React and TypeScript operations platform for internal teams</li>
-            <li>Improved load time with code splitting, lazy loading and bundle optimization</li>
-          </ul>
+          <h3>Frontend Engineer <span>· CEAT, Taabi Mobility</span></h3>
+          <div class="where">bengaluru</div>
+          <ul><li>React and TypeScript operations platform; 40% faster page loads</li></ul>
         </div>
       </div>
-
-      <div class="job">
+      <div class="job reveal">
         <div class="when">Sep 2023 – Aug 2024</div>
         <div>
-          <h3>Frontend Web Developer <span>· HeaLink</span></h3>
-          <ul>
-            <li>Built a personal health records app with React and Vite</li>
-            <li>Improved Lighthouse scores through accessibility, SEO and performance work</li>
-          </ul>
+          <h3>Frontend Engineer <span>· HeaLink</span></h3>
+          <div class="where">remote</div>
+          <ul><li>Personal health records app in React and Vite; 28% more user engagement, better Lighthouse scores</li></ul>
         </div>
       </div>
-
-      <div class="job">
+      <div class="job reveal">
         <div class="when">Feb 2022 – Sep 2022</div>
         <div>
           <h3>Frontend Developer Intern <span>· Visa2Fly</span></h3>
-          <ul>
-            <li>Built reusable Angular components for travel booking apps</li>
-          </ul>
+          <div class="where">remote</div>
+          <ul><li>Reusable Angular components that made feature delivery 40% faster</li></ul>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="projects">
+  <section id="stack">
     <div class="wrap">
-      <h2>Projects</h2>
-      <p class="sub">Things I've built end to end.</p>
-      <div class="projects">
-
-        <article class="card">
-          <div class="body">
-            <h3>Oil Drilling Dashboard</h3>
-            <p>An AI-powered dashboard for drilling data. Upload Excel well logs, explore Gamma Ray, Delta-T and rock composition charts by depth, and ask a chatbot questions about the well.</p>
-            <div class="chips"><span class="chip">Next.js</span><span class="chip">Recharts</span><span class="chip">PostgreSQL (Neon)</span><span class="chip">Prisma</span><span class="chip">GPT-4o</span><span class="chip">Tailwind</span></div>
-            <div class="links">
-              <a href="https://oil-drilling-dashboard-ntl1.vercel.app/" target="_blank" rel="noopener">Live demo ↗</a>
-              <a href="https://github.com/shainsethi/Oil-Drilling-Dashboard" target="_blank" rel="noopener">Code ↗</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="body">
-            <h3>FlowForge</h3>
-            <p>A drag-and-drop pipeline builder. Wire nodes together on a canvas in React, and a FastAPI backend checks the pipeline is a valid directed acyclic graph.</p>
-            <div class="chips"><span class="chip">React</span><span class="chip">FastAPI</span><span class="chip">Python</span><span class="chip">Graphs (DAG)</span></div>
-            <div class="links">
-              <a href="https://flow-forge-three.vercel.app/" target="_blank" rel="noopener">Live demo ↗</a>
-              <a href="https://github.com/shainsethi/FlowForge" target="_blank" rel="noopener">Code ↗</a>
-            </div>
-          </div>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <section id="skills">
-    <div class="wrap">
-      <h2>Skills</h2>
-      <p class="sub">What I reach for.</p>
-      <div class="skills">
-        <div><h3>Frontend</h3><div class="chips"><span class="chip">React</span><span class="chip">Next.js</span><span class="chip">TypeScript</span><span class="chip">JavaScript</span><span class="chip">Redux</span><span class="chip">React Query</span><span class="chip">Accessibility</span><span class="chip">Web performance</span></div></div>
-        <div><h3>Backend</h3><div class="chips"><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">Apollo GraphQL</span><span class="chip">REST APIs</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">Prisma</span></div></div>
-        <div><h3>Tooling</h3><div class="chips"><span class="chip">Docker</span><span class="chip">GitHub Actions</span><span class="chip">CI/CD</span><span class="chip">Git</span><span class="chip">Jest</span><span class="chip">Vite</span></div></div>
-        <div><h3>Learning now</h3><div class="chips"><span class="chip">System design</span><span class="chip">AWS</span><span class="chip">AI engineering</span><span class="chip">RAG</span></div></div>
+      <div class="label reveal">03 <span>/ stack</span></div>
+      <h2 class="reveal">What I build with</h2>
+      <p class="sub reveal">Every layer of the request path.</p>
+      <div class="stack reveal">
+        <div><h3>Frontend</h3><ul><li>React</li><li>Next.js</li><li>TypeScript</li><li>Redux · Zustand</li><li>React Query · Apollo</li><li>Tailwind CSS</li></ul></div>
+        <div><h3>Backend</h3><ul><li>Node.js · NestJS</li><li>Express</li><li>GraphQL · REST</li><li>Python · FastAPI</li><li>Prisma · SQLAlchemy</li><li>PostgreSQL · MongoDB</li></ul></div>
+        <div><h3>Cloud &amp; DevOps</h3><ul><li>AWS: ECS Fargate, RDS</li><li>API Gateway, VPC, S3</li><li>Terraform</li><li>Docker</li><li>GitHub Actions</li><li>CloudWatch</li></ul></div>
+        <div><h3>AI</h3><ul><li>LangGraph</li><li>LangChain</li><li>OpenAI · Anthropic</li><li>Gemini</li><li>LLM evaluation</li><li>Human-in-the-loop UIs</li></ul></div>
       </div>
     </div>
   </section>
 
   <section id="writing">
-    <div class="wrap">
-      <div class="writing">
-        <h2>Writing</h2>
-        <p>I write on LinkedIn about React internals, frontend performance and what AI gets right and wrong in real codebases. Short, practical, and occasionally a meme.</p>
-        <a class="btn" href="https://www.linkedin.com/in/shain-sethi/recent-activity/all/" target="_blank" rel="noopener">Read my posts ↗</a>
+    <div class="wrap writing reveal">
+      <div>
+        <div class="label">04 <span>/ writing</span></div>
+        <h2>Learning in public</h2>
+        <p>I write on LinkedIn about React internals, frontend performance, system design and what AI gets right and wrong in real codebases.</p>
       </div>
+      <a class="btn" href="https://www.linkedin.com/in/shain-sethi/recent-activity/all/" target="_blank" rel="noopener">Read my posts ↗</a>
     </div>
   </section>
 </main>
 
 <footer id="contact">
   <div class="wrap">
-    <div class="tag">Contact</div>
-    <h2>Let's build something fast.</h2>
-    <p class="sub" style="margin-top:12px">Open to full stack and frontend roles, collaborations, and good conversations about code.</p>
+    <div class="label">05 <span>/ contact</span></div>
+    <h2>Have a system to build?</h2>
+    <p class="sub" style="margin-top:12px">Open to full stack roles, remote or in Bengaluru. The fastest way to reach me is email.</p>
     <div class="cta">
       <a class="btn primary" href="mailto:shainsethi1000@gmail.com">shainsethi1000@gmail.com</a>
       <a class="btn" href="https://www.linkedin.com/in/shain-sethi/" target="_blank" rel="noopener">LinkedIn</a>
       <a class="btn" href="https://github.com/shainsethi" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="assets/Shain_Sethi_Resume.pdf" target="_blank" rel="noopener">Resume</a>
     </div>
-    <p class="small">© 2026 Shain Sethi · Hand-written HTML and CSS, no framework, no build step.</p>
+    <div class="small"><span>© 2026 Shain Sethi</span><span>hand-written html, css and a little js · no framework · no build step</span></div>
   </div>
 </footer>
 
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // diagram: show what I built with the hovered or focused component
+  const info = document.getElementById('arch-cap');
+  const initial = info.innerHTML;
+  const nodes = document.querySelectorAll('.node');
+  const show = n => {
+    nodes.forEach(x => x.classList.toggle('on', x === n));
+    info.innerHTML = `<span class="k">// ${n.dataset.k}</span><b>${n.dataset.t}.</b> ${n.dataset.i}`;
+  };
+  nodes.forEach(n => {
+    n.addEventListener('mouseenter', () => show(n));
+    n.addEventListener('focus', () => show(n));
+    n.addEventListener('click', () => show(n));
+  });
+  document.querySelector('.arch svg').addEventListener('mouseleave', () => {
+    nodes.forEach(x => x.classList.remove('on'));
+    info.innerHTML = initial;
+  });
+
+  // grid highlight follows the cursor
+  const grid = document.querySelector('.grid-bg');
+  if (!reduce) addEventListener('pointermove', e => {
+    grid.style.setProperty('--mx', e.clientX + 'px');
+    grid.style.setProperty('--my', e.clientY + 'px');
+  }, { passive: true });
+
+  // flows: set travel distance, run only while visible
+  document.querySelectorAll('.flow').forEach(f => {
+    const items = f.querySelectorAll('li');
+    const h = items[items.length - 1].offsetTop - items[0].offsetTop;
+    f.querySelector('.dot').style.setProperty('--h', h + 'px');
+  });
+  if (reduce || !('IntersectionObserver' in window)) {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+    return;
+  }
+  const io = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.target.classList.contains('flow')) e.target.classList.toggle('live', e.isIntersecting);
+    else if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: .15 });
+  document.querySelectorAll('.reveal, .flow').forEach(el => io.observe(el));
+})();
+</script>
 </body>
 </html>

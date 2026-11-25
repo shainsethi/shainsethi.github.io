@@ -19,4 +19,3 @@ Personal site of Shain Sethi. One hand-written `index.html`, no framework, no bu
 ## To do
 
 - Project screenshots: add `assets/oil-dashboard.png` and `assets/flowforge.png` (1280x800) and put an `<img>` back at the top of each project card.
-- Resume: add `assets/resume.pdf` and a "Resume" button in the hero, if you want one public.
