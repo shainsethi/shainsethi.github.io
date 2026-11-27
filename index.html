@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Shain Sethi: full stack engineer in Bengaluru</title>
+<title>Shain Sethi: full stack, frontend, DevOps and AI engineer</title>
 <meta name="description" content="Three years of React, Node.js and PostgreSQL in production, now designing NestJS services on AWS and LLM pipelines with LangGraph. Open to remote roles.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Shain Sethi: full stack engineer in Bengaluru">
+<meta property="og:title" content="Shain Sethi: full stack, frontend, DevOps and AI engineer">
 <meta property="og:description" content="React, Node.js and PostgreSQL in production; NestJS services on AWS and LLM pipelines.">
 <meta property="og:image" content="https://shainsethi.github.io/share.jpg">
 <meta property="og:url" content="https://shainsethi.github.io/">
@@ -84,6 +84,15 @@
   .exp-photo { aspect-ratio: 1; margin: 0; }
   @media (min-width: 640px) and (max-width: 1023px) { #experience .rows { grid-column: 1 / span 8; } .exp-photo { grid-column: 9 / -1; } }
   @media (max-width: 639px) { .exp-photo { display: none; } .footer__lede { display: none; } }
+  /* the role word in the h1: one pass through four roles on load, again on hover (no layout shift: every word shares one grid cell) */
+  .role { display: inline-grid; justify-items: start; white-space: nowrap; transition: width .4s var(--ease, ease); }
+  .role__w { grid-area: 1 / 1; color: var(--accent); opacity: 0; transform: translateY(.18em); transition: opacity .35s var(--ease, ease), transform .35s var(--ease, ease); }
+  .role__w.is-on { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .role__w { transition: none; } }
+  /* the hero window on a white surface like the Mapper window (the kit takes the sand ground otherwise, and its grey text drops under 4.5:1) */
+  .hero--centred .hero__window .ui { --fx-bg: #ffffff; }
+  /* the mock windows' meta text (columns, ages, line numbers) at 4.5:1 or more on white; diff gutters tinted from their row */
+  .ui { --u-muted: #666a70; --u-soft: #666a70; }
   /* the hero's lead in the ink: body text at 7:1 */
   .hero--centred .hero__lead { color: var(--ink); }
   /* the systems frame holds the diagram over the effect */
@@ -126,8 +135,8 @@
     <div class="wrap"><div class="hero-text">
       <div class="hero__c">
         <a class="pill" href="#experience"><span>Open to remote roles</span></a>
-        <h1 id="hero-h" class="mo-lt__type" data-moment="liquid-type">Full stack engineer in Bengaluru</h1>
-        <p class="hero__lead">Three years of React, Node.js and PostgreSQL in production. Now NestJS on AWS and LangGraph pipelines.</p>
+        <h1 id="hero-h" class="mo-lt__type" data-moment="liquid-type" aria-label="Full stack, frontend, DevOps and AI engineer"><span class="role" aria-hidden="true"><span class="role__w is-on">Full stack</span><span class="role__w">Frontend</span><span class="role__w">DevOps</span><span class="role__w">AI</span></span> engineer</h1>
+        <p class="hero__lead">3 years of React, Node.js and PostgreSQL in production. Now NestJS on AWS and LangGraph pipelines.</p>
         <div class="btn-row"><a class="btn btn--primary" href="mailto:shainsethi1000@gmail.com">Email me</a><a class="btn btn--secondary" href="assets/Shain_Sethi_Resume.pdf">Download the resume</a></div>
       </div>
       <div class="hero__window" role="img" aria-label="The MossMedAI services window: appointment, record, billing, ward and video-consult services each starting and turning healthy">
@@ -364,7 +373,7 @@
     <div class="closing__cta close--type">
       <div class="section-head">
         <h2 id="close-h">Email me about a full stack role</h2>
-        <p>Remote, or on site in Bengaluru.</p>
+        <p>Open to remote roles in any of these four.</p>
       </div>
       <a class="btn btn--primary btn--xl btn--wide" href="mailto:shainsethi1000@gmail.com">Email me<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
     </div>
@@ -388,6 +397,26 @@
   </div>
 </footer>
 
+<script>
+/* role word: Full stack, Frontend, DevOps, AI, back to Full stack (4.4 s), then rests; replays when the pointer enters the h1 */
+(() => {
+  const role = document.querySelector('.role');
+  if (!role || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const words = [...role.children]; let timer;
+  const play = () => {
+    clearTimeout(timer); let i = 0;
+    const step = () => {
+      const on = i % words.length;
+      words.forEach((w, k) => w.classList.toggle('is-on', k === on));
+      role.style.width = words[on].scrollWidth + 'px'; /* the slot fits the word, so the centred line re-centres instead of leaving a gap */
+      if (++i <= words.length) timer = setTimeout(step, 1100);
+    };
+    step();
+  };
+  document.fonts.ready.then(() => setTimeout(play, 900));
+  document.getElementById('hero-h').addEventListener('pointerenter', play);
+})();
+</script>
 <script type="module" src="assets/system.js"></script>
 <script type="module" src="assets/motion/motion.js"></script>
 <script type="module" src="assets/layout/layout.js"></script>
