@@ -182,7 +182,7 @@
     </div></div>
   </section>
 
-  <section class="section" id="migration" aria-labelledby="migration-h">
+  <section class="section ground-surface" id="migration" aria-labelledby="migration-h">
     <div class="wrap">
       <div class="grid">
         <h2 id="migration-h" class="span-5">LLM schema mapping for hospital data</h2>
@@ -271,7 +271,7 @@
     </div>
   </section>
 
-  <section class="section" id="systems" aria-labelledby="systems-h">
+  <section class="section ground-surface" id="systems" aria-labelledby="systems-h">
     <div class="wrap">
       <div class="grid">
         <h2 id="systems-h" class="span-5">14 NestJS services on one Fargate task</h2>
@@ -412,22 +412,23 @@
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const h1 = document.getElementById('hero-h'), hero = h1 && h1.closest('.hero');
   if (!h1) return;
-  let timer, timer2, started = false;
+  let timer, timer2, started = false, busy = false;
   const ready = () => !hero || !hero.matches('[data-enter]') || hero.classList.contains('is-entered');
   const play = () => {
-    if (!ready()) return;
+    if (!ready() || busy) return; /* a hover mid-cycle used to restart it while the old word was still fading: two words in one cell */
+    busy = true;
     const role = h1.querySelector('.role'); if (!role) return;
     const words = [...role.querySelectorAll(':scope > .role__w')];
     clearTimeout(timer); clearTimeout(timer2); let i = 0;
     const show = on => {
-      const w = words[on].scrollWidth; if (w > 0) role.style.width = w + 'px';
-      timer = setTimeout(() => words[on].classList.add('is-on'), 240); /* resize the slot first, then show the word */
+      const w = words[on].scrollWidth; if (w > 0) role.style.width = w / parseFloat(getComputedStyle(role).fontSize) + 'em'; /* em: a later font-size change (resize, rotate) keeps the slot right */
+      timer = setTimeout(() => words.forEach((w, k) => w.classList.toggle('is-on', k === on)), 240); /* only one word on, even when a background tab bunches the timers */ /* resize the slot first, then show the word */
     };
     const step = () => {
       const on = i % words.length, cur = role.querySelector(':scope > .role__w.is-on');
       if (cur && cur !== words[on]) { cur.classList.remove('is-on'); timer = setTimeout(() => show(on), 200); } /* out first, then in */
       else show(on);
-      if (++i <= words.length) timer2 = setTimeout(step, 1100);
+      if (++i <= words.length) timer2 = setTimeout(step, 1100); else timer2 = setTimeout(() => { busy = false; }, 500);
     };
     step();
   };
