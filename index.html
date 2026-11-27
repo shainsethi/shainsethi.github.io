@@ -91,6 +91,9 @@
   @media (prefers-reduced-motion: reduce) { .role__w { transition: none; } }
   /* the hero window on a white surface like the migration window (the kit takes the sand ground otherwise, and its grey text drops under 4.5:1) */
   .hero--centred .hero__window .ui { --fx-bg: #ffffff; }
+  /* the window fills its centred slot (the kit fragment is a fixed 600px, which left it off-centre and cut its names) */
+  .hero--centred .hero__window .ui-win { width: 100%; }
+  @container ui-win (min-width: 540px) { .hero--centred .hero__window :is(.ui-win__cols, .ui-win__row) { grid-template-columns: 24px 168px minmax(0, 1fr) 96px 44px; } }
   /* the mock windows' meta text (columns, ages, line numbers) at 4.5:1 or more on white; diff gutters tinted from their row */
   .ui { --u-muted: #666a70; --u-soft: #666a70; }
   /* the hero's lead in the ink: body text at 7:1 */
