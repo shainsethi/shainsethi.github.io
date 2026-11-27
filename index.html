@@ -23,8 +23,7 @@
 /* runs before the first paint, so a dark visitor never sees the light page flash */
 (() => {
   const saved = localStorage.getItem('theme');             // 'dark', 'light' or null (never toggled)
-  const systemDark = matchMedia('(prefers-color-scheme: dark)').matches;
-  document.documentElement.dataset.theme = saved || (systemDark ? 'dark' : 'light'); // a click wins, else the OS setting
+  document.documentElement.dataset.theme = saved || 'light'; // light unless the visitor clicked dark
 })();
 </script>
 <link rel="stylesheet" href="assets/system.css">
@@ -116,7 +115,9 @@
   .rows .rows__name small { display: block; font-weight: 400; color: var(--muted); font-size: var(--t-small); }
   /* the fleet frame at its recipe's 5:4 */
   #fleet .frame--split { aspect-ratio: 5 / 4; }
-  @media (max-width: 639px) { #fleet .frame--split { aspect-ratio: 16 / 10; } #systems .frame[data-visual] { height: 420px; flex: none; } }
+  /* the stat card sits small in the top-left corner, over the globe (the globe leans away from it: calmX/calmY) */
+  #fleet .fleet-stat > .ui-stat { width: min(300px, 100%); }
+  @media (max-width: 639px) { #fleet .frame--split { aspect-ratio: 4 / 5; } #systems .frame[data-visual] { height: 420px; flex: none; } }
   #systems .frame[data-visual] > .dg { position: absolute; inset: var(--s-6); width: auto; z-index: 1; } /* width auto: the kit's width 100% made it ignore the right inset and spill off the right edge */
   /* dark theme: the same palette tokens, swapped (the kit maps every ground from --p-*); the sand lit frames stay as they are */
   :root[data-theme="dark"] {
@@ -141,6 +142,8 @@
   :root[data-theme="dark"] .theme-toggle .t-sun { display: block; }
   /* under 1024px the kit keeps only the primary button in the closed bar; the toggle stays beside it */
   html .nav:not(.is-open) .nav__actions > .theme-toggle { display: inline-grid; }
+  /* under 360px the bar has no room for it: it waits in the open menu with the other actions */
+  @media (max-width: 359px) { html .nav:not(.is-open) .nav__actions > .theme-toggle { display: none; } }
 </style>
 </head>
 <body>
@@ -315,7 +318,7 @@
     </div>
   </section>
 
-  <section class="section" id="fleet" aria-labelledby="fleet-h">
+  <section class="section bg-band" id="fleet" aria-labelledby="fleet-h">
     <div class="wrap">
       <div class="grid">
         <div class="span-5 stack-5">
@@ -328,9 +331,9 @@
           </ul>
           <p><a class="link" href="#experience">See the experience</a></p>
         </div>
-        <div class="frame frame--split frame--lit span-6 start-7">
-          <div class="stage stage--fade-br">
-            <div class="at-corner to-edge" style="--ax: 56px; --ay: 56px">
+        <div class="frame frame--split frame--lit span-6 start-7" data-fx="dotted-globe" data-fx-live data-fx-seed="7" data-fx-params='{"calmX": 0.2, "calmY": 0.2, "size": 0.9}' role="img" aria-label="A dotted globe turning, with arcs between cities, behind a chart of dashboard page load falling 40% after code splitting">
+          <div class="stage">
+            <div class="at-corner fleet-stat" style="--ax: 24px; --ay: 24px">
               <div class="ui ui-panel ui-stat" data-ui="stat" data-from="100" data-to="60" data-suffix="%" data-values="100,98,101,99,100,97,62,60,61,59,60,58,60,59" data-prev="100,99,101,100,98,100,99,101,100,99,100,98,99,100" data-ui-loop>
                 <div class="ui-stat__head">
                   <div class="ui-stat__top"><span class="ui-stat__label">Dashboard page load</span><span class="ui-stat__range">After code splitting</span></div>
@@ -407,7 +410,7 @@
   </section>
 </main>
 
-<footer class="footer closing" id="contact" aria-labelledby="close-h">
+<footer class="footer closing bg-horizon" id="contact" aria-labelledby="close-h">
   <div class="wrap">
     <div class="closing__cta close--type">
       <div class="section-head">
