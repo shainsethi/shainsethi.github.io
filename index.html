@@ -398,24 +398,41 @@
 </footer>
 
 <script>
-/* role word: Full stack, Frontend, DevOps, AI, back to Full stack (4.4 s), then rests; replays when the pointer enters the h1 */
+/* role word: Full stack, Frontend, DevOps, AI, back to Full stack (4.4 s), then rests; replays when the pointer enters the h1.
+   It starts only after the hero's entrance (motion.js moves the h1's nodes out while it animates a copy) and looks the
+   slot up live each step, so it never measures a detached node (0px) and never runs a word over "engineer". */
 (() => {
-  const role = document.querySelector('.role');
-  if (!role || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const words = [...role.children]; let timer, timer2;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const h1 = document.getElementById('hero-h'), hero = h1 && h1.closest('.hero');
+  if (!h1) return;
+  let timer, timer2, started = false;
+  const ready = () => !hero || !hero.matches('[data-enter]') || hero.classList.contains('is-entered');
   const play = () => {
+    if (!ready()) return;
+    const role = h1.querySelector('.role'); if (!role) return;
+    const words = [...role.querySelectorAll(':scope > .role__w')];
     clearTimeout(timer); clearTimeout(timer2); let i = 0;
-    const show = on => { role.style.width = words[on].scrollWidth + 'px'; timer = setTimeout(() => words[on].classList.add('is-on'), 240); }; /* resize the slot first, then show the word: the centred line re-centres and no word runs past it */
+    const show = on => {
+      const w = words[on].scrollWidth; if (w > 0) role.style.width = w + 'px';
+      timer = setTimeout(() => words[on].classList.add('is-on'), 240); /* resize the slot first, then show the word */
+    };
     const step = () => {
-      const on = i % words.length, cur = role.querySelector('.is-on');
-      if (cur && cur !== words[on]) { cur.classList.remove('is-on'); timer = setTimeout(() => show(on), 200); } /* out first, then in: two words never share the slot */
+      const on = i % words.length, cur = role.querySelector(':scope > .role__w.is-on');
+      if (cur && cur !== words[on]) { cur.classList.remove('is-on'); timer = setTimeout(() => show(on), 200); } /* out first, then in */
       else show(on);
       if (++i <= words.length) timer2 = setTimeout(step, 1100);
     };
     step();
   };
-  document.fonts.ready.then(() => setTimeout(play, 900));
-  document.getElementById('hero-h').addEventListener('pointerenter', play);
+  const start = () => { if (started) return; started = true; setTimeout(play, 700); };
+  const whenEntered = () => {
+    if (ready()) return start();
+    const mo = new MutationObserver(() => { if (ready()) { mo.disconnect(); start(); } });
+    mo.observe(hero, { attributes: true, attributeFilter: ['class'] });
+    setTimeout(() => { mo.disconnect(); if (ready()) start(); }, 4000); /* the entrance never finished: stay on Full stack */
+  };
+  document.fonts.ready.then(whenEntered);
+  h1.addEventListener('pointerenter', () => { if (started) play(); });
 })();
 </script>
 <script type="module" src="assets/system.js"></script>
