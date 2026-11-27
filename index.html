@@ -1,655 +1,396 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-type="software" data-radius="soft" data-ground="sand" data-buttons="pill" data-motion>
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Shain Sethi · Full Stack Engineer</title>
-<meta name="description" content="Shain Sethi is a full stack engineer who designs and builds systems end to end: React and Next.js, Node.js and NestJS microservices, PostgreSQL, AWS with Terraform, and LLM pipelines.">
-<meta property="og:title" content="Shain Sethi · Full Stack Engineer">
-<meta property="og:description" content="Full stack systems, from the React UI to the AWS infra underneath.">
-<meta property="og:image" content="https://shainsethi.github.io/assets/og.png">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Shain Sethi: full stack engineer in Bengaluru</title>
+<meta name="description" content="Three years of React, Node.js and PostgreSQL in production, now designing NestJS services on AWS and LLM pipelines with LangGraph. Open to remote roles.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Shain Sethi: full stack engineer in Bengaluru">
+<meta property="og:description" content="React, Node.js and PostgreSQL in production; NestJS services on AWS and LLM pipelines.">
+<meta property="og:image" content="https://shainsethi.github.io/share.jpg">
 <meta property="og:url" content="https://shainsethi.github.io/">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0e13'/%3E%3Ctext x='32' y='44' font-family='monospace' font-size='34' font-weight='700' text-anchor='middle' fill='%2358c4dc'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#eef0f3">
+<link rel="canonical" href="https://shainsethi.github.io/">
+<meta name="site-kind" content="software">
+<meta name="page-type" content="software">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wdth,wght@85..100,400..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/system.css">
+<link rel="stylesheet" href="assets/ui/cards.css">
+<link rel="stylesheet" href="assets/motion/motion.css">
+<link rel="stylesheet" href="assets/backgrounds/backgrounds.css">
+<link rel="stylesheet" href="assets/layout/layout.css">
+<link rel="stylesheet" href="assets/icons/icon.css">
 <style>
 :root {
-  --bg: #0a0e13; --bg-2: #0d131a; --panel: #10171f; --line: #1b2530; --line-2: #263443;
-  --text: #e9eef3; --muted: #93a3b4; --dim: #5d6e80;
-  --accent: #58c4dc; --accent-soft: rgba(88,196,220,.12);
-  --amber: #ffb454; --ok: #7ee2a8;
-  --display: "Bricolage Grotesque", "IBM Plex Sans", sans-serif;
-  --sans: "IBM Plex Sans", system-ui, sans-serif;
-  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
-  --serif: "Instrument Serif", Georgia, serif;
-  --ease: cubic-bezier(.2,.7,.2,1);
+  --p-bg: #eef0f3; --p-surface: #e2e5ea; --p-ink: #0b0c0e; --p-muted: #5d6470;
+  --p-accent: #1f2de6; --p-accent-ink: #ffffff; --p-action: #1f2de6; --p-action-ink: #ffffff;
+  --p-inv-bg: #0b0c0e; --p-inv-surface: #17181a; --p-inv-ink: #eef0f3; --p-inv-muted: #8e8f92;
+  --p-inv-accent: #eef0f3; --p-inv-accent-ink: #0b0c0e; --p-inv-action: #eef0f3; --p-inv-action-ink: #0b0c0e;
+  --font-display: "IBM Plex Sans", system-ui, sans-serif;
+  --font-text: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --display-weight: 500;
+  --display-tracking: -0.025em;
+  --display-tracking-xl: -0.035em;
+  --ly-scale: 0.98;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { background: var(--bg); color: var(--text); font: 17px/1.65 var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: .05;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
-a { color: inherit; }
-::selection { background: var(--accent); color: var(--bg); }
-a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
-.wrap { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
-em.s { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: 0; color: var(--accent); }
-
-.grid-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none;
-  background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
-  background-size: 48px 48px; opacity: .5;
-  -webkit-mask-image: radial-gradient(520px circle at var(--mx, 75%) var(--my, 25%), #000, rgba(0,0,0,.25) 55%, rgba(0,0,0,.08));
-          mask-image: radial-gradient(520px circle at var(--mx, 75%) var(--my, 25%), #000, rgba(0,0,0,.25) 55%, rgba(0,0,0,.08)); }
-
-nav { position: sticky; top: 0; z-index: 50; background: rgba(10,14,19,.78); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
-nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
-.logo { display: flex; align-items: center; gap: 10px; font: 500 14px var(--mono); text-decoration: none; }
-.logo b { width: 26px; height: 26px; display: grid; place-items: center; border: 1px solid var(--accent); border-radius: 7px; color: var(--accent); font-weight: 600; }
-nav ul { display: flex; gap: 4px; list-style: none; align-items: center; }
-nav ul a { text-decoration: none; color: var(--muted); font: 13px var(--mono); padding: 6px 11px; border-radius: 7px; transition: color .2s, background .2s; }
-nav ul a:hover { color: var(--text); }
-nav ul a.active { color: var(--text); background: var(--panel); }
-nav ul a.resume { color: var(--bg); background: var(--accent); margin-left: 8px; font-weight: 500; }
-.progress { position: absolute; left: 0; bottom: -1px; height: 1px; width: 100%; background: var(--accent); transform-origin: 0 50%; transform: scaleX(var(--p, 0)); }
-
-.hero { padding-top: 56px; padding-bottom: 40px; }
-.hero-top { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; font: 12.5px var(--mono); color: var(--dim); margin-bottom: 28px; }
-.status { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); }
-.status i { width: 7px; height: 7px; border-radius: 50%; background: var(--ok); animation: ping 2s infinite; }
-@keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(126,226,168,.55); } 70%, 100% { box-shadow: 0 0 0 8px rgba(126,226,168,0); } }
-h1 { font: 800 clamp(40px, 6vw, 80px)/.98 var(--display); letter-spacing: -.035em; max-width: 1100px; }
-h1 em.s { font-size: 1.08em; }
-h1 .w { display: inline-block; opacity: 0; transform: translateY(.35em); animation: up .8s var(--ease) forwards; }
-@keyframes up { to { opacity: 1; transform: none; } }
-.hero-grid { display: grid; grid-template-columns: .82fr 1.18fr; gap: 48px; margin-top: 36px; align-items: start; }
-.lead { font-size: 18.5px; color: var(--muted); }
-.lead b { color: var(--text); font-weight: 500; }
-.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-.btn { display: inline-flex; align-items: center; gap: 9px; padding: 12px 19px; border-radius: 10px; font: 500 14.5px var(--sans); text-decoration: none; border: 1px solid var(--line-2); background: var(--panel); color: var(--text); cursor: pointer; transition: border-color .2s, transform .2s var(--ease), background .2s; }
-.btn:hover { border-color: var(--accent); transform: translateY(-2px); }
-.btn.primary { background: var(--accent); color: var(--bg); border-color: var(--accent); font-weight: 600; }
-.btn .arr { transition: transform .2s var(--ease); }
-.btn:hover .arr { transform: translateX(3px); }
-.facts { margin-top: 34px; border-top: 1px solid var(--line); }
-.facts div { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); font: 13px var(--mono); text-align: right; }
-.facts span { color: var(--dim); }
-
-.console { border: 1px solid var(--line-2); border-radius: 16px; background: linear-gradient(180deg, rgba(16,23,31,.92), rgba(10,14,19,.92)); overflow: hidden; box-shadow: 0 30px 80px -40px rgba(0,0,0,.8); opacity: 0; animation: up 1s var(--ease) .5s forwards; transform: translateY(20px); }
-.bar { display: flex; align-items: center; gap: 8px; padding: 11px 14px; border-bottom: 1px solid var(--line); font: 12px var(--mono); color: var(--dim); }
-.bar .dots { display: flex; gap: 6px; margin-right: 6px; }
-.bar .dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--line-2); }
-.bar .sp { flex: 1; }
-.send { font: 12px var(--mono); color: var(--accent); background: var(--accent-soft); border: 1px solid rgba(88,196,220,.35); padding: 4px 10px; border-radius: 6px; cursor: pointer; }
-.send:hover { background: rgba(88,196,220,.2); }
-.console svg { display: block; width: 100%; height: auto; padding: 8px 12px 0; }
-.node rect { fill: var(--bg); stroke: var(--line-2); stroke-width: 1.2; transition: stroke .25s, fill .25s; }
-.node .t { fill: var(--text); font: 500 13.5px var(--sans); }
-.node .s { fill: var(--dim); font: 10.5px var(--mono); }
-.node { cursor: pointer; outline: none; opacity: 0; animation: fadeIn .5s ease forwards; animation-delay: var(--d); }
-.node:hover rect, .node:focus rect, .node.on rect { stroke: var(--accent); fill: #0e1b25; }
-.node.hot rect { stroke: var(--amber); fill: #1d1710; }
-@keyframes fadeIn { to { opacity: 1; } }
-.edge { fill: none; stroke: var(--line-2); stroke-width: 1.4; stroke-dasharray: var(--len); stroke-dashoffset: var(--len); animation: draw 1s ease forwards; animation-delay: var(--d); }
-.edge.deploy { stroke-dasharray: 4 5; stroke-dashoffset: 0; opacity: 0; animation: fadeIn .6s ease forwards, march 1.2s linear infinite; animation-delay: var(--d), 0s; }
-@keyframes draw { to { stroke-dashoffset: 0; } }
-@keyframes march { to { stroke-dashoffset: -18; } }
-.pkt { fill: var(--accent); filter: drop-shadow(0 0 4px var(--accent)); }
-.pkt.back { fill: var(--amber); filter: drop-shadow(0 0 4px var(--amber)); }
-.info { padding: 12px 16px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); min-height: 64px; }
-.info b { color: var(--text); font-weight: 600; }
-.log { border-top: 1px solid var(--line); background: #070a0e; padding: 12px 16px; height: 146px; overflow: hidden; font: 12px/1.75 var(--mono); color: var(--dim); display: flex; flex-direction: column; justify-content: flex-end; }
-.log div { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; animation: fadeIn .3s ease; }
-.log .req { color: var(--text); }
-.log .m { color: var(--accent); }
-.log .ok { color: var(--ok); }
-.log .ms { color: var(--amber); }
-
-.metrics { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); border-radius: 16px; margin: 56px 0 0; background: var(--bg-2); }
-.metric { padding: 26px 26px 22px; border-right: 1px solid var(--line); }
-.metric:last-child { border-right: 0; }
-.metric b { display: block; font: 700 clamp(34px, 4vw, 48px)/1 var(--display); letter-spacing: -.03em; }
-.metric span { display: block; margin-top: 10px; font: 12.5px var(--mono); color: var(--dim); }
-
-section { padding: 120px 0 0; }
-.sec-head { display: grid; grid-template-columns: 200px 1fr; gap: 28px; margin-bottom: 48px; align-items: end; }
-.idx { font: 12.5px var(--mono); color: var(--dim); border-top: 1px solid var(--line-2); padding-top: 10px; }
-.idx b { color: var(--accent); font-weight: 500; }
-h2 { font: 700 clamp(32px, 4.6vw, 58px)/1.02 var(--display); letter-spacing: -.03em; }
-.sec-head p { color: var(--muted); max-width: 560px; margin-top: 14px; }
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
-.reveal.in { opacity: 1; transform: none; }
-
-.tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; }
-.tab { font: 500 14px var(--sans); color: var(--muted); background: transparent; border: 1px solid var(--line-2); padding: 10px 16px; border-radius: 999px; cursor: pointer; transition: all .2s; display: inline-flex; gap: 10px; align-items: center; }
-.tab small { font: 11.5px var(--mono); color: var(--dim); }
-.tab:hover { color: var(--text); border-color: var(--dim); }
-.tab[aria-selected="true"] { background: var(--text); color: var(--bg); border-color: var(--text); }
-.tab[aria-selected="true"] small { color: #4a5866; }
-.panel { border: 1px solid var(--line-2); border-radius: 20px; background: var(--bg-2); overflow: hidden; }
-.panel[hidden] { display: none; }
-.panel.show .anim { animation: up .6s var(--ease) both; }
-.panel-top { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; padding: 36px 36px 30px; }
-.kicker { font: 12px var(--mono); color: var(--dim); }
-.panel h3 { font: 700 clamp(26px, 3vw, 36px)/1.1 var(--display); letter-spacing: -.02em; margin: 6px 0 12px; }
-.panel .one { color: var(--muted); font-size: 17px; }
-.problem { border-left: 2px solid var(--amber); padding: 4px 0 4px 18px; align-self: center; }
-.problem .kicker { color: var(--amber); margin-bottom: 6px; }
-.problem p { color: var(--text); font-size: 16.5px; }
-
-.flow { display: flex; align-items: center; padding: 28px 36px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: repeating-linear-gradient(90deg, transparent 0 23px, rgba(38,52,67,.35) 23px 24px), var(--bg); overflow-x: auto; }
-.box { flex: none; border: 1px solid var(--line-2); background: var(--panel); border-radius: 10px; padding: 10px 14px; min-width: 120px; transition: border-color .3s, transform .3s var(--ease); }
-.box b { display: block; font: 500 14px var(--sans); }
-.box span { font: 11px var(--mono); color: var(--dim); }
-.box.lit { border-color: var(--accent); transform: translateY(-3px); }
-.wire { flex: 1; min-width: 26px; height: 2px; position: relative; background: repeating-linear-gradient(90deg, var(--accent) 0 6px, transparent 6px 12px); opacity: .55; animation: flowx .8s linear infinite; }
-.wire::after { content: ""; position: absolute; right: -1px; top: -4px; border: 5px solid transparent; border-left: 6px solid var(--accent); border-right: 0; }
-@keyframes flowx { to { background-position: 12px 0; } }
-@keyframes flowy { to { background-position: 0 12px; } }
-
-.decisions { display: grid; grid-template-columns: repeat(3, 1fr); }
-.dec { padding: 26px 30px 30px; border-right: 1px solid var(--line); }
-.dec:last-child { border-right: 0; }
-.dec dl { display: grid; grid-template-columns: 58px 1fr; row-gap: 9px; font-size: 15px; }
-.dec dt { font: 11.5px/2 var(--mono); color: var(--dim); letter-spacing: .06em; }
-.dec dd { color: var(--muted); }
-.dec dd.c { color: var(--text); font-weight: 500; }
-.dec dd.o { text-decoration: line-through; text-decoration-color: rgba(255,180,84,.6); }
-.dec .num { font: 11.5px var(--mono); color: var(--accent); margin-bottom: 14px; display: block; }
-.res b { display: block; font: 700 40px/1 var(--display); letter-spacing: -.03em; margin-bottom: 10px; }
-.res p { color: var(--muted); font-size: 15px; }
-.chips { display: flex; flex-wrap: wrap; gap: 7px; padding: 20px 36px 26px; border-top: 1px solid var(--line); }
-.chip { font: 12px var(--mono); color: #93d9ea; background: var(--accent-soft); padding: 4px 10px; border-radius: 6px; }
-
-.also { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 16px; }
-.mini { display: flex; justify-content: space-between; gap: 20px; align-items: center; border: 1px solid var(--line); border-radius: 14px; padding: 18px 22px; transition: border-color .2s, background .2s; }
-.mini:hover { border-color: var(--line-2); background: var(--bg-2); }
-.mini h4 { font: 600 16px var(--sans); }
-.mini p { font-size: 14px; color: var(--muted); }
-.mini .l { display: flex; gap: 14px; font: 12.5px var(--mono); flex: none; }
-.mini .l a { color: var(--accent); text-decoration: none; }
-.mini .l a:hover { text-decoration: underline; }
-
-.trace { border: 1px solid var(--line-2); border-radius: 20px; background: var(--bg-2); overflow: hidden; }
-.trace-head { display: grid; grid-template-columns: 300px 1fr; border-bottom: 1px solid var(--line); font: 11.5px var(--mono); color: var(--dim); }
-.trace-head > div { padding: 12px 20px; }
-.axis { position: relative; height: 40px; border-left: 1px solid var(--line); }
-.axis span { position: absolute; top: 12px; transform: translateX(-50%); }
-.row { display: grid; grid-template-columns: 300px 1fr; border-bottom: 1px solid var(--line); transition: background .2s; }
-.row:hover { background: rgba(88,196,220,.04); }
-.who { padding: 14px 20px; }
-.who b { display: block; font: 600 15px var(--sans); }
-.who span { font: 11.5px var(--mono); color: var(--dim); }
-.track { position: relative; border-left: 1px solid var(--line); background: repeating-linear-gradient(90deg, transparent 0 calc(100%/6 - 1px), var(--line) calc(100%/6 - 1px) calc(100%/6)); }
-.span { position: absolute; top: 50%; height: 24px; margin-top: -12px; border-radius: 5px; background: var(--accent); transform-origin: 0 50%; transform: scaleX(0); transition: transform 1s var(--ease); display: flex; align-items: center; padding: 0 8px; font: normal 11px var(--mono); color: var(--bg); white-space: nowrap; }
-.span.study { background: #3a4b5e; color: var(--text); }
-.span.side { background: var(--amber); }
-.span.live::after { content: ""; position: absolute; right: -5px; top: 50%; width: 9px; height: 9px; margin-top: -4.5px; border-radius: 50%; background: var(--ok); animation: ping 2s infinite; }
-.trace.in .span { transform: scaleX(1); }
-.now { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--ok); opacity: .6; }
-.tag-award { display: inline-block; margin-top: 4px; color: var(--ok) !important; }
-.legend { display: flex; gap: 18px; flex-wrap: wrap; padding: 14px 20px; border-top: 1px solid var(--line); font: 11.5px var(--mono); color: var(--dim); }
-.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 7px; vertical-align: -1px; }
-
-.layers { display: grid; gap: 10px; }
-.layer { display: grid; grid-template-columns: 210px 1fr 170px; gap: 24px; align-items: center; padding: 20px 24px; border: 1px solid var(--line-2); border-radius: 14px; background: var(--bg-2); transition: transform .35s var(--ease), border-color .35s, background .35s, opacity .8s var(--ease); }
-.layer:hover { transform: translateX(10px); border-color: var(--accent); background: #0e1820; }
-.layer h3 { font: 700 20px var(--display); letter-spacing: -.01em; }
-.layer h3 small { display: block; font: 11.5px var(--mono); color: var(--dim); letter-spacing: 0; margin-bottom: 2px; }
-.layer .chips { padding: 0; border: 0; }
-.layer .where { font: 11.5px var(--mono); color: var(--dim); text-align: right; }
-
-.contact { display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: center; padding-bottom: 40px; }
-.contact h2 { font-size: clamp(40px, 6vw, 80px); }
-.contact p.sub { color: var(--muted); margin: 18px 0 28px; max-width: 440px; }
-.term { border: 1px solid var(--line-2); border-radius: 16px; background: #070a0e; overflow: hidden; }
-.term pre { padding: 18px 20px 22px; font: 13.5px/1.75 var(--mono); color: var(--muted); min-height: 330px; white-space: pre-wrap; word-break: break-word; }
-.term .p { color: var(--ok); }
-.term .k { color: var(--accent); }
-.term .v { color: var(--amber); }
-.term a { color: var(--amber); text-decoration: none; border-bottom: 1px dashed rgba(255,180,84,.5); }
-.term a:hover { border-bottom-style: solid; }
-.caret { display: inline-block; width: 8px; height: 16px; background: var(--accent); vertical-align: -3px; animation: blink 1s steps(1) infinite; }
-@keyframes blink { 50% { opacity: 0; } }
-footer { border-top: 1px solid var(--line); margin-top: 80px; padding: 22px 0 30px; }
-footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font: 12px var(--mono); color: var(--dim); }
-footer a { color: var(--muted); text-decoration: none; }
-footer a:hover { color: var(--accent); }
-
-@media (max-width: 960px) {
-  .hero-grid, .panel-top, .contact { grid-template-columns: 1fr; gap: 32px; }
-  .metrics { grid-template-columns: 1fr 1fr; }
-  .metric:nth-child(2) { border-right: 0; }
-  .metric:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
-  .decisions { grid-template-columns: 1fr; }
-  .dec { border-right: 0; border-bottom: 1px solid var(--line); }
-  .dec:last-child { border-bottom: 0; }
-  .layer { grid-template-columns: 1fr; gap: 12px; }
-  .layer .where { text-align: left; }
-  .sec-head { grid-template-columns: 1fr; gap: 14px; }
-  .also { grid-template-columns: 1fr; }
-}
-@media (max-width: 720px) {
-  .wrap { padding-left: 18px; padding-right: 18px; }
-  body { font-size: 16px; }
-  nav ul li.hide-sm { display: none; }
-  section { padding-top: 88px; }
-  .flow { flex-direction: column; align-items: stretch; padding: 22px; background: var(--bg); }
-  .wire { flex: none; width: 2px; height: 22px; min-width: 0; margin: 0 auto; background: repeating-linear-gradient(180deg, var(--accent) 0 6px, transparent 6px 12px); animation-name: flowy; }
-  .wire::after { right: auto; left: -4px; top: auto; bottom: -2px; border: 5px solid transparent; border-top: 6px solid var(--accent); border-bottom: 0; }
-  .panel-top { padding: 26px 22px 22px; }
-  .dec { padding: 22px; }
-  .chips { padding: 18px 22px 22px; }
-  .trace-head { grid-template-columns: 1fr; }
-  .trace-head > div:first-child { display: none; }
-  .axis { border-left: 0; }
-  .row { grid-template-columns: 1fr; }
-  .who { padding: 12px 16px 4px; }
-  .track { height: 34px; border-left: 0; }
-  .mini { flex-direction: column; align-items: flex-start; }
-  .term pre { font-size: 12px; min-height: 300px; }
-  .facts div { font-size: 12px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-  .reveal, h1 .w, .console, .node { opacity: 1; transform: none; }
-  .edge { stroke-dashoffset: 0; }
-}
+</style>
+<link rel="stylesheet" href="assets/ui/base.css">
+<link rel="stylesheet" href="assets/ui/window/fragment.css">
+<link rel="stylesheet" href="assets/ui/diff-review/fragment.css">
+<link rel="stylesheet" href="assets/ui/stat/fragment.css">
+<link rel="stylesheet" href="assets/ui/notify/fragment.css">
+<link rel="stylesheet" href="assets/diagrams/diagram.css">
+<script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
+<script src="assets/backgrounds/backgrounds.js"></script>
+<script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
+<link rel="modulepreload" href="assets/moments/moments.js">
+<link rel="modulepreload" href="assets/moments/lib.js">
+<link rel="modulepreload" href="assets/moments/liquid-type/moment.js">
+<link rel="modulepreload" href="assets/moments/line-carries-colour/moment.js">
+<style>
+  /* app-frame (sections-library.md, app-frame) */
+  .app.ui { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); margin-top: var(--s-7); background: var(--u-bg); border: 1px solid var(--u-border); border-radius: var(--u-r); box-shadow: var(--u-shadow); }
+  .app > .app__pane { position: relative; min-width: 0; min-height: 0; overflow: hidden; }
+  .app > .app__pane + .app__pane { border-left: 1px solid var(--u-line); }
+  .app > .app__pane > .ui-panel { width: 100%; border: 0; border-radius: 0; box-shadow: none; }
+  .app > .app__pane::after { content: ""; position: absolute; inset: auto 0 0 0; height: 64px; background: linear-gradient(transparent, var(--u-bg)); pointer-events: none; }
+  @media (min-width: 1024px) and (max-width: 1279px) { .app.ui { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); } }
+  @media (max-width: 1023px) {
+    .app.ui { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); }
+    .app > .app__pane--list { max-height: 252px; }
+    .app > .app__pane--list::after { display: none; }
+    .app .ui-win__side { display: none; }
+    .app .ui-win__body { grid-template-columns: minmax(0, 1fr); }
+    .app > .app__pane + .app__pane { border-left: 0; border-top: 1px solid var(--u-line); }
+  }
+  @media (max-width: 639px) {
+    .app.ui { grid-template-rows: minmax(0, 1fr); }
+    .app > .app__pane--list { display: none; }
+    .app > .app__pane + .app__pane { border-top: 0; }
+  }
+  /* the stack grid (sections-library.md, integrations-grid: the big grid), on the .wrap lines */
+  .stack-grid ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); column-gap: var(--s-5); row-gap: var(--s-7); }
+  .stack-grid li { display: grid; justify-items: start; gap: var(--s-3); }
+  .stack-grid li > img { width: 88px; height: 88px; padding: 20px; border-radius: var(--r-md); background: #fff; box-shadow: 0 0 0 1px rgb(0 0 0 / .08); }
+  @media (min-width: 640px) and (max-width: 1023px) { .stack-grid ul { grid-template-columns: repeat(6, minmax(0, 1fr)); row-gap: var(--s-8); } #experience .rows > li { padding-block: var(--s-5); } }
+  @media (max-width: 639px) { .stack-grid ul { grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: var(--s-3); row-gap: var(--s-2); } .stack-grid li { gap: var(--s-1); } .stack-grid li > img { width: 48px; height: 48px; padding: 11px; } }
+  /* the portrait beside the roles: a square on span-3 */
+  .exp-photo { aspect-ratio: 1; margin: 0; }
+  @media (min-width: 640px) and (max-width: 1023px) { #experience .rows { grid-column: 1 / span 8; } .exp-photo { grid-column: 9 / -1; } }
+  @media (max-width: 639px) { .exp-photo { display: none; } .footer__lede { display: none; } }
+  /* the hero's lead in the ink: body text at 7:1 */
+  .hero--centred .hero__lead { color: var(--ink); }
+  /* the systems frame holds the diagram over the effect */
+  #systems .frame[data-visual] { position: relative; margin-top: var(--s-7); }
+  /* experience rows: the place and the award under each role */
+  .rows .rows__name small { display: block; font-weight: 400; color: var(--muted); font-size: var(--t-small); }
+  /* the fleet frame at its recipe's 5:4 */
+  #fleet .frame--split { aspect-ratio: 5 / 4; }
+  @media (max-width: 639px) { #fleet .frame--split { aspect-ratio: 16 / 10; } #systems .frame[data-visual] { height: 420px; flex: none; } }
+  #systems .frame[data-visual] > .dg { position: absolute; inset: var(--s-6); z-index: 1; }
 </style>
 </head>
 <body>
-<div class="grid-bg" aria-hidden="true"></div>
-
-<nav aria-label="Main">
-  <div class="wrap">
-    <a class="logo" href="#top"><b>S</b>shain.sethi</a>
-    <ul>
-      <li class="hide-sm"><a href="#systems">systems</a></li>
-      <li class="hide-sm"><a href="#trace">experience</a></li>
-      <li class="hide-sm"><a href="#stack">stack</a></li>
-      <li><a href="#contact">contact</a></li>
-      <li><a class="resume" href="assets/Shain_Sethi_Resume.pdf" target="_blank" rel="noopener">resume ↓</a></li>
-    </ul>
+<!-- type: software (a person hired for engineering; shown through his systems, since the brief has no photographs of the work)
+     deal: hero centred (triptych re-dealt: its use is a product with many outputs), nav nav-centre, close close-type, footer footer-columns, rhythm dark-band, buttons pill, mark wordmark,
+           palette cool-grey-cobalt, type plex, ground sand, effect fluted-glass in the one [data-visual] frame (#systems)
+     moments: liquid-type on the hero h1, line-carries-colour on #experience (the dark band) -->
+<header class="nav nav--centre">
+  <div class="wrap nav__bar">
+    <a class="skip-link" href="#top">Skip to content</a>
+    <a class="nav__logo" href="#top">Shain Sethi</a>
+    <nav class="nav__links" aria-label="Main">
+      <div class="nav__item"><a class="nav__link" href="#mapper">Work</a></div>
+      <div class="nav__item"><a class="nav__link" href="#systems">Systems</a></div>
+      <div class="nav__item"><a class="nav__link" href="#experience">Experience</a></div>
+      <div class="nav__item"><a class="nav__link" href="#stack">Stack</a></div>
+    </nav>
+    <div class="nav__actions">
+      <a class="nav__link" href="assets/Shain_Sethi_Resume.pdf">Resume</a>
+      <a class="btn btn--primary" href="mailto:shainsethi1000@gmail.com">Email me</a>
+    </div>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
   </div>
-  <div class="progress" aria-hidden="true"></div>
-</nav>
+</header>
 
 <main id="top">
-  <header class="hero wrap">
-    <div class="hero-top">
-      <span class="status"><i></i>open to remote roles · full stack</span>
-      <span>bengaluru, india · utc+5:30</span>
-    </div>
-    <h1 id="headline">Full stack engineer who thinks in <em class="s">systems,</em> from the React UI to the AWS infra underneath.</h1>
-
-    <div class="hero-grid">
-      <div>
-        <p class="lead">I'm <b>Shain Sethi</b>. For 3+ years I've shipped <b>React, Node.js and PostgreSQL</b> in production. Lately I design <b>microservices on AWS</b> with Terraform and build <b>LLM pipelines</b> with LangGraph.</p>
-        <div class="cta">
-          <a class="btn primary" href="#systems">Explore the systems <span class="arr">→</span></a>
-          <a class="btn" href="assets/Shain_Sethi_Resume.pdf" target="_blank" rel="noopener">Resume</a>
-        </div>
-        <div class="facts">
-          <div><span>now</span>Full Stack Developer, Taabi Mobility</div>
-          <div><span>building</span>MossMedAI · Metadata Mapper AI</div>
-          <div><span>learning</span>system design · AWS · AI eng</div>
+  <section class="hero hero--centred" data-enter aria-labelledby="hero-h">
+    <div class="wrap"><div class="hero-text">
+      <div class="hero__c">
+        <a class="pill" href="#experience"><span>Open to remote roles</span></a>
+        <h1 id="hero-h" class="mo-lt__type" data-moment="liquid-type">Full stack engineer in Bengaluru</h1>
+        <p class="hero__lead">Three years of React, Node.js and PostgreSQL in production. Now NestJS on AWS and LangGraph pipelines.</p>
+        <div class="btn-row"><a class="btn btn--primary" href="mailto:shainsethi1000@gmail.com">Email me</a><a class="btn btn--secondary" href="assets/Shain_Sethi_Resume.pdf">Download the resume</a></div>
+      </div>
+      <div class="hero__window" role="img" aria-label="The MossMedAI services window: appointment, record, billing, ward and video-consult services each starting and turning healthy">
+        <div class="ly-piece" aria-hidden="true">
+          <div class="ui ui-panel ui-win" data-ui="window" data-open="Starting" data-work="Deploying" data-done="Healthy">
+            <div class="ui-win__bar">
+              <span class="ui-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="ui-win__crumb"><img data-icon="logos:aws-ecs" src="assets/icons/aws-ecs.svg" alt="" width="14" height="14"> MossMedAI <i>/</i> <b>prod services</b></span>
+              <span class="ui-spacer"></span>
+              <span class="ui-win__search" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg><span class="ui-win__ph">Search</span><span class="ui-kbd">/</span></span>
+            </div>
+            <div class="ui-win__body">
+              <nav class="ui-win__side" aria-hidden="true">
+                <span class="ui-win__nav"><svg class="ui-icon" viewBox="0 0 16 16"><rect x="2.5" y="3" width="11" height="4" rx="1"/><rect x="2.5" y="9" width="11" height="4" rx="1"/></svg>Services<em>14</em></span>
+                <span class="ui-win__nav"><svg class="ui-icon" viewBox="0 0 16 16"><ellipse cx="8" cy="4" rx="5" ry="2"/><path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4"/></svg>Schemas<em>14</em></span>
+                <span class="ui-win__nav"><svg class="ui-icon" viewBox="0 0 16 16"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7"/><path d="M3 13.5h10"/></svg>Deploys</span>
+                <span class="ui-win__label">Infra</span>
+                <span class="ui-win__nav"><span class="ui-win__hash">#</span>terraform</span>
+                <span class="ui-win__nav"><span class="ui-win__hash">#</span>vpc-link</span>
+              </nav>
+              <div class="ui-win__main">
+                <div class="ui-win__cols" aria-hidden="true"><span>Service</span><span>Owns</span><span>Status</span><span>Arch</span></div>
+                <ul class="ui-win__rows">
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="1">AP</span><span class="ui-win__who">appointment-service</span><span class="ui-win__sub">Slots, bookings, reminders</span><span class="ui-win__st is-done" data-st>Healthy</span><span class="ui-win__age">arm64</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="3">RE</span><span class="ui-win__who">record-service</span><span class="ui-win__sub">Patient records, S3 uploads</span><span class="ui-win__st is-done" data-st>Healthy</span><span class="ui-win__age">arm64</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="4">BI</span><span class="ui-win__who">billing-service</span><span class="ui-win__sub">Invoices and payments</span><span class="ui-win__st" data-st>Starting</span><span class="ui-win__age">arm64</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="2">WA</span><span class="ui-win__who">ward-service</span><span class="ui-win__sub">Beds, wards, transfers</span><span class="ui-win__st" data-st>Starting</span><span class="ui-win__age">arm64</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="5">NU</span><span class="ui-win__who">nursing-service</span><span class="ui-win__sub">Shifts and handovers</span><span class="ui-win__st" data-st>Starting</span><span class="ui-win__age">arm64</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="1">VC</span><span class="ui-win__who">video-consult-service</span><span class="ui-win__sub">Zoom SDK sessions</span><span class="ui-win__st" data-st>Starting</span><span class="ui-win__age">arm64</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+    </div></div>
+  </section>
 
-      <figure class="console" aria-label="Interactive architecture diagram">
-        <div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>prod · us-east-1</span><span class="sp"></span><button class="send" id="send" type="button">send request ▶</button></div>
-        <svg viewBox="0 0 560 400" id="arch">
-          <path class="edge deploy" d="M150 76 H205" style="--d:1.6s"/>
-          <path class="edge deploy" d="M345 76 H372 V196 H400" style="--d:1.8s"/>
-          <path class="edge" id="e1" d="M150 212 H205" style="--d:.5s"/>
-          <path class="edge" id="e2" d="M345 212 H400" style="--d:.8s"/>
-          <path class="edge" id="e3" d="M500 254 V316" style="--d:1.1s"/>
-          <path class="edge" id="e4" d="M440 254 V286 H275 V316" style="--d:1.2s"/>
-          <path class="edge" id="e5" d="M472 170 V108" style="--d:1.3s"/>
-
-          <g class="node" tabindex="0" id="n-git" style="--d:1.4s" data-t="git push" data-i="Every change starts as a pull request with code review. I review code for my team and mentor two junior developers.">
-            <rect x="10" y="44" width="140" height="64" rx="10"/><text class="t" x="24" y="71">git push</text><text class="s" x="24" y="91">pr · code review</text></g>
-          <g class="node" tabindex="0" id="n-ci" style="--d:1.5s" data-t="CI/CD · GitHub Actions + Terraform" data-i="Docker builds through GitHub Actions cut deploy time in half. All AWS infra lives in Terraform modules, one state per environment.">
-            <rect x="205" y="44" width="140" height="64" rx="10"/><text class="t" x="219" y="71">CI/CD</text><text class="s" x="219" y="91">actions · terraform</text></g>
-          <g class="node" tabindex="0" id="n-llm" style="--d:1.2s" data-t="LLM pipeline · LangGraph" data-i="A FastAPI + LangGraph pipeline that maps legacy schemas onto a new one. It can run on OpenAI, Anthropic or Gemini.">
-            <rect x="400" y="44" width="150" height="64" rx="10"/><text class="t" x="414" y="71">LLM pipeline</text><text class="s" x="414" y="91">langgraph · fastapi</text></g>
-          <g class="node" tabindex="0" id="n-web" style="--d:.1s" data-t="Browser · React / Next.js" data-i="TypeScript UIs with Zustand, Redux, React Query and Apollo. Code splitting and lazy loading took 40% off page load on a production dashboard.">
-            <rect x="10" y="180" width="140" height="64" rx="10"/><text class="t" x="24" y="207">Browser</text><text class="s" x="24" y="227">react · next.js</text></g>
-          <g class="node" tabindex="0" id="n-gw" style="--d:.4s" data-t="API Gateway · HTTP API + VPC Link" data-i="The single public entry point. Traffic reaches the private services through a VPC Link, so there's no load balancer to pay for.">
-            <rect x="205" y="180" width="140" height="64" rx="10"/><text class="t" x="219" y="207">API Gateway</text><text class="s" x="219" y="227">http api · vpc link</text></g>
-          <g class="node" tabindex="0" id="n-svc" style="--d:.7s" data-t="ECS Fargate · NestJS services" data-i="14 NestJS microservices behind an nginx router, packed into one ARM64 Fargate task to keep an early product cheap to run.">
-            <rect x="400" y="170" width="150" height="84" rx="10"/><text class="t" x="414" y="200">ECS Fargate</text><text class="s" x="414" y="220">nestjs × 14 · arm64</text><text class="s" x="414" y="238">node.js · graphql</text></g>
-          <g class="node" tabindex="0" id="n-s3" style="--d:1s" data-t="S3 · presigned URLs" data-i="Files go straight to S3 with presigned URLs, so large uploads never pass through the API.">
-            <rect x="205" y="316" width="140" height="64" rx="10"/><text class="t" x="219" y="343">S3</text><text class="s" x="219" y="363">presigned urls</text></g>
-          <g class="node" tabindex="0" id="n-db" style="--d:1.1s" data-t="RDS PostgreSQL" data-i="Private subnets only, one schema per service. Query tuning cut API latency by 30% on a real-time IoT workload.">
-            <rect x="400" y="316" width="150" height="64" rx="10"/><text class="t" x="414" y="343">PostgreSQL</text><text class="s" x="414" y="363">rds · prisma</text></g>
-          <circle class="pkt" id="pkt" r="4" cx="-20" cy="-20"/>
-        </svg>
-        <div class="info" id="info" aria-live="polite"><b>Hover or tap any component</b> to see what I've built with it, or send a request through the stack.</div>
-        <div class="log" id="log" aria-hidden="true"><div>$ tail -f access.log</div></div>
-      </figure>
-    </div>
-
-    <div class="metrics reveal">
-      <div class="metric"><b data-to="3" data-suf="+">0</b><span>years shipping to production</span></div>
-      <div class="metric"><b data-to="14">0</b><span>microservices designed on AWS</span></div>
-      <div class="metric"><b data-to="1000" data-suf="+">0</b><span>vehicles on live dashboards</span></div>
-      <div class="metric"><b data-to="30" data-pre="-" data-suf="%">0</b><span>API latency, after tuning</span></div>
-    </div>
-  </header>
-
-  <section id="systems">
+  <section class="section" id="mapper" aria-labelledby="mapper-h">
     <div class="wrap">
-      <div class="sec-head reveal">
-        <div class="idx"><b>01</b> / systems</div>
-        <div><h2>Systems, not <em class="s">just screens.</em></h2><p>Three things I've designed and built end to end: the problem, how a request moves through it, and the trade-offs behind each decision.</p></div>
+      <div class="grid">
+        <h2 id="mapper-h" class="span-5">LLM schema mapping for hospital data</h2>
+        <p class="span-6 start-7">A FastAPI and LangGraph pipeline maps a legacy system's columns onto a 40-table schema, one step at a time. A person approves each mapping in the Next.js review screen. <a class="link" href="#stack">See the stack</a></p>
       </div>
-
-      <div class="tabs reveal" role="tablist" aria-label="Systems">
-        <button class="tab" role="tab" id="t1" aria-controls="p1" aria-selected="true">MossMedAI <small>microservices</small></button>
-        <button class="tab" role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1">Metadata Mapper AI <small>llm pipeline</small></button>
-        <button class="tab" role="tab" id="t3" aria-controls="p3" aria-selected="false" tabindex="-1">Fleet analytics <small>real-time</small></button>
-      </div>
-
-      <div class="reveal">
-        <article class="panel show" role="tabpanel" id="p1" aria-labelledby="t1">
-          <div class="panel-top">
-            <div class="anim"><div class="kicker">project · 2026 · full stack + cloud</div><h3>A hospital platform split into 14 services.</h3><p class="one">Appointments, patient records, billing, wards, nursing and video consultations, each owned by its own NestJS service.</p></div>
-            <div class="problem anim"><div class="kicker">// the problem</div><p>Every hospital workflow changes at its own pace and needs its own data, but an early product can't pay for a big cluster or 14 databases.</p></div>
+      <div class="ui app fill" role="img" aria-label="Metadata Mapper: legacy tables in a list, and the mapping for patient_mst open as a SQL diff with a suggested date fix waiting for approval" data-ui-pause-host>
+        <div class="app__pane app__pane--list">
+          <div class="ui ui-panel ui-win" data-ui="window" data-open="To review" data-work="Mapping" data-done="Approved">
+            <div class="ui-win__bar">
+              <span class="ui-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="ui-win__crumb">Mapper <i>/</i> <b>Run 12</b></span>
+              <span class="ui-spacer"></span>
+              <span class="ui-win__search" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg><span class="ui-win__ph">Search</span><span class="ui-kbd">/</span></span>
+            </div>
+            <div class="ui-win__body">
+              <nav class="ui-win__side" aria-hidden="true">
+                <span class="ui-win__nav is-on"><svg class="ui-icon" viewBox="0 0 16 16"><path d="M2.5 9h3l1 1.5h3l1-1.5h3"/><path d="M2.5 9 4 3.5h8L13.5 9v3.5h-11z"/></svg>To review<em>9</em></span>
+                <span class="ui-win__nav"><svg class="ui-icon" viewBox="0 0 16 16"><path d="m3.5 8.4 2.8 2.8 6.2-6.4"/></svg>Approved<em>31</em></span>
+                <span class="ui-win__label">Target</span>
+                <span class="ui-win__nav"><span class="ui-win__hash">#</span>Clinical</span>
+                <span class="ui-win__nav"><span class="ui-win__hash">#</span>Billing</span>
+              </nav>
+              <div class="ui-win__main">
+                <div class="ui-win__cols" aria-hidden="true"><span>Legacy</span><span>Maps to</span><span>Status</span><span>Cols</span></div>
+                <ul class="ui-win__rows">
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="1">PT</span><span class="ui-win__who">patient_mst</span><span class="ui-win__sub">patients</span><span class="ui-win__st is-you" data-st>To review</span><span class="ui-win__age">14</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="3">VS</span><span class="ui-win__who">pat_visit</span><span class="ui-win__sub">encounters</span><span class="ui-win__st" data-st>To review</span><span class="ui-win__age">22</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="4">DR</span><span class="ui-win__who">doc_mst</span><span class="ui-win__sub">practitioners</span><span class="ui-win__st" data-st>To review</span><span class="ui-win__age">11</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="2">BH</span><span class="ui-win__who">bill_hdr</span><span class="ui-win__sub">invoices</span><span class="ui-win__st" data-st>To review</span><span class="ui-win__age">17</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="5">BD</span><span class="ui-win__who">bill_dtl</span><span class="ui-win__sub">invoice_lines</span><span class="ui-win__st" data-st>To review</span><span class="ui-win__age">9</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="1">WD</span><span class="ui-win__who">ward_mst</span><span class="ui-win__sub">wards</span><span class="ui-win__st is-done" data-st>Approved</span><span class="ui-win__age">6</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="3">BD</span><span class="ui-win__who">bed_mst</span><span class="ui-win__sub">beds</span><span class="ui-win__st is-done" data-st>Approved</span><span class="ui-win__age">8</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="4">LO</span><span class="ui-win__who">lab_ord</span><span class="ui-win__sub">lab_orders</span><span class="ui-win__st is-done" data-st>Approved</span><span class="ui-win__age">13</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="2">RX</span><span class="ui-win__who">rx_hdr</span><span class="ui-win__sub">prescriptions</span><span class="ui-win__st is-done" data-st>Approved</span><span class="ui-win__age">10</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="5">AS</span><span class="ui-win__who">appt_sch</span><span class="ui-win__sub">appointments</span><span class="ui-win__st is-done" data-st>Approved</span><span class="ui-win__age">12</span></li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <div class="flow">
-            <div class="box"><b>Next.js</b><span>react · zustand</span></div><i class="wire"></i>
-            <div class="box"><b>API Gateway</b><span>http api</span></div><i class="wire"></i>
-            <div class="box"><b>nginx router</b><span>vpc link</span></div><i class="wire"></i>
-            <div class="box"><b>NestJS × 14</b><span>fargate · arm64</span></div><i class="wire"></i>
-            <div class="box"><b>PostgreSQL</b><span>rds · schema/svc</span></div>
+        </div>
+        <div class="app__pane app__pane--open" data-ui-loop>
+          <div class="ui ui-panel ui-diff" data-ui="diff-review">
+            <div class="ui-diff__head">
+              <svg class="ui-icon ui-diff__fold" viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 6.25 3.5 3.5 3.5-3.5"/></svg>
+              <span class="ui-diff__tool" aria-hidden="true"><img data-icon="postgres" src="assets/icons/postgres.svg" alt="" width="88" height="88" loading="lazy"></span>
+              <span class="ui-diff__repo">mapper/run-12</span><i class="ui-diff__slash" aria-hidden="true">/</i>
+              <span class="ui-diff__path"><span class="ui-diff__dir">mappings/</span><b>patients.sql</b></span>
+              <span class="ui-spacer"></span>
+              <span class="ui-diff__stat"><b class="is-add"><span class="ui-diff__was">+3</span><span class="ui-diff__now">+4</span></b><b class="is-del"><span class="ui-diff__was">&minus;2</span><span class="ui-diff__now">&minus;3</span></b><span class="ui-diff__bar" aria-hidden="true"><i class="is-add"></i><i class="is-add"></i><i class="is-add"></i><i class="is-del"></i><i class="is-del"></i></span></span>
+            </div>
+            <div class="ui-diff__hunk"><span>@@ -1,12 +1,13 @@</span> <em class="ui-diff__sig">patient_mst &rarr; patients</em></div>
+            <div class="ui-diff__lines">
+              <div class="ui-diff__ln"><i>1</i><i>1</i><span class="ui-diff__code" data-i="0"><span class="k">INSERT INTO</span> patients (id, full_name, date_of_birth, phone)</span></div>
+              <div class="ui-diff__ln"><i>2</i><i>2</i><span class="ui-diff__code" data-i="0"><span class="k">SELECT</span></span></div>
+              <div class="ui-diff__ln"><i>3</i><i>3</i><span class="ui-diff__code" data-i="1"><span class="ui-diff__ind">  </span>pat_id,</span></div>
+              <div class="ui-diff__ln is-del"><i>4</i><i></i><span class="ui-diff__code" data-i="1"><span class="ui-diff__ind">  </span><mark class="ui-diff__w">pat_fnm || <span class="s">' '</span> || pat_lnm</mark>,</span></div>
+              <div class="ui-diff__ln is-add"><i></i><i>4</i><span class="ui-diff__code" data-i="1"><span class="ui-diff__ind">  </span><mark class="ui-diff__w"><span class="f">TRIM</span>(pat_fnm || <span class="s">' '</span> || pat_lnm)</mark>,</span></div>
+              <div class="ui-diff__ln is-target" data-diff-target><i>5</i><i>5</i><span class="ui-diff__code" data-i="1"><span class="ui-diff__ind">  </span><mark class="ui-diff__w">pat_dob</mark>,</span></div>
+              <div class="ui-diff__sug" data-diff-sug><div class="ui-diff__ln is-add"><i></i><i>5</i><span class="ui-diff__code" data-i="1"><span class="ui-diff__ind">  </span><mark class="ui-diff__w"><span class="f">TO_DATE</span>(pat_dob, <span class="s">'DDMMYYYY'</span>)</mark>,</span></div></div>
+              <div class="ui-diff__thread">
+                <div class="ui-diff__by">
+                  <span class="ui-avatar" data-tone="4">LG</span>
+                  <span class="ui-diff__name">LangGraph step 3</span>
+                  <span class="ui-diff__time">now</span>
+                  <span class="ui-spacer"></span>
+                  <span class="ui-diff__act" data-diff-act>
+                    <button class="ui-btn ui-btn--sm ui-diff__apply" type="button" tabindex="-1" data-diff-apply><span class="ui-diff__lbl">Approve mapping</span><i class="ui-diff__spin" aria-hidden="true"></i></button>
+                    <span class="ui-chip ui-diff__done"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 8.4 2.6 2.6L12 5.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Approved</span>
+                  </span>
+                </div>
+                <div class="ui-diff__msg"><code>pat_dob</code> is text in DDMMYYYY. Parse it with <code>TO_DATE</code>.</div>
+              </div>
+              <div class="ui-diff__ln"><i>6</i><i>6</i><span class="ui-diff__code" data-i="1"><span class="ui-diff__ind">  </span>pat_mob</span></div>
+              <div class="ui-diff__ln is-del"><i>7</i><i></i><span class="ui-diff__code" data-i="0"><span class="k">FROM</span> patient_mst;</span></div>
+              <div class="ui-diff__ln is-add"><i></i><i>7</i><span class="ui-diff__code" data-i="0"><span class="k">FROM</span> patient_mst</span></div>
+              <div class="ui-diff__ln is-add"><i></i><i>8</i><span class="ui-diff__code" data-i="0"><span class="k">WHERE</span> pat_del_flg = <span class="s">'N'</span>;</span></div>
+              <div class="ui-diff__ln"><i>8</i><i>9</i><span class="ui-diff__code" data-i="0"></span></div>
+              <div class="ui-diff__ln"><i>9</i><i>10</i><span class="ui-diff__code" data-i="0"><span class="k">INSERT INTO</span> patient_contacts (patient_id, kind, value)</span></div>
+              <div class="ui-diff__ln"><i>10</i><i>11</i><span class="ui-diff__code" data-i="0"><span class="k">SELECT</span> pat_id, <span class="s">'email'</span>, pat_eml</span></div>
+              <div class="ui-diff__ln"><i>11</i><i>12</i><span class="ui-diff__code" data-i="0"><span class="k">FROM</span> patient_mst</span></div>
+              <div class="ui-diff__ln"><i>12</i><i>13</i><span class="ui-diff__code" data-i="0"><span class="k">WHERE</span> pat_eml <span class="k">IS NOT NULL</span>;</span></div>
+            </div>
           </div>
-          <div class="decisions">
-            <div class="dec anim"><span class="num">decision 01</span><dl><dt>CHOSE</dt><dd class="c">One Postgres, a schema per service</dd><dt>OVER</dt><dd class="o">A database per service</dd><dt>WHY</dt><dd>Clear data ownership with one instance to run and pay for. Prisma migrates each schema on start.</dd></dl></div>
-            <div class="dec anim"><span class="num">decision 02</span><dl><dt>CHOSE</dt><dd class="c">API Gateway + VPC Link</dd><dt>OVER</dt><dd class="o">Load balancer + NAT gateway</dd><dt>WHY</dt><dd>Removes the two biggest fixed costs of a small AWS setup. RDS stays in private subnets.</dd></dl></div>
-            <div class="dec anim"><span class="num">decision 03</span><dl><dt>CHOSE</dt><dd class="c">All services in one ARM64 Fargate task</dd><dt>OVER</dt><dd class="o">One task per service</dd><dt>WHY</dt><dd>Cheaper ARM compute and fewer moving parts while traffic is small. Infra is Terraform modules per environment.</dd></dl></div>
-          </div>
-          <div class="chips"><span class="chip">Next.js</span><span class="chip">TypeScript</span><span class="chip">NestJS</span><span class="chip">Prisma</span><span class="chip">PostgreSQL</span><span class="chip">ECS Fargate</span><span class="chip">API Gateway</span><span class="chip">S3</span><span class="chip">Terraform</span><span class="chip">Zoom SDK</span></div>
-        </article>
-
-        <article class="panel" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
-          <div class="panel-top">
-            <div class="anim"><div class="kicker">project · 2026 · ai engineering</div><h3>An LLM pipeline that migrates hospital data models.</h3><p class="one">It maps a legacy system's tables and columns onto a normalized 40-table schema, and a person approves every mapping.</p></div>
-            <div class="problem anim"><div class="kicker">// the problem</div><p>Moving off a legacy system means matching many old tables and columns to a new design. By hand it's slow, and mistakes are easy to miss.</p></div>
-          </div>
-          <div class="flow">
-            <div class="box"><b>Legacy metadata</b><span>sql · csv</span></div><i class="wire"></i>
-            <div class="box"><b>FastAPI</b><span>mapping run</span></div><i class="wire"></i>
-            <div class="box"><b>LangGraph</b><span>step by step</span></div><i class="wire"></i>
-            <div class="box"><b>LLM</b><span>openai · claude · gemini</span></div><i class="wire"></i>
-            <div class="box"><b>Review UI</b><span>next.js · mermaid</span></div>
-          </div>
-          <div class="decisions">
-            <div class="dec anim"><span class="num">decision 01</span><dl><dt>CHOSE</dt><dd class="c">A LangGraph pipeline of small steps</dd><dt>OVER</dt><dd class="o">One giant prompt</dd><dt>WHY</dt><dd>Each step can be checked and retried on its own, against a fixed 40-table target and a business glossary.</dd></dl></div>
-            <div class="dec anim"><span class="num">decision 02</span><dl><dt>CHOSE</dt><dd class="c">A provider layer via LangChain</dd><dt>OVER</dt><dd class="o">Locking into one model vendor</dd><dt>WHY</dt><dd>OpenAI, Anthropic or Gemini can be swapped per run.</dd></dl></div>
-            <div class="dec anim"><span class="num">decision 03</span><dl><dt>CHOSE</dt><dd class="c">A human review step</dd><dt>OVER</dt><dd class="o">Auto-applying mappings</dd><dt>WHY</dt><dd>Schema mistakes are expensive. The Next.js UI parses the SQL and draws diagrams so a person approves each change.</dd></dl></div>
-          </div>
-          <div class="chips"><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">LangGraph</span><span class="chip">LangChain</span><span class="chip">SQLAlchemy</span><span class="chip">Alembic</span><span class="chip">Next.js</span><span class="chip">Mermaid</span><span class="chip">Neon</span><span class="chip">Docker</span></div>
-        </article>
-
-        <article class="panel" role="tabpanel" id="p3" aria-labelledby="t3" hidden>
-          <div class="panel-top">
-            <div class="anim"><div class="kicker">at work · 2024 to now · real-time data</div><h3>Live dashboards for 1,000+ vehicles.</h3><p class="one">Fleet analytics fed by a constant stream of IoT data, built with React, Node.js, Apollo GraphQL and PostgreSQL.</p></div>
-            <div class="problem anim"><div class="kicker">// the problem</div><p>Operators need what's happening now, not yesterday's report, and the dashboards have to stay fast while the data keeps coming.</p></div>
-          </div>
-          <div class="flow">
-            <div class="box"><b>Vehicles</b><span>iot · 1,000+</span></div><i class="wire"></i>
-            <div class="box"><b>Ingest</b><span>real-time streams</span></div><i class="wire"></i>
-            <div class="box"><b>Node.js API</b><span>apollo graphql</span></div><i class="wire"></i>
-            <div class="box"><b>PostgreSQL</b><span>tuned queries</span></div><i class="wire"></i>
-            <div class="box"><b>React</b><span>lazy-loaded views</span></div>
-          </div>
-          <div class="decisions">
-            <div class="dec res anim"><span class="num">result 01</span><b>-30%</b><p>API response latency, from optimizing backend APIs and queries on the IoT data path.</p></div>
-            <div class="dec res anim"><span class="num">result 02</span><b>-40%</b><p>page load time, from code splitting and lazy loading the heavy dashboard views.</p></div>
-            <div class="dec res anim"><span class="num">result 03</span><b>2×</b><p>faster deploys, with Docker and GitHub Actions pipelines.</p></div>
-          </div>
-          <div class="chips"><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">Apollo GraphQL</span><span class="chip">Node.js</span><span class="chip">PostgreSQL</span><span class="chip">Docker</span><span class="chip">GitHub Actions</span></div>
-        </article>
-      </div>
-
-      <div class="also reveal">
-        <div class="mini"><div><h4>Oil Drilling Dashboard</h4><p>Excel well logs to depth charts, plus a GPT-4o chatbot. Next.js, Prisma, Neon.</p></div><div class="l"><a href="https://github.com/shainsethi/Oil-Drilling-Dashboard" target="_blank" rel="noopener">code ↗</a></div></div>
-        <div class="mini"><div><h4>FlowForge</h4><p>Drag-and-drop pipeline builder; a FastAPI backend validates the DAG.</p></div><div class="l"><a href="https://github.com/shainsethi/FlowForge" target="_blank" rel="noopener">code ↗</a></div></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="trace">
+  <section class="section" id="systems" aria-labelledby="systems-h">
     <div class="wrap">
-      <div class="sec-head reveal">
-        <div class="idx"><b>02</b> / experience</div>
-        <div><h2>My career, <em class="s">as a trace.</em></h2><p>Every role is a span. Mostly product teams, often remote, moving from frontend to full stack to systems.</p></div>
+      <div class="grid">
+        <h2 id="systems-h" class="span-5">14 NestJS services on one Fargate task</h2>
+        <p class="span-6 start-7">MossMedAI runs appointments, records, billing, wards and video consults. One Postgres with a schema per service, reached through API Gateway and a VPC Link, so there is no load balancer to pay for.</p>
       </div>
-      <div class="trace reveal" id="traceBox">
-        <div class="trace-head"><div>span</div><div class="axis" id="axis"></div></div>
-        <div class="row"><div class="who"><b>Full Stack Developer</b><span>taabi mobility (ceat) · bengaluru</span><br><span class="tag-award">★ excellence in execution award, 2026</span></div><div class="track"><i class="span live" data-s="2025-07" data-e="now"></i></div></div>
-        <div class="row"><div class="who"><b>Freelance AI + cloud systems</b><span>mossmedai · metadata mapper · remote</span></div><div class="track"><i class="span side live" data-s="2026-05" data-e="now"></i></div></div>
-        <div class="row"><div class="who"><b>Frontend Engineer</b><span>taabi mobility (ceat) · bengaluru</span></div><div class="track"><i class="span" data-s="2024-08" data-e="2025-06"></i></div></div>
-        <div class="row"><div class="who"><b>Frontend Engineer</b><span>healink · remote</span></div><div class="track"><i class="span" data-s="2023-09" data-e="2024-08"></i></div></div>
-        <div class="row"><div class="who"><b>Freelance web developer</b><span>self-employed · remote</span></div><div class="track"><i class="span side" data-s="2022-11" data-e="2023-02"></i></div></div>
-        <div class="row"><div class="who"><b>Frontend Developer Intern</b><span>visa2fly · remote</span></div><div class="track"><i class="span" data-s="2022-02" data-e="2022-09"></i></div></div>
-        <div class="row"><div class="who"><b>MCA</b><span>sikkim manipal university · cgpa 9.0</span></div><div class="track"><i class="span study" data-s="2024-01" data-e="2026-06"></i></div></div>
-        <div class="row"><div class="who"><b>BCA</b><span>presidency university, bengaluru</span></div><div class="track"><i class="span study" data-s="2021-01" data-e="2023-06"></i></div></div>
-        <div class="legend"><span><i style="background:var(--accent)"></i>full-time</span><span><i style="background:var(--amber)"></i>freelance</span><span><i style="background:#3a4b5e"></i>education</span><span><i style="background:var(--ok);border-radius:50%"></i>running now</span></div>
+      <div class="frame fill" data-visual data-fx="fluted-glass" data-fx-seed="11" role="img" aria-label="Next.js calls API Gateway, which reaches the NestJS services on Fargate; they use PostgreSQL on RDS, S3 and the Zoom SDK, built with Terraform">
+        <div class="dg" data-diagram><script type="application/json">{"layout": "hub", "alt": "NestJS services at the centre, connected to Next.js, API Gateway, PostgreSQL, Amazon S3, the Zoom SDK and Terraform.", "center": {"label": "NestJS × 14", "icon": "nestjs"}, "spokes": [{"label": "Next.js", "icon": "nextjs"}, {"label": "API Gateway", "icon": "logos:aws-api-gateway"}, {"label": "PostgreSQL", "icon": "postgres"}, {"label": "Amazon S3", "icon": "logos:aws-s3"}, {"label": "Zoom SDK", "icon": "zoom"}, {"label": "Terraform", "icon": "terraform"}]}</script></div>
       </div>
     </div>
   </section>
 
-  <section id="stack">
+  <section class="section" id="fleet" aria-labelledby="fleet-h">
     <div class="wrap">
-      <div class="sec-head reveal">
-        <div class="idx"><b>03</b> / stack</div>
-        <div><h2>Every layer of <em class="s">the request.</em></h2><p>What I reach for at each layer, and where I've used it.</p></div>
-      </div>
-      <div class="layers">
-        <div class="layer reveal"><h3><small>L1 · interface</small>Frontend</h3><div class="chips"><span class="chip">React</span><span class="chip">Next.js</span><span class="chip">TypeScript</span><span class="chip">Redux</span><span class="chip">Zustand</span><span class="chip">React Query</span><span class="chip">Apollo Client</span><span class="chip">Tailwind</span></div><div class="where">fleet · healink · mossmedai</div></div>
-        <div class="layer reveal"><h3><small>L2 · services</small>APIs</h3><div class="chips"><span class="chip">Node.js</span><span class="chip">NestJS</span><span class="chip">Express</span><span class="chip">GraphQL</span><span class="chip">REST</span><span class="chip">Python</span><span class="chip">FastAPI</span></div><div class="where">fleet · mossmedai · mapper</div></div>
-        <div class="layer reveal"><h3><small>L3 · state</small>Data</h3><div class="chips"><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">Prisma</span><span class="chip">SQLAlchemy</span><span class="chip">Alembic</span><span class="chip">Neon</span></div><div class="where">every system</div></div>
-        <div class="layer reveal"><h3><small>L4 · intelligence</small>AI</h3><div class="chips"><span class="chip">LangGraph</span><span class="chip">LangChain</span><span class="chip">OpenAI</span><span class="chip">Anthropic</span><span class="chip">Gemini</span><span class="chip">LLM evaluation</span></div><div class="where">mapper · handshake ai</div></div>
-        <div class="layer reveal"><h3><small>L5 · platform</small>Cloud &amp; DevOps</h3><div class="chips"><span class="chip">AWS ECS Fargate</span><span class="chip">RDS</span><span class="chip">API Gateway</span><span class="chip">VPC</span><span class="chip">S3</span><span class="chip">Terraform</span><span class="chip">Docker</span><span class="chip">GitHub Actions</span></div><div class="where">mossmedai · fleet ci/cd</div></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="wrap contact">
-      <div class="reveal">
-        <div class="idx" style="max-width:200px;margin-bottom:22px"><b>04</b> / contact</div>
-        <h2>Have a system <em class="s">to build?</em></h2>
-        <p class="sub">Open to full stack roles, remote or in Bengaluru. I also write about React internals, system design and AI dev tools on LinkedIn.</p>
-        <div class="cta">
-          <button class="btn primary" id="copy" type="button">Copy email</button>
-          <a class="btn" href="https://www.linkedin.com/in/shain-sethi/" target="_blank" rel="noopener">LinkedIn ↗</a>
-          <a class="btn" href="https://github.com/shainsethi" target="_blank" rel="noopener">GitHub ↗</a>
+      <div class="grid">
+        <div class="span-5 stack-5">
+          <h2 id="fleet-h">Live dashboards for 1,000+ vehicles</h2>
+          <p class="t-lead">At Taabi Mobility, IoT data flows through Node.js and Apollo GraphQL into React views.</p>
+          <ul class="stack-3">
+            <li>API time down 30% after query tuning</li>
+            <li>Page load down 40% with code splitting</li>
+            <li>Deploys 2&times; faster on GitHub Actions</li>
+          </ul>
+          <p><a class="link" href="#experience">See the experience</a></p>
+        </div>
+        <div class="frame frame--split frame--lit span-6 start-7">
+          <div class="stage stage--fade-br">
+            <div class="at-corner to-edge" style="--ax: 56px; --ay: 56px">
+              <div class="ui ui-panel ui-stat" data-ui="stat" data-from="100" data-to="60" data-suffix="%" data-values="100,98,101,99,100,97,62,60,61,59,60,58,60,59" data-prev="100,99,101,100,98,100,99,101,100,99,100,98,99,100" data-ui-loop>
+                <div class="ui-stat__head">
+                  <div class="ui-stat__top"><span class="ui-stat__label">Dashboard page load</span><span class="ui-stat__range">After code splitting</span></div>
+                  <div class="ui-stat__line"><span class="ui-stat__num" data-stat-num>&minus;40%</span><span class="ui-stat__sub">heavy views lazy-loaded</span></div>
+                </div>
+                <div class="ui-stat__chart">
+                  <svg class="ui-stat__svg" viewBox="0 0 400 120" preserveAspectRatio="none" aria-hidden="true">
+                    <path class="ui-stat__grid" d="M0 30.5H400M0 60.5H400M0 90.5H400"/><path class="ui-stat__cover" fill-rule="evenodd" d=""/>
+                    <g class="ui-stat__bars"><rect rx="3" x="0" y="14" width="21" height="106"/><rect rx="3" x="29" y="16" width="21" height="104"/><rect rx="3" x="58" y="13" width="21" height="107"/><rect rx="3" x="87" y="15" width="21" height="105"/><rect rx="3" x="117" y="14" width="21" height="106"/><rect rx="3" x="146" y="16" width="21" height="104"/><rect rx="3" x="175" y="56" width="21" height="64"/><rect rx="3" x="204" y="57" width="21" height="63"/><rect rx="3" x="233" y="55" width="21" height="65"/><rect rx="3" x="262" y="58" width="21" height="62"/><rect rx="3" x="291" y="56" width="21" height="64"/><rect rx="3" x="321" y="57" width="21" height="63"/><rect rx="3" x="350" y="55" width="21" height="65"/><rect rx="3" x="379" y="57" width="21" height="63"/></g>
+                  </svg>
+                  <div class="ui-stat__axis" aria-hidden="true"><span>Before</span><span>Split</span><span>Now</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="term reveal" id="term">
-        <div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>~/contact</span></div>
-        <pre id="termOut"></pre>
+    </div>
+  </section>
+
+  <section class="section ground-inverse" id="experience" data-moment="line-carries-colour" data-moment-opts='{"from": "base"}' aria-labelledby="experience-h">
+    <div class="wrap">
+      <div class="section-head"><h2 id="experience-h">Experience since 2022</h2></div>
+      <div class="grid">
+      <ul class="rows span-8">
+        <li><span class="rows__name">Full Stack Developer<small>Taabi Mobility (CEAT). Excellence in execution award, 2026</small></span><span class="rows__value">Jul 2025 to now</span></li>
+        <li><span class="rows__name">Freelance AI and cloud systems<small>MossMedAI and Metadata Mapper, remote</small></span><span class="rows__value">May 2026 to now</span></li>
+        <li><span class="rows__name">Frontend Engineer<small>Taabi Mobility, Bengaluru</small></span><span class="rows__value">Aug 2024 to Jun 2025</span></li>
+        <li><span class="rows__name">Frontend Engineer<small>Healink, remote</small></span><span class="rows__value">Sep 2023 to Aug 2024</span></li>
+        <li><span class="rows__name">Freelance web developer<small>Self-employed, remote</small></span><span class="rows__value">Nov 2022 to Feb 2023</span></li>
+        <li><span class="rows__name">Frontend Developer Intern<small>Visa2fly, remote</small></span><span class="rows__value">Feb to Sep 2022</span></li>
+        <li><span class="rows__name">MCA and BCA<small>Sikkim Manipal University, CGPA 9.0; Presidency University</small></span><span class="rows__value">2021 to 2026</span></li>
+      </ul>
+      <figure class="frame frame--photo span-3 start-10 exp-photo"><img class="frame__img" src="img/shain.jpg" alt="Shain Sethi, smiling, in a navy jacket over a beige hoodie" width="400" height="400" loading="lazy" data-source="client" data-subject="portrait of Shain Sethi"></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="stack" aria-labelledby="stack-h">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="stack-h">Tools I ship with</h2>
+        <p>React and Node.js every day since 2022. AWS, Terraform and LangGraph on the freelance systems.</p>
+      </div>
+      <div class="stack-grid" role="img" aria-label="React, Next.js, TypeScript, Redux, Tailwind, GraphQL, Node.js, NestJS, Python, FastAPI, PostgreSQL, Prisma, MongoDB, AWS, Terraform, Docker, GitHub Actions, LangChain, OpenAI, Anthropic, Gemini, Zoom SDK, Apollo and ECS Fargate">
+        <ul>
+          <li><img data-icon="react" src="assets/icons/react.svg" alt="" width="88" height="88" loading="lazy"><span class="t-label">React</span></li>
+          <li><img data-icon="nextjs" src="assets/icons/nextjs.svg" alt="" width="88" height="88" loading="lazy"><span class="t-label">Next.js</span></li>
+          <li><img data-icon="typescript" src="assets/icons/typescript.svg" alt="" width="88" height="88" loading="lazy"><span class="t-label">TypeScript</span></li>
+          <li><img data-icon="logos:redux" src="assets/icons/redux.svg" alt="" width="88" height="88" loading="lazy"><span class="t-label">Redux</span></li>
+          <li><img data-icon="tailwindcss" src="assets/icons/tailwindcss.svg" alt="" width="88" height="88" loading="lazy"><span class="t-label">Tailwind</span></li>
+          <li><img data-icon="graphql" src="assets/icons/graphql.svg" alt="" width="88" height="88" loading="lazy"><span class="t-label">GraphQL</span></li>
+          <li><img data-icon="nodejs" src="assets/icons/nodejs.svg" alt="" width="88" height="88" loading="lazy"><span class="t-label">Node.js</span></li>
+          <li><img data-icon="nestjs" src="assets/icons/nestjs.svg" alt="" width="88" height="88" loading="lazy"><span class="t-label">NestJS</span></li>
+          <li><img data-icon="python" src="assets/icons/python.svg" alt="" width="88" height="88" loading="lazy"><span class="t-label">Python</span></li>
+          <li><img data-icon="fastapi" src="assets/icons/fastapi.svg" alt="" width="88" height="88" loading="lazy"><span class="t-label">FastAPI</span></li>
+          <li><img data-icon="postgres" src="assets/icons/postgres.svg" alt="" width="88" height="88" loading="lazy"><span class="t-label">PostgreSQL</span></li>
+          <li><img data-icon="prisma" src="assets/icons/prisma.svg" alt="" width="88" height="88" loading="lazy"><span class="t-label">Prisma</span></li>
+          <li><img data-icon="mongodb" src="assets/icons/mongodb.svg" alt="" width="88" height="88" loading="lazy"><span class="t-label">MongoDB</span></li>
+          <li><img data-icon="aws" src="assets/icons/aws.svg" alt="" width="88" height="88" loading="lazy"><span class="t-label">AWS</span></li>
+          <li><img data-icon="terraform" src="assets/icons/terraform.svg" alt="" width="88" height="88" loading="lazy"><span class="t-label">Terraform</span></li>
+          <li><img data-icon="docker" src="assets/icons/docker.svg" alt="" width="88" height="88" loading="lazy"><span class="t-label">Docker</span></li>
+          <li><img data-icon="github-actions" src="assets/icons/github-actions.svg" alt="" width="88" height="88" loading="lazy"><span class="t-label">GitHub Actions</span></li>
+          <li><img data-icon="langchain" src="assets/icons/langchain.svg" alt="" width="88" height="88" loading="lazy"><span class="t-label">LangChain</span></li>
+          <li><img data-icon="openai" src="assets/icons/openai.svg" alt="" width="88" height="88" loading="lazy"><span class="t-label">OpenAI</span></li>
+          <li><img data-icon="anthropic" src="assets/icons/anthropic.svg" alt="" width="88" height="88" loading="lazy"><span class="t-label">Anthropic</span></li>
+          <li><img data-icon="gemini" src="assets/icons/gemini.svg" alt="" width="88" height="88" loading="lazy"><span class="t-label">Gemini</span></li>
+          <li><img data-icon="zoom" src="assets/icons/zoom.svg" alt="" width="88" height="88" loading="lazy"><span class="t-label">Zoom SDK</span></li>
+          <li><img data-icon="logos:apollostack" src="assets/icons/apollostack.svg" alt="" width="88" height="88" loading="lazy"><span class="t-label">Apollo</span></li>
+          <li><img data-icon="logos:aws-ecs" src="assets/icons/aws-ecs.svg" alt="" width="88" height="88" loading="lazy"><span class="t-label">ECS Fargate</span></li>
+        </ul>
       </div>
     </div>
   </section>
 </main>
 
-<footer>
-  <div class="wrap"><span>© 2026 shain sethi</span><span>hand-written html, css &amp; js · no framework · <a href="https://github.com/shainsethi/shainsethi.github.io" target="_blank" rel="noopener">view source ↗</a></span></div>
+<footer class="footer closing" id="contact" aria-labelledby="close-h">
+  <div class="wrap">
+    <div class="closing__cta close--type">
+      <div class="section-head">
+        <h2 id="close-h">Email me about a full stack role</h2>
+        <p>Remote, or on site in Bengaluru.</p>
+      </div>
+      <a class="btn btn--primary btn--xl btn--wide" href="mailto:shainsethi1000@gmail.com">Email me<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+    </div>
+    <div class="closing__links">
+      <div class="grid">
+        <div class="span-4 stack-4">
+          <a class="nav__logo" href="#top">Shain Sethi</a>
+          <p class="footer__lede">Full stack, from the UI to AWS.</p>
+        </div>
+        <div class="span-2 footer__col"><h3>Work</h3><ul><li><a href="#mapper">Metadata Mapper</a></li><li><a href="#systems">MossMedAI</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>About</h3><ul><li><a href="#experience">Experience</a></li><li><a href="#stack">Stack</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Profiles</h3><ul><li><a href="https://github.com/shainsethi">GitHub</a></li><li><a href="https://www.linkedin.com/in/shain-sethi/">LinkedIn</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Files</h3><ul><li><a href="assets/Shain_Sethi_Resume.pdf">Resume (PDF)</a></li></ul></div>
+      </div>
+      <div class="footer__legal">
+        <span>&copy; 2026 Shain Sethi</span>
+        <div class="socials"></div>
+        <span class="credits">Product names and logos are trademarks of their owners</span>
+      </div>
+    </div>
+  </div>
 </footer>
 
-<script>
-(() => {
-  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const sleep = ms => new Promise(r => setTimeout(r, ms));
-  const rnd = (a, b) => Math.round(a + Math.random() * (b - a));
-
-  // headline: stagger words in
-  let wi = 0;
-  [...$('#headline').childNodes].forEach(n => {
-    if (n.nodeType === 3) {
-      const frag = document.createDocumentFragment();
-      n.textContent.split(/(\s+)/).forEach(t => {
-        if (!t.trim()) return frag.append(t);
-        const s = document.createElement('span'); s.className = 'w'; s.textContent = t;
-        s.style.animationDelay = (wi++ * 45) + 'ms'; frag.append(s);
-      });
-      n.replaceWith(frag);
-    } else { n.classList.add('w'); n.style.animationDelay = (wi++ * 45) + 'ms'; }
-  });
-
-  // diagram edges: real lengths for the draw-in
-  $$('#arch .edge:not(.deploy)').forEach(p => p.style.setProperty('--len', p.getTotalLength()));
-
-  // diagram: explain hovered / focused / tapped node
-  const info = $('#info'), initial = info.innerHTML, nodes = $$('#arch .node');
-  const show = n => { nodes.forEach(x => x.classList.toggle('on', x === n)); info.innerHTML = `<b>${n.dataset.t}.</b> ${n.dataset.i}`; };
-  nodes.forEach(n => ['mouseenter', 'focus', 'click'].forEach(ev => n.addEventListener(ev, () => show(n))));
-  $('#arch').addEventListener('mouseleave', () => { nodes.forEach(x => x.classList.remove('on')); info.innerHTML = initial; });
-
-  // demo traffic: a packet travels the real paths and the log prints each hop
-  const pkt = $('#pkt'), log = $('#log');
-  const routes = [
-    { m: 'GET', p: '/api/appointments?day=today', last: 'e3', end: 'n-db', svc: 'appointment-service', tail: 'postgres', code: '200 OK' },
-    { m: 'POST', p: '/api/records/upload-url', last: 'e4', end: 'n-s3', svc: 'record-service', tail: 's3.presign', code: '201 Created' },
-    { m: 'POST', p: '/api/mapping-runs', last: 'e5', end: 'n-llm', svc: 'mapper', tail: 'langgraph', code: '202 Accepted' },
-    { m: 'GET', p: '/api/billing/invoices/42', last: 'e3', end: 'n-db', svc: 'billing-service', tail: 'postgres', code: '200 OK' },
-  ];
-  const line = html => { const d = document.createElement('div'); d.innerHTML = html; log.append(d); while (log.children.length > 7) log.firstChild.remove(); };
-  const hot = id => { const n = $('#' + id); n.classList.add('hot'); setTimeout(() => n.classList.remove('hot'), 420); };
-  const move = (path, back, ms) => new Promise(res => {
-    const len = path.getTotalLength(), t0 = performance.now();
-    const step = now => {
-      let k = Math.min(1, (now - t0) / ms); const e = k < .5 ? 2 * k * k : 1 - (-2 * k + 2) ** 2 / 2;
-      const pt = path.getPointAtLength((back ? 1 - e : e) * len);
-      pkt.setAttribute('cx', pt.x); pkt.setAttribute('cy', pt.y);
-      k < 1 ? requestAnimationFrame(step) : res();
-    };
-    requestAnimationFrame(step);
-  });
-  let busy = false, ri = 0;
-  async function send() {
-    if (busy) return; busy = true;
-    const R = routes[ri++ % routes.length], e1 = $('#e1'), e2 = $('#e2'), e3 = $('#' + R.last);
-    const t = [rnd(2, 5), rnd(8, 22), rnd(3, 11)], total = t[0] + t[1] + t[2] + rnd(4, 9);
-    pkt.classList.remove('back');
-    line(`<span class="req"><span class="m">→ ${R.m}</span> ${R.p}</span>`);
-    hot('n-web'); await move(e1, false, 420); hot('n-gw');
-    await move(e2, false, 420); hot('n-svc');
-    await move(e3, false, 380); hot(R.end);
-    line(`&nbsp; gateway <span class="ms">${t[0]}ms</span> · ${R.svc} <span class="ms">${t[1]}ms</span> · ${R.tail} <span class="ms">${t[2]}ms</span>`);
-    await sleep(160); pkt.classList.add('back');
-    await move(e3, true, 320); await move(e2, true, 320); await move(e1, true, 320); hot('n-web');
-    line(`<span class="ok">← ${R.code}</span> <span class="ms">${total}ms</span>`);
-    pkt.setAttribute('cx', -20); busy = false;
-  }
-  $('#send').addEventListener('click', send);
-  if (!reduce) {
-    let visible = true;
-    new IntersectionObserver(([e]) => visible = e.isIntersecting).observe($('.console'));
-    setTimeout(function loop() { if (visible && !document.hidden) send(); setTimeout(loop, 3400); }, 2400);
-  }
-
-  // cursor-following grid light
-  const grid = $('.grid-bg');
-  if (!reduce) addEventListener('pointermove', e => { grid.style.setProperty('--mx', e.clientX + 'px'); grid.style.setProperty('--my', e.clientY + 'px'); }, { passive: true });
-
-  // nav: scroll progress + active section
-  const prog = $('.progress'), links = $$('nav ul a[href^="#"]');
-  const onScroll = () => {
-    const h = document.documentElement; prog.style.setProperty('--p', h.scrollTop / (h.scrollHeight - h.clientHeight || 1));
-    let cur = null; $$('main section').forEach(s => { if (s.getBoundingClientRect().top < innerHeight * .4) cur = s.id; });
-    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
-  };
-  addEventListener('scroll', onScroll, { passive: true }); onScroll();
-
-  // flow boxes light up in order, like a request passing through
-  let flowTimer;
-  const lightFlow = panel => {
-    clearInterval(flowTimer); if (reduce) return;
-    const boxes = $$('.box', panel); let k = 0;
-    flowTimer = setInterval(() => { boxes.forEach((b, j) => b.classList.toggle('lit', j === k)); k = (k + 1) % (boxes.length + 1); }, 650);
-  };
-
-  // tabs, with arrow-key support
-  const tabs = $$('.tab');
-  const select = t => {
-    tabs.forEach(x => { const on = x === t, p = $('#' + x.getAttribute('aria-controls')); x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1; p.hidden = !on; p.classList.toggle('show', on); });
-    lightFlow($('#' + t.getAttribute('aria-controls')));
-  };
-  tabs.forEach((t, k) => {
-    t.addEventListener('click', () => select(t));
-    t.addEventListener('keydown', e => { const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (d) { const n = tabs[(k + d + tabs.length) % tabs.length]; select(n); n.focus(); } });
-  });
-  lightFlow($('#p1'));
-
-  // experience trace: place spans on a 2021 to 2027 axis
-  const A0 = 2021 * 12, AN = 72, NOW = 2026 * 12 + 10;
-  const ym = s => s === 'now' ? NOW : (+s.slice(0, 4)) * 12 + (+s.slice(5, 7)) - 1;
-  const axis = $('#axis');
-  for (let y = 2021; y <= 2026; y++) axis.insertAdjacentHTML('beforeend', `<span style="left:${((y * 12 - A0 + 6) / AN) * 100}%">${y}</span>`);
-  $$('.span').forEach((s, k) => {
-    const a = ym(s.dataset.s), m = ym(s.dataset.e) + 1 - a;
-    s.style.left = ((a - A0) / AN) * 100 + '%'; s.style.width = (m / AN) * 100 + '%';
-    s.style.transitionDelay = (k * 90) + 'ms';
-    s.textContent = m >= 12 ? `${Math.floor(m / 12)}y ${m % 12}m` : `${m}m`;
-    s.title = `${s.dataset.s} → ${s.dataset.e}`;
-  });
-  $$('.track').forEach(t => t.insertAdjacentHTML('beforeend', `<i class="now" style="left:${((NOW + 1 - A0) / AN) * 100}%"></i>`));
-
-  // counters
-  const count = el => {
-    const to = +el.dataset.to, pre = el.dataset.pre || '', suf = el.dataset.suf || '', fmt = v => pre + v.toLocaleString('en-US') + suf;
-    if (reduce) return el.textContent = fmt(to);
-    const t0 = performance.now();
-    const f = now => { const k = Math.min(1, (now - t0) / 1400); el.textContent = fmt(Math.round(to * (1 - (1 - k) ** 3))); if (k < 1) requestAnimationFrame(f); };
-    requestAnimationFrame(f);
-  };
-
-  // contact terminal types itself out
-  const email = 'shainsethi1000@gmail.com', cmd = 'curl -s shainsethi.github.io/api/contact';
-  const json = [
-    `<span class="p">$</span> ${cmd}`,
-    '{',
-    '  <span class="k">"name"</span>: <span class="v">"Shain Sethi"</span>,',
-    '  <span class="k">"role"</span>: <span class="v">"Full Stack Engineer"</span>,',
-    '  <span class="k">"location"</span>: <span class="v">"Bengaluru, India (UTC+5:30)"</span>,',
-    '  <span class="k">"open_to"</span>: [<span class="v">"remote"</span>, <span class="v">"full stack"</span>, <span class="v">"system design"</span>],',
-    `  <span class="k">"email"</span>: <a href="mailto:${email}">"${email}"</a>,`,
-    '  <span class="k">"linkedin"</span>: <a href="https://www.linkedin.com/in/shain-sethi/" target="_blank" rel="noopener">"linkedin.com/in/shain-sethi"</a>,',
-    '  <span class="k">"github"</span>: <a href="https://github.com/shainsethi" target="_blank" rel="noopener">"github.com/shainsethi"</a>,',
-    '  <span class="k">"resume"</span>: <a href="assets/Shain_Sethi_Resume.pdf" target="_blank" rel="noopener">"/assets/Shain_Sethi_Resume.pdf"</a>',
-    '}',
-    '<span class="p">$</span> <span class="caret"></span>',
-  ];
-  const out = $('#termOut');
-  async function typeTerm() {
-    if (reduce) return out.innerHTML = json.join('\n');
-    for (let c = 0; c <= cmd.length; c++) { out.innerHTML = '<span class="p">$</span> ' + cmd.slice(0, c) + '<span class="caret"></span>'; await sleep(28); }
-    await sleep(250); out.innerHTML = json[0];
-    for (const l of json.slice(1)) { await sleep(70); out.innerHTML += '\n' + l; }
-  }
-  $('#copy').addEventListener('click', async e => {
-    try { await navigator.clipboard.writeText(email); e.target.textContent = 'Copied ✓'; }
-    catch { location.href = 'mailto:' + email; }
-    setTimeout(() => e.target.textContent = 'Copy email', 1800);
-  });
-
-  // reveal on scroll + one-time triggers
-  const once = new Map([[$('.metrics'), () => $$('.metric b').forEach(count)], [$('#term'), typeTerm], [$('#traceBox'), () => $('#traceBox').classList.add('in')]]);
-  const io = new IntersectionObserver(es => es.forEach(e => {
-    if (!e.isIntersecting) return;
-    e.target.classList.add('in'); io.unobserve(e.target);
-    const f = once.get(e.target); if (f) f();
-  }), { threshold: .15 });
-  $$('.reveal').forEach(el => io.observe(el));
-})();
-</script>
+<script type="module" src="assets/system.js"></script>
+<script type="module" src="assets/motion/motion.js"></script>
+<script type="module" src="assets/layout/layout.js"></script>
+<script type="module" src="assets/diagrams/mount.js"></script>
 </body>
 </html>
