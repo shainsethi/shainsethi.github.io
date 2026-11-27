@@ -59,7 +59,6 @@
 <link rel="modulepreload" href="assets/moments/moments.js">
 <link rel="modulepreload" href="assets/moments/lib.js">
 <link rel="modulepreload" href="assets/moments/liquid-type/moment.js">
-<link rel="modulepreload" href="assets/moments/line-carries-colour/moment.js">
 <style>
   /* app-frame (sections-library.md, app-frame) */
   .app.ui { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); margin-top: var(--s-7); background: var(--u-bg); border: 1px solid var(--u-border); border-radius: var(--u-r); box-shadow: var(--u-shadow); }
@@ -92,9 +91,7 @@
   #stack.bg-mist { display: block; padding-top: var(--padt); padding-bottom: calc(var(--padb) + var(--bar, 0px)); --g-screen: 100svh; }
   @media (max-width: 639px) { #stack.bg-mist { --g-screen: 100lvh; } }
   /* the portrait beside the roles: a square on span-3 */
-  .exp-photo { aspect-ratio: 1; margin: 0; }
-  @media (min-width: 640px) and (max-width: 1023px) { #experience .rows { grid-column: 1 / span 8; } .exp-side { grid-column: 9 / -1; } }
-  @media (max-width: 639px) { .exp-side { display: none; } .footer__lede { display: none; } }
+  @media (max-width: 639px) { .footer__lede { display: none; } }
   /* the role word in the h1: one pass through four roles on load, again on hover (no layout shift: every word shares one grid cell) */
   .role { display: inline-grid; justify-items: start; white-space: nowrap; transition: width .22s var(--ease, ease); }
   .role__w { grid-area: 1 / 1; color: var(--accent); opacity: 0; transform: translateY(.18em); transition: opacity .18s var(--ease, ease), transform .18s var(--ease, ease); }
@@ -111,11 +108,9 @@
   .hero--centred .hero__lead { color: var(--ink); }
   /* the systems frame holds the diagram over the effect */
   #systems .frame[data-visual] { position: relative; margin-top: var(--s-7); }
-  /* experience rows: the place and the award under each role */
-  .rows .rows__name small { display: block; font-weight: 400; color: var(--muted); font-size: var(--t-small); }
   /* the fleet frame at its recipe's 5:4 */
-  #fleet .frame--split { aspect-ratio: 5 / 4; }
-  @media (max-width: 639px) { #fleet .frame--split { aspect-ratio: 4 / 3; } #systems .frame[data-visual] { height: 420px; flex: none; } }
+  #fleet .frame--split { aspect-ratio: 1; }
+  @media (max-width: 639px) { #fleet .frame--split { aspect-ratio: 3 / 4; } #systems .frame[data-visual] { height: 420px; flex: none; } }
   #systems .frame[data-visual] > .dg { position: absolute; inset: var(--s-6); width: auto; z-index: 1; } /* width auto: the kit's width 100% made it ignore the right inset and spill off the right edge */
   /* dark theme: the same palette tokens, swapped (the kit maps every ground from --p-*); the sand lit frames stay as they are */
   :root[data-theme="dark"] {
@@ -144,7 +139,9 @@
   @media (max-width: 359px) { html .nav:not(.is-open) .nav__actions > .theme-toggle { display: none; } }
   /* fleet: a drawn live map (generic trucks, no client data), in the kit's window chrome */
   #fleet .frame--split { position: relative; }
-  .fleet-ui { width: 560px; overflow: hidden; }
+  /* centred a touch high, so the frame's pause disc (bottom-right) clears the window */
+  #fleet .stage > .at-center { top: calc(50% - 14px); }
+  .fleet-ui { width: 100%; overflow: hidden; }
   .fleet-ui__live { white-space: nowrap; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; color: var(--u-ink); font-variant-numeric: tabular-nums; }
   .fleet-ui__live i { width: 8px; height: 8px; border-radius: 50%; background: #1f9d55; box-shadow: 0 0 0 3px color-mix(in oklab, #1f9d55 22%, transparent); }
   .fleet-ui__mapwrap { position: relative; border-block: 1px solid var(--u-line); background: color-mix(in oklab, var(--u-ink) 3%, var(--u-bg)); }
@@ -159,10 +156,10 @@
   .fleet-ui__tip { position: absolute; left: calc(372 / 560 * 100% + 16px); top: calc(152 / 250 * 100% - 22px); display: grid; gap: 2px; padding: 8px 10px; border-radius: 8px; background: var(--u-bg); box-shadow: 0 1px 2px rgb(0 0 0 / .08), 0 8px 20px -8px rgb(0 0 0 / .25); font-size: 12px; line-height: 1.3; color: var(--u-muted); white-space: nowrap; }
   .fleet-ui__tip b { color: var(--u-ink); font-weight: 600; }
   .fleet-ui__rows { list-style: none; margin: 0; padding: 4px 0; }
-  .fleet-ui__rows li { display: grid; grid-template-columns: 1fr auto 72px; align-items: center; gap: 12px; height: 44px; padding: 0 16px; font-size: 13px; color: var(--u-ink); }
+  .fleet-ui__rows li { display: grid; grid-template-columns: 1fr 96px 72px; align-items: center; justify-items: start; gap: 12px; height: 44px; padding: 0 16px; font-size: 13px; color: var(--u-ink); }
   .fleet-ui__rows li + li { border-top: 1px solid var(--u-line); }
   .fleet-ui__id { font-weight: 500; }
-  .fleet-ui__val { color: var(--u-muted); text-align: right; font-variant-numeric: tabular-nums; }
+  .fleet-ui__val { justify-self: end; color: var(--u-muted); text-align: right; font-variant-numeric: tabular-nums; }
   .fleet-ui__st { display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 8px; border-radius: 6px; font-weight: 500; color: var(--u-muted); box-shadow: inset 0 0 0 1px var(--u-line-2); }
   .fleet-ui__st::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
   .fleet-ui__st.is-moving { color: var(--u-accent); background: var(--u-tint); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--u-accent) 22%, transparent); }
@@ -170,27 +167,76 @@
   @media (max-width: 639px) { .fleet-ui .ui-dots, .fleet-ui__tip { display: none; } }
   .fleet-pause .i-play, .fleet-pause[aria-pressed="true"] .i-pause { display: none; }
   .fleet-pause[aria-pressed="true"] .i-play { display: block; }
-  /* experience: the request path as four layers, React on top of AWS; they part on hover */
-  @media (min-width: 640px) { .exp-side { display: grid; gap: var(--s-7); align-content: start; } }
-  .exp-stack { display: grid; place-items: center; height: 300px; perspective: 1400px; }
-  .exp-stack__iso { position: relative; width: 132px; height: 132px; transform: translateY(56px) rotateX(58deg) rotateZ(-42deg); /* the base plate sits low: the layers rise from it */ transform-style: preserve-3d; }
+  /* experience: a bento of cards on the dark ground; the current role leads, wide, with the layer stack */
+  .exp-grid { row-gap: 12px; align-items: stretch; }
+  #experience .card { --c-pad: 24px; }
+  .exp-card { gap: 0; }
+  .exp-card__when { display: block; white-space: nowrap; margin-bottom: var(--s-4); font-size: 14px; line-height: 20px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .exp-card__award { display: inline-flex; align-items: center; gap: 8px; width: max-content; max-width: 100%; margin-top: var(--s-4); padding: 6px 12px; border-radius: 999px; font-size: 14px; line-height: 20px; color: var(--ink); border: 1px solid color-mix(in oklab, var(--ink) 20%, transparent); }
+  .exp-card__award svg { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linejoin: round; }
+  .exp-card__tools { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: var(--s-6) 0 0; margin-top: auto; list-style: none; }
+  .exp-card__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s-3) var(--s-4); margin-bottom: var(--s-4); }
+  .exp-card__head .exp-card__when { margin: 0; }
+  .exp-card__head .exp-card__tools { padding: 0; margin: 0; gap: 6px; }
+  .exp-card__head .exp-card__tools img { width: 30px; height: 30px; padding: 6px; border-radius: 8px; }
+  .exp-card__tools img { display: block; width: 36px; height: 36px; padding: 7px; border-radius: 10px; background: #fff; }
+  .exp-card--lead { flex-direction: row; align-items: stretch; gap: var(--s-6); }
+  .exp-card--lead .exp-card__body { display: flex; flex-direction: column; flex: 1 1 auto; min-width: 0; }
+  .exp-card--pair { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-6); }
+  .exp-card--pair p { margin: 4px 0 0; font-size: 16px; line-height: 24px; color: var(--c-text); }
+  .exp-card--pair > div + div { padding-left: var(--s-6); border-left: 1px solid var(--c-border); }
+  .exp-photo { margin: 0; min-height: 100%; }
+  .exp-photo .frame__img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+  @media (max-width: 1023px) {
+    .exp-grid > .exp-card--lead { grid-column: 1 / -1; }
+    .exp-grid > .exp-photo { display: none; }
+    .exp-grid > .exp-card:not(.exp-card--lead) { grid-column: span 6; }
+    .exp-grid > .exp-card.exp-card--pair { grid-column: 1 / -1; order: 1; } /* full width, last: the four single cards pair up above it */
+  }
+  @media (max-width: 639px) {
+    .exp-grid > .exp-card:not(.exp-card--lead), .exp-grid > .exp-card--pair { grid-column: 1 / -1; }
+    .exp-card--lead { flex-direction: column; }
+    .exp-card--lead .exp-stack { align-self: center; height: 180px; margin: var(--s-2) 0 calc(-1 * var(--s-3)); }
+    .exp-card--pair { grid-template-columns: 1fr; }
+    .exp-grid > .exp-photo { display: block; grid-column: 1 / -1; aspect-ratio: 4 / 5; } /* the portrait is the section's picture on a phone */
+    .exp-card--pair > div + div { padding: var(--s-5) 0 0; border-left: 0; border-top: 1px solid var(--c-border); }
+  }
+  /* the layer stack: React on top of AWS; the layers part on hover */
+  .exp-stack { display: grid; place-items: center; flex: none; width: 240px; height: 196px; margin-block: calc(-1 * var(--s-4)); perspective: 1400px; }
+  .exp-stack__iso { position: relative; width: 104px; height: 104px; transform: translateY(52px) rotateX(58deg) rotateZ(-42deg); /* the base plate sits low: the layers rise from it */ transform-style: preserve-3d; }
   .exp-stack__plate {
-    position: absolute; inset: 0; display: grid; place-items: end start; padding: 14px; border-radius: 22px;
+    position: absolute; inset: 0; display: grid; place-items: end start; padding: 10px; border-radius: 18px;
     background: color-mix(in oklab, var(--ink) 9%, var(--bg)); border: 1px solid color-mix(in oklab, var(--ink) 20%, transparent);
     box-shadow: 0 26px 34px -18px rgb(0 0 0 / .7);
-    transform: translateZ(calc(var(--i) * 64px)); transition: transform 700ms cubic-bezier(.16, 1, .3, 1);
+    transform: translateZ(calc(var(--i) * 46px)); transition: transform 700ms cubic-bezier(.16, 1, .3, 1);
   }
   .exp-stack__plate.is-top { background: color-mix(in oklab, var(--p-accent) 34%, var(--bg)); border-color: color-mix(in oklab, var(--p-accent) 70%, transparent); }
-  .exp-stack__plate img { width: 34px; height: 34px; padding: 5px; border-radius: 10px; background: #fff; transform: rotateZ(42deg); }
-  .exp-stack:hover .exp-stack__plate { transform: translateZ(calc(var(--i) * 80px)); }
+  .exp-stack__plate img { width: 30px; height: 30px; padding: 5px; border-radius: 10px; background: #fff; transform: rotateZ(42deg); }
+  .exp-stack:hover .exp-stack__plate { transform: translateZ(calc(var(--i) * 64px)); }
   @media (prefers-reduced-motion: reduce) { .exp-stack__plate { transition: none; } }
+  /* the wide-screen margins of the two work sections: each section's own tools as white tiles at three depths,
+     set in the gutters outside the content column; they shift with the pointer (nearer tiles more), never on their own */
+  #migration, #systems { position: relative; overflow: clip; }
+  .fi-layer { position: absolute; inset: 0; z-index: 0; pointer-events: none; perspective: 1000px; --px: 0; --py: 0; }
+  .fi {
+    position: absolute; top: var(--y); width: var(--s); height: var(--s); display: grid; place-items: center;
+    border-radius: 24%; background: #fff; box-shadow: 0 1px 2px rgb(0 0 0 / .06), 0 22px 34px -16px rgb(16 24 40 / .32);
+    opacity: calc(.45 + var(--z) * .18); filter: blur(calc((3 - var(--z)) * .7px));
+    transform: translate3d(calc(var(--px) * var(--z) * 10px), calc(var(--py) * var(--z) * 10px), 0) rotateX(var(--rx)) rotateY(var(--ry));
+    transition: transform 900ms cubic-bezier(.16, 1, .3, 1);
+  }
+  .fi img { width: 56%; height: 56%; }
+  .fi--l { left: max(8px, calc(50% - var(--container) / 2 - var(--s) - var(--gx))); }
+  .fi--r { right: max(8px, calc(50% - var(--container) / 2 - var(--s) - var(--gx))); }
+  @media (max-width: 1599px) { .fi-layer { display: none; } } /* only where the gutters can hold a tile clear of the content */
+  @media (prefers-reduced-motion: reduce) { .fi { transition: none; } }
 </style>
 </head>
 <body>
 <!-- type: software (a person hired for engineering; shown through his systems, since the brief has no photographs of the work)
      deal: hero centred (triptych re-dealt: its use is a product with many outputs), nav nav-centre, close close-type, footer footer-columns, rhythm dark-band, buttons pill, mark wordmark,
            palette cool-grey-cobalt, type plex, ground sand, grounds bg-dots (hero) and bg-mist (#stack) from pick.mjs (bg-band on #migration re-dealt: the app-frame recipe wants no ground behind its window), effect fluted-glass in the one [data-visual] frame (#systems)
-     moments: liquid-type on the hero h1, line-carries-colour on #experience (the dark band) -->
+     moments: liquid-type on the hero h1 (line-carries-colour on #experience removed: its blank cover panel read as an empty slab while scrolling) -->
 <header class="nav nav--centre">
   <div class="wrap nav__bar">
     <a class="skip-link" href="#top">Skip to content</a>
@@ -258,6 +304,14 @@
   </section>
 
   <section class="section ground-surface" id="migration" aria-labelledby="migration-h">
+    <div class="fi-layer" aria-hidden="true">
+      <span class="fi fi--l" style="--y: 14%; --gx: 40px; --s: 76px; --z: 3; --rx: 12deg; --ry: -18deg"><img src="assets/icons/fastapi.svg" alt="" width="76" height="76" loading="lazy"></span>
+      <span class="fi fi--l" style="--y: 46%; --gx: 440px; --s: 58px; --z: 1; --rx: -10deg; --ry: 14deg"><img src="assets/icons/python.svg" alt="" width="58" height="58" loading="lazy"></span>
+      <span class="fi fi--l" style="--y: 74%; --gx: 120px; --s: 68px; --z: 2; --rx: 16deg; --ry: 10deg"><img src="assets/icons/langchain.svg" alt="" width="68" height="68" loading="lazy"></span>
+      <span class="fi fi--r" style="--y: 18%; --gx: 190px; --s: 62px; --z: 2; --rx: -14deg; --ry: 16deg"><img src="assets/icons/nextjs.svg" alt="" width="62" height="62" loading="lazy"></span>
+      <span class="fi fi--r" style="--y: 52%; --gx: 48px; --s: 80px; --z: 3; --rx: 10deg; --ry: -14deg"><img src="assets/icons/postgres.svg" alt="" width="80" height="80" loading="lazy"></span>
+      <span class="fi fi--r" style="--y: 84%; --gx: 480px; --s: 48px; --z: 1; --rx: -8deg; --ry: -10deg"><img src="assets/icons/fastapi.svg" alt="" width="48" height="48" loading="lazy"></span>
+    </div>
     <div class="wrap">
       <div class="grid">
         <h2 id="migration-h" class="span-5">LLM schema mapping for hospital data</h2>
@@ -347,6 +401,14 @@
   </section>
 
   <section class="section ground-surface" id="systems" aria-labelledby="systems-h">
+    <div class="fi-layer" aria-hidden="true">
+      <span class="fi fi--l" style="--y: 16%; --gx: 56px; --s: 80px; --z: 3; --rx: -12deg; --ry: 16deg"><img src="assets/icons/nestjs.svg" alt="" width="80" height="80" loading="lazy"></span>
+      <span class="fi fi--l" style="--y: 50%; --gx: 430px; --s: 58px; --z: 1; --rx: 14deg; --ry: -12deg"><img src="assets/icons/aws-ecs.svg" alt="" width="58" height="58" loading="lazy"></span>
+      <span class="fi fi--l" style="--y: 78%; --gx: 110px; --s: 70px; --z: 2; --rx: -10deg; --ry: -16deg"><img src="assets/icons/terraform.svg" alt="" width="70" height="70" loading="lazy"></span>
+      <span class="fi fi--r" style="--y: 20%; --gx: 200px; --s: 64px; --z: 2; --rx: 12deg; --ry: -14deg"><img src="assets/icons/aws-api-gateway.svg" alt="" width="64" height="64" loading="lazy"></span>
+      <span class="fi fi--r" style="--y: 52%; --gx: 56px; --s: 78px; --z: 3; --rx: -14deg; --ry: 12deg"><img src="assets/icons/aws-s3.svg" alt="" width="78" height="78" loading="lazy"></span>
+      <span class="fi fi--r" style="--y: 82%; --gx: 470px; --s: 56px; --z: 1; --rx: 10deg; --ry: 16deg"><img src="assets/icons/aws.svg" alt="" width="56" height="56" loading="lazy"></span>
+    </div>
     <div class="wrap">
       <div class="grid">
         <h2 id="systems-h" class="span-5">14 NestJS services on one Fargate task</h2>
@@ -372,8 +434,8 @@
           <p><a class="link" href="#experience">See the experience</a></p>
         </div>
         <div class="frame frame--split frame--lit span-6 start-7">
-          <div class="stage stage--fade-br">
-            <div class="at-corner to-edge" style="--ax: 56px; --ay: 56px">
+          <div class="stage">
+            <div class="at-center" style="--w: 560px">
               <div class="ui ui-panel fleet-ui" role="img" aria-label="A live fleet map: trucks moving along three routes, one idle with its status open, and a list of vehicles marked moving, idle and parked">
                 <div class="ui-win__bar">
                   <span class="ui-dots" aria-hidden="true"><i></i><i></i><i></i></span>
@@ -399,7 +461,7 @@
                       <circle r="5.5"><animateMotion dur="14s" repeatCount="indefinite"><mpath href="#fr1"/></animateMotion></circle>
                       <circle r="5.5"><animateMotion dur="18s" begin="-6s" repeatCount="indefinite"><mpath href="#fr2"/></animateMotion></circle>
                       <circle r="5.5"><animateMotion dur="16s" begin="-3s" repeatCount="indefinite"><mpath href="#fr3"/></animateMotion></circle>
-                      <circle r="5.5"><animateMotion dur="20s" begin="-12s" repeatCount="indefinite"><mpath href="#fr1"/></animateMotion></circle>
+                      <circle r="5.5"><animateMotion dur="22s" begin="-14s" repeatCount="indefinite"><mpath href="#fr3"/></animateMotion></circle>
                     </g>
                   </svg>
                   <div class="fleet-ui__tip" aria-hidden="true"><b>Truck 118</b><span>Idle 4 min, ignition on</span></div>
@@ -418,30 +480,74 @@
     </div>
   </section>
 
-  <section class="section ground-inverse" id="experience" data-moment="line-carries-colour" data-moment-opts='{"from": "base"}' aria-labelledby="experience-h">
+  <section class="section ground-inverse" id="experience" aria-labelledby="experience-h">
     <div class="wrap">
       <div class="section-head"><h2 id="experience-h">Experience since 2022</h2></div>
-      <div class="grid">
-      <ul class="rows span-8">
-        <li><span class="rows__name">Full Stack Developer<small>Taabi Mobility (CEAT). Excellence in execution award, 2026</small></span><span class="rows__value">Jul 2025 to now</span></li>
-        <li><span class="rows__name">Freelance AI and cloud systems<small>A hospital platform and an LLM data migration, remote</small></span><span class="rows__value">May 2026 to now</span></li>
-        <li><span class="rows__name">Frontend Engineer<small>Taabi Mobility, Bengaluru</small></span><span class="rows__value">Aug 2024 to Jun 2025</span></li>
-        <li><span class="rows__name">Frontend Engineer<small>Healink, remote</small></span><span class="rows__value">Sep 2023 to Aug 2024</span></li>
-        <li><span class="rows__name">Freelance web developer<small>Self-employed, remote</small></span><span class="rows__value">Nov 2022 to Feb 2023</span></li>
-        <li><span class="rows__name">Frontend Developer Intern<small>Visa2fly, remote</small></span><span class="rows__value">Feb to Sep 2022</span></li>
-        <li><span class="rows__name">MCA and BCA<small>Sikkim Manipal University, CGPA 9.0; Presidency University</small></span><span class="rows__value">2021 to 2026</span></li>
-      </ul>
-      <div class="span-3 start-10 exp-side">
-      <figure class="frame frame--photo exp-photo"><img class="frame__img" src="img/shain.jpg" alt="Shain Sethi, smiling, in a navy jacket over a beige hoodie" width="400" height="400" loading="lazy" data-source="client" data-subject="portrait of Shain Sethi"></figure>
-      <div class="exp-stack" role="img" aria-label="The stack as four layers, top to bottom: React, Node.js and NestJS, PostgreSQL, AWS">
-        <div class="exp-stack__iso">
-          <div class="exp-stack__plate" style="--i: 0"><img src="assets/icons/aws.svg" alt="" width="40" height="40"></div>
-          <div class="exp-stack__plate" style="--i: 1"><img src="assets/icons/postgres.svg" alt="" width="40" height="40"></div>
-          <div class="exp-stack__plate" style="--i: 2"><img src="assets/icons/nestjs.svg" alt="" width="40" height="40"></div>
-          <div class="exp-stack__plate is-top" style="--i: 3"><img src="assets/icons/react.svg" alt="" width="40" height="40"></div>
-        </div>
-      </div>
-      </div>
+      <div class="grid exp-grid">
+        <article class="card exp-card exp-card--lead span-8">
+          <div class="exp-card__body">
+            <span class="exp-card__when">Jul 2025 to now</span>
+            <h3 class="card__title">Full Stack Developer</h3>
+            <p>Taabi Mobility, a CEAT company, Bengaluru</p>
+            <span class="exp-card__award"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="6" r="4"/><path d="M5.6 9.2 4.5 15l3.5-2 3.5 2-1.1-5.8"/></svg>Excellence in execution award, 2026</span>
+            <ul class="exp-card__tools" aria-label="Tools in this role">
+              <li><img src="assets/icons/react.svg" alt="React" width="32" height="32"></li>
+              <li><img src="assets/icons/nodejs.svg" alt="Node.js" width="32" height="32"></li>
+              <li><img src="assets/icons/graphql.svg" alt="GraphQL" width="32" height="32"></li>
+              <li><img src="assets/icons/postgres.svg" alt="PostgreSQL" width="32" height="32"></li>
+              <li><img src="assets/icons/github-actions.svg" alt="GitHub Actions" width="32" height="32"></li>
+            </ul>
+          </div>
+          <div class="exp-stack" role="img" aria-label="The stack as four layers, top to bottom: React, Node.js and NestJS, PostgreSQL, AWS">
+            <div class="exp-stack__iso">
+              <div class="exp-stack__plate" style="--i: 0"><img src="assets/icons/aws.svg" alt="" width="40" height="40"></div>
+              <div class="exp-stack__plate" style="--i: 1"><img src="assets/icons/postgres.svg" alt="" width="40" height="40"></div>
+              <div class="exp-stack__plate" style="--i: 2"><img src="assets/icons/nestjs.svg" alt="" width="40" height="40"></div>
+              <div class="exp-stack__plate is-top" style="--i: 3"><img src="assets/icons/react.svg" alt="" width="40" height="40"></div>
+            </div>
+          </div>
+        </article>
+        <figure class="frame frame--photo exp-photo span-4"><img class="frame__img" src="img/shain.jpg" alt="Shain Sethi, smiling, in a navy jacket over a beige hoodie" width="400" height="400" loading="lazy" data-source="client" data-subject="portrait of Shain Sethi"></figure>
+
+        <article class="card exp-card span-4">
+          <div class="exp-card__head"><span class="exp-card__when">May 2026 to now</span><ul class="exp-card__tools" aria-label="Tools in this work">
+            <li><img src="assets/icons/nestjs.svg" alt="NestJS" width="32" height="32"></li>
+            <li><img src="assets/icons/fastapi.svg" alt="FastAPI" width="32" height="32"></li>
+            <li><img src="assets/icons/langchain.svg" alt="LangGraph" width="32" height="32"></li>
+            <li><img src="assets/icons/terraform.svg" alt="Terraform" width="32" height="32"></li>
+            <li><img src="assets/icons/aws.svg" alt="AWS" width="32" height="32"></li>
+          </ul></div>
+          <h3>Freelance AI and cloud systems</h3>
+          <p>A hospital platform and an LLM data migration, remote</p>
+        </article>
+        <article class="card exp-card span-4">
+          <span class="exp-card__when">Aug 2024 to Jun 2025</span>
+          <h3>Frontend Engineer</h3>
+          <p>Taabi Mobility, Bengaluru</p>
+        </article>
+        <article class="card exp-card span-4">
+          <span class="exp-card__when">Sep 2023 to Aug 2024</span>
+          <h3>Frontend Engineer</h3>
+          <p>Healink, remote</p>
+        </article>
+
+        <article class="card exp-card exp-card--pair span-8">
+          <div>
+            <span class="exp-card__when">Nov 2022 to Feb 2023</span>
+            <h3 class="card__title">Freelance web developer</h3>
+            <p>Self-employed, remote</p>
+          </div>
+          <div>
+            <span class="exp-card__when">Feb to Sep 2022</span>
+            <h3 class="card__title">Frontend Developer Intern</h3>
+            <p>Visa2fly, remote</p>
+          </div>
+        </article>
+        <article class="card exp-card span-4">
+          <span class="exp-card__when">2021 to 2026</span>
+          <h3>MCA and BCA</h3>
+          <p>Sikkim Manipal University, CGPA 9.0; Presidency University</p>
+        </article>
       </div>
     </div>
   </section>
@@ -560,6 +666,16 @@
   const set = paused => { paused ? map.pauseAnimations() : map.unpauseAnimations(); btn.setAttribute('aria-pressed', paused); btn.setAttribute('aria-label', paused ? 'Play the map' : 'Pause the map'); };
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) { map.setCurrentTime(5); set(true); }
   btn.addEventListener('click', () => set(btn.getAttribute('aria-pressed') !== 'true'));
+})();
+/* gutter tiles: the pointer's place on the screen (-1..1) moves each tile by its depth; nothing moves without a pointer */
+(() => {
+  const layers = document.querySelectorAll('.fi-layer');
+  if (!layers.length || matchMedia('(prefers-reduced-motion: reduce)').matches || !matchMedia('(pointer: fine)').matches) return;
+  let raf = 0, x = 0, y = 0;
+  addEventListener('pointermove', e => {
+    x = e.clientX / innerWidth * 2 - 1; y = e.clientY / innerHeight * 2 - 1;
+    if (!raf) raf = requestAnimationFrame(() => { raf = 0; layers.forEach(l => { l.style.setProperty('--px', x.toFixed(3)); l.style.setProperty('--py', y.toFixed(3)); }); });
+  }, { passive: true });
 })();
 /* theme toggle: flips <html data-theme>, remembers the choice */
 (() => {
