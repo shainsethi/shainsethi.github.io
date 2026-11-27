@@ -19,6 +19,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wdth,wght@85..100,400..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+/* runs before the first paint, so a dark visitor never sees the light page flash */
+(() => {
+  const saved = localStorage.getItem('theme');             // 'dark', 'light' or null (never toggled)
+  const systemDark = matchMedia('(prefers-color-scheme: dark)').matches;
+  document.documentElement.dataset.theme = saved || (systemDark ? 'dark' : 'light'); // a click wins, else the OS setting
+})();
+</script>
 <link rel="stylesheet" href="assets/system.css">
 <link rel="stylesheet" href="assets/ui/cards.css">
 <link rel="stylesheet" href="assets/motion/motion.css">
@@ -109,7 +117,30 @@
   /* the fleet frame at its recipe's 5:4 */
   #fleet .frame--split { aspect-ratio: 5 / 4; }
   @media (max-width: 639px) { #fleet .frame--split { aspect-ratio: 16 / 10; } #systems .frame[data-visual] { height: 420px; flex: none; } }
-  #systems .frame[data-visual] > .dg { position: absolute; inset: var(--s-6); z-index: 1; }
+  #systems .frame[data-visual] > .dg { position: absolute; inset: var(--s-6); width: auto; z-index: 1; } /* width auto: the kit's width 100% made it ignore the right inset and spill off the right edge */
+  /* dark theme: the same palette tokens, swapped (the kit maps every ground from --p-*); the sand lit frames stay as they are */
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --p-bg: #0f1114; --p-surface: #181b20; --p-ink: #eef0f3; --p-muted: #9aa1ab;
+    --p-accent: #7d95ff; --p-accent-ink: #0b0c0e; --p-action: #2f3cf0; --p-action-ink: #ffffff;
+    --p-inv-bg: #050608; --p-inv-surface: #111316;
+  }
+  :root[data-theme="dark"] .ui { --u-muted: #9aa1ab; --u-soft: #9aa1ab; }
+  /* the mocks on the fixed sand panels keep the light palette, as in light mode (their ink comes from the sand, not the page) */
+  :root[data-theme="dark"] :is(.hero__window, .frame--lit) {
+    --p-bg: #eef0f3; --p-surface: #e2e5ea; --p-ink: #0b0c0e; --p-muted: #5d6470; --p-accent: #1f2de6; --p-accent-ink: #ffffff;
+    --bg: var(--p-bg); --surface: var(--p-surface); --ink: var(--p-ink); --muted: var(--p-muted); --accent: var(--p-accent); --accent-ink: var(--p-accent-ink); --card: var(--p-surface);
+    --line: color-mix(in oklab, var(--ink) 11%, transparent); --line-strong: color-mix(in oklab, var(--ink) 20%, transparent);
+    --fx-bg: var(--bg); --fx-surface: var(--surface); --fx-ink: var(--ink); --fx-muted: var(--muted); --fx-accent: var(--accent); --fx-accent-ink: var(--accent-ink);
+  }
+  :root[data-theme="dark"] :is(.hero__window, .frame--lit) .ui { --u-muted: #666a70; --u-soft: #666a70; }
+  :root[data-theme="dark"] .hero--centred .hero__window .ui { --fx-bg: #ffffff; }
+  .theme-toggle { display: inline-grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; background: none; color: inherit; cursor: pointer; border-radius: 50%; }
+  .theme-toggle svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; }
+  .theme-toggle .t-sun, :root[data-theme="dark"] .theme-toggle .t-moon { display: none; }
+  :root[data-theme="dark"] .theme-toggle .t-sun { display: block; }
+  /* under 1024px the kit keeps only the primary button in the closed bar; the toggle stays beside it */
+  html .nav:not(.is-open) .nav__actions > .theme-toggle { display: inline-grid; }
 </style>
 </head>
 <body>
@@ -128,6 +159,7 @@
       <div class="nav__item"><a class="nav__link" href="#stack">Stack</a></div>
     </nav>
     <div class="nav__actions">
+      <button class="theme-toggle" type="button" aria-label="Dark mode" aria-pressed="false"><svg class="t-moon" viewBox="0 0 20 20" aria-hidden="true"><path d="M16.5 12.2A7 7 0 0 1 7.8 3.5a7 7 0 1 0 8.7 8.7z"/></svg><svg class="t-sun" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="3.5"/><path d="M10 1.5v2M10 16.5v2M1.5 10h2M16.5 10h2M4 4l1.4 1.4M14.6 14.6 16 16M4 16l1.4-1.4M14.6 5.4 16 4"/></svg></button>
       <a class="nav__link" href="assets/Shain_Sethi_Resume.pdf">Resume</a>
       <a class="btn btn--primary" href="mailto:shainsethi1000@gmail.com">Email me</a>
     </div>
@@ -441,6 +473,19 @@
   };
   document.fonts.ready.then(whenEntered);
   h1.addEventListener('pointerenter', () => { if (started) play(); });
+})();
+</script>
+<script>
+/* theme toggle: flips <html data-theme>, remembers the choice */
+(() => {
+  const btn = document.querySelector('.theme-toggle'), html = document.documentElement;
+  const sync = () => btn.setAttribute('aria-pressed', html.dataset.theme === 'dark');
+  sync();
+  btn.addEventListener('click', () => {
+    html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('theme', html.dataset.theme);
+    sync();
+  });
 })();
 </script>
 <script type="module" src="assets/system.js"></script>
