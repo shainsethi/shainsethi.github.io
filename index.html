@@ -80,6 +80,10 @@
   .stack-grid li > img { width: 88px; height: 88px; padding: 20px; border-radius: var(--r-md); background: #fff; box-shadow: 0 0 0 1px rgb(0 0 0 / .08); }
   @media (min-width: 640px) and (max-width: 1023px) { .stack-grid ul { grid-template-columns: repeat(6, minmax(0, 1fr)); row-gap: var(--s-8); } #experience .rows > li { padding-block: var(--s-5); } }
   @media (max-width: 639px) { .stack-grid ul { grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: var(--s-3); row-gap: var(--s-2); } .stack-grid li { gap: var(--s-1); } .stack-grid li > img { width: 48px; height: 48px; padding: 11px; } }
+  /* the stack keeps the layout's section box under its mist ground (backgrounds.css gives a soft ground its own padding,
+     centring and a 0px phone min-height, which made #stack 0.9 of a phone screen) */
+  #stack.bg-mist { display: block; padding-top: var(--padt); padding-bottom: calc(var(--padb) + var(--bar, 0px)); --g-screen: 100svh; }
+  @media (max-width: 639px) { #stack.bg-mist { --g-screen: 100lvh; } }
   /* the portrait beside the roles: a square on span-3 */
   .exp-photo { aspect-ratio: 1; margin: 0; }
   @media (min-width: 640px) and (max-width: 1023px) { #experience .rows { grid-column: 1 / span 8; } .exp-photo { grid-column: 9 / -1; } }
@@ -111,7 +115,7 @@
 <body>
 <!-- type: software (a person hired for engineering; shown through his systems, since the brief has no photographs of the work)
      deal: hero centred (triptych re-dealt: its use is a product with many outputs), nav nav-centre, close close-type, footer footer-columns, rhythm dark-band, buttons pill, mark wordmark,
-           palette cool-grey-cobalt, type plex, ground sand, effect fluted-glass in the one [data-visual] frame (#systems)
+           palette cool-grey-cobalt, type plex, ground sand, grounds bg-dots (hero) and bg-mist (#stack) from pick.mjs (bg-band on #migration re-dealt: the app-frame recipe wants no ground behind its window), effect fluted-glass in the one [data-visual] frame (#systems)
      moments: liquid-type on the hero h1, line-carries-colour on #experience (the dark band) -->
 <header class="nav nav--centre">
   <div class="wrap nav__bar">
@@ -134,7 +138,7 @@
 </header>
 
 <main id="top">
-  <section class="hero hero--centred" data-enter aria-labelledby="hero-h">
+  <section class="hero hero--centred bg-dots" data-enter aria-labelledby="hero-h">
     <div class="wrap"><div class="hero-text">
       <div class="hero__c">
         <a class="pill" href="#experience"><span>Open to remote roles</span></a>
@@ -333,7 +337,7 @@
     </div>
   </section>
 
-  <section class="section" id="stack" aria-labelledby="stack-h">
+  <section class="section bg-mist" id="stack" aria-labelledby="stack-h">
     <div class="wrap">
       <div class="section-head">
         <h2 id="stack-h">Tools I ship with</h2>
