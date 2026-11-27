@@ -85,11 +85,11 @@
   @media (min-width: 640px) and (max-width: 1023px) { #experience .rows { grid-column: 1 / span 8; } .exp-photo { grid-column: 9 / -1; } }
   @media (max-width: 639px) { .exp-photo { display: none; } .footer__lede { display: none; } }
   /* the role word in the h1: one pass through four roles on load, again on hover (no layout shift: every word shares one grid cell) */
-  .role { display: inline-grid; justify-items: start; white-space: nowrap; transition: width .4s var(--ease, ease); }
-  .role__w { grid-area: 1 / 1; color: var(--accent); opacity: 0; transform: translateY(.18em); transition: opacity .35s var(--ease, ease), transform .35s var(--ease, ease); }
+  .role { display: inline-grid; justify-items: start; white-space: nowrap; transition: width .22s var(--ease, ease); }
+  .role__w { grid-area: 1 / 1; color: var(--accent); opacity: 0; transform: translateY(.18em); transition: opacity .18s var(--ease, ease), transform .18s var(--ease, ease); }
   .role__w.is-on { opacity: 1; transform: none; }
   @media (prefers-reduced-motion: reduce) { .role__w { transition: none; } }
-  /* the hero window on a white surface like the Mapper window (the kit takes the sand ground otherwise, and its grey text drops under 4.5:1) */
+  /* the hero window on a white surface like the migration window (the kit takes the sand ground otherwise, and its grey text drops under 4.5:1) */
   .hero--centred .hero__window .ui { --fx-bg: #ffffff; }
   /* the mock windows' meta text (columns, ages, line numbers) at 4.5:1 or more on white; diff gutters tinted from their row */
   .ui { --u-muted: #666a70; --u-soft: #666a70; }
@@ -115,7 +115,7 @@
     <a class="skip-link" href="#top">Skip to content</a>
     <a class="nav__logo" href="#top">Shain Sethi</a>
     <nav class="nav__links" aria-label="Main">
-      <div class="nav__item"><a class="nav__link" href="#mapper">Work</a></div>
+      <div class="nav__item"><a class="nav__link" href="#migration">Work</a></div>
       <div class="nav__item"><a class="nav__link" href="#systems">Systems</a></div>
       <div class="nav__item"><a class="nav__link" href="#experience">Experience</a></div>
       <div class="nav__item"><a class="nav__link" href="#stack">Stack</a></div>
@@ -139,12 +139,12 @@
         <p class="hero__lead">3 years of React, Node.js and PostgreSQL in production. Now NestJS on AWS and LangGraph pipelines.</p>
         <div class="btn-row"><a class="btn btn--primary" href="mailto:shainsethi1000@gmail.com">Email me</a><a class="btn btn--secondary" href="assets/Shain_Sethi_Resume.pdf">Download the resume</a></div>
       </div>
-      <div class="hero__window" role="img" aria-label="The MossMedAI services window: appointment, record, billing, ward and video-consult services each starting and turning healthy">
+      <div class="hero__window" role="img" aria-label="A hospital platform's services window: appointment, record, billing, ward and video-consult services each starting and turning healthy">
         <div class="ly-piece" aria-hidden="true">
           <div class="ui ui-panel ui-win" data-ui="window" data-open="Starting" data-work="Deploying" data-done="Healthy">
             <div class="ui-win__bar">
               <span class="ui-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-              <span class="ui-win__crumb"><img data-icon="logos:aws-ecs" src="assets/icons/aws-ecs.svg" alt="" width="14" height="14"> MossMedAI <i>/</i> <b>prod services</b></span>
+              <span class="ui-win__crumb"><img data-icon="logos:aws-ecs" src="assets/icons/aws-ecs.svg" alt="" width="14" height="14"> hospital-platform <i>/</i> <b>prod services</b></span>
               <span class="ui-spacer"></span>
               <span class="ui-win__search" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg><span class="ui-win__ph">Search</span><span class="ui-kbd">/</span></span>
             </div>
@@ -175,18 +175,18 @@
     </div></div>
   </section>
 
-  <section class="section" id="mapper" aria-labelledby="mapper-h">
+  <section class="section" id="migration" aria-labelledby="migration-h">
     <div class="wrap">
       <div class="grid">
-        <h2 id="mapper-h" class="span-5">LLM schema mapping for hospital data</h2>
+        <h2 id="migration-h" class="span-5">LLM schema mapping for hospital data</h2>
         <p class="span-6 start-7">A FastAPI and LangGraph pipeline maps a legacy system's columns onto a 40-table schema, one step at a time. A person approves each mapping in the Next.js review screen. <a class="link" href="#stack">See the stack</a></p>
       </div>
-      <div class="ui app fill" role="img" aria-label="Metadata Mapper: legacy tables in a list, and the mapping for patient_mst open as a SQL diff with a suggested date fix waiting for approval" data-ui-pause-host>
+      <div class="ui app fill" role="img" aria-label="Data migration review: legacy tables in a list, and the mapping for patient_mst open as a SQL diff with a suggested date fix waiting for approval" data-ui-pause-host>
         <div class="app__pane app__pane--list">
           <div class="ui ui-panel ui-win" data-ui="window" data-open="To review" data-work="Mapping" data-done="Approved">
             <div class="ui-win__bar">
               <span class="ui-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-              <span class="ui-win__crumb">Mapper <i>/</i> <b>Run 12</b></span>
+              <span class="ui-win__crumb">Migration <i>/</i> <b>Run 12</b></span>
               <span class="ui-spacer"></span>
               <span class="ui-win__search" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg><span class="ui-win__ph">Search</span><span class="ui-kbd">/</span></span>
             </div>
@@ -221,7 +221,7 @@
             <div class="ui-diff__head">
               <svg class="ui-icon ui-diff__fold" viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 6.25 3.5 3.5 3.5-3.5"/></svg>
               <span class="ui-diff__tool" aria-hidden="true"><img data-icon="postgres" src="assets/icons/postgres.svg" alt="" width="88" height="88" loading="lazy"></span>
-              <span class="ui-diff__repo">mapper/run-12</span><i class="ui-diff__slash" aria-hidden="true">/</i>
+              <span class="ui-diff__repo">migration/run-12</span><i class="ui-diff__slash" aria-hidden="true">/</i>
               <span class="ui-diff__path"><span class="ui-diff__dir">mappings/</span><b>patients.sql</b></span>
               <span class="ui-spacer"></span>
               <span class="ui-diff__stat"><b class="is-add"><span class="ui-diff__was">+3</span><span class="ui-diff__now">+4</span></b><b class="is-del"><span class="ui-diff__was">&minus;2</span><span class="ui-diff__now">&minus;3</span></b><span class="ui-diff__bar" aria-hidden="true"><i class="is-add"></i><i class="is-add"></i><i class="is-add"></i><i class="is-del"></i><i class="is-del"></i></span></span>
@@ -268,7 +268,7 @@
     <div class="wrap">
       <div class="grid">
         <h2 id="systems-h" class="span-5">14 NestJS services on one Fargate task</h2>
-        <p class="span-6 start-7">MossMedAI runs appointments, records, billing, wards and video consults. One Postgres with a schema per service, reached through API Gateway and a VPC Link, so there is no load balancer to pay for.</p>
+        <p class="span-6 start-7">A hospital platform for appointments, records, billing, wards and video consults. One Postgres with a schema per service, reached through API Gateway and a VPC Link, so there is no load balancer to pay for.</p>
       </div>
       <div class="frame fill" data-visual data-fx="fluted-glass" data-fx-seed="11" role="img" aria-label="Next.js calls API Gateway, which reaches the NestJS services on Fargate; they use PostgreSQL on RDS, S3 and the Zoom SDK, built with Terraform">
         <div class="dg" data-diagram><script type="application/json">{"layout": "hub", "alt": "NestJS services at the centre, connected to Next.js, API Gateway, PostgreSQL, Amazon S3, the Zoom SDK and Terraform.", "center": {"label": "NestJS × 14", "icon": "nestjs"}, "spokes": [{"label": "Next.js", "icon": "nextjs"}, {"label": "API Gateway", "icon": "logos:aws-api-gateway"}, {"label": "PostgreSQL", "icon": "postgres"}, {"label": "Amazon S3", "icon": "logos:aws-s3"}, {"label": "Zoom SDK", "icon": "zoom"}, {"label": "Terraform", "icon": "terraform"}]}</script></div>
@@ -318,7 +318,7 @@
       <div class="grid">
       <ul class="rows span-8">
         <li><span class="rows__name">Full Stack Developer<small>Taabi Mobility (CEAT). Excellence in execution award, 2026</small></span><span class="rows__value">Jul 2025 to now</span></li>
-        <li><span class="rows__name">Freelance AI and cloud systems<small>MossMedAI and Metadata Mapper, remote</small></span><span class="rows__value">May 2026 to now</span></li>
+        <li><span class="rows__name">Freelance AI and cloud systems<small>A hospital platform and an LLM data migration, remote</small></span><span class="rows__value">May 2026 to now</span></li>
         <li><span class="rows__name">Frontend Engineer<small>Taabi Mobility, Bengaluru</small></span><span class="rows__value">Aug 2024 to Jun 2025</span></li>
         <li><span class="rows__name">Frontend Engineer<small>Healink, remote</small></span><span class="rows__value">Sep 2023 to Aug 2024</span></li>
         <li><span class="rows__name">Freelance web developer<small>Self-employed, remote</small></span><span class="rows__value">Nov 2022 to Feb 2023</span></li>
@@ -383,7 +383,7 @@
           <a class="nav__logo" href="#top">Shain Sethi</a>
           <p class="footer__lede">Full stack, from the UI to AWS.</p>
         </div>
-        <div class="span-2 footer__col"><h3>Work</h3><ul><li><a href="#mapper">Metadata Mapper</a></li><li><a href="#systems">MossMedAI</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Work</h3><ul><li><a href="#migration">Data migration</a></li><li><a href="#systems">Hospital platform</a></li></ul></div>
         <div class="span-2 footer__col"><h3>About</h3><ul><li><a href="#experience">Experience</a></li><li><a href="#stack">Stack</a></li></ul></div>
         <div class="span-2 footer__col"><h3>Profiles</h3><ul><li><a href="https://github.com/shainsethi">GitHub</a></li><li><a href="https://www.linkedin.com/in/shain-sethi/">LinkedIn</a></li></ul></div>
         <div class="span-2 footer__col"><h3>Files</h3><ul><li><a href="assets/Shain_Sethi_Resume.pdf">Resume (PDF)</a></li></ul></div>
@@ -402,14 +402,15 @@
 (() => {
   const role = document.querySelector('.role');
   if (!role || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const words = [...role.children]; let timer;
+  const words = [...role.children]; let timer, timer2;
   const play = () => {
-    clearTimeout(timer); let i = 0;
+    clearTimeout(timer); clearTimeout(timer2); let i = 0;
+    const show = on => { role.style.width = words[on].scrollWidth + 'px'; timer = setTimeout(() => words[on].classList.add('is-on'), 240); }; /* resize the slot first, then show the word: the centred line re-centres and no word runs past it */
     const step = () => {
-      const on = i % words.length;
-      words.forEach((w, k) => w.classList.toggle('is-on', k === on));
-      role.style.width = words[on].scrollWidth + 'px'; /* the slot fits the word, so the centred line re-centres instead of leaving a gap */
-      if (++i <= words.length) timer = setTimeout(step, 1100);
+      const on = i % words.length, cur = role.querySelector('.is-on');
+      if (cur && cur !== words[on]) { cur.classList.remove('is-on'); timer = setTimeout(() => show(on), 200); } /* out first, then in: two words never share the slot */
+      else show(on);
+      if (++i <= words.length) timer2 = setTimeout(step, 1100);
     };
     step();
   };
