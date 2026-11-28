@@ -198,7 +198,7 @@
   }
   /* the layer stack: React on top of AWS; the layers part on hover */
   .exp-stack { display: grid; place-items: center; flex: none; width: 240px; height: 196px; margin-block: calc(-1 * var(--s-4)); perspective: 1400px; }
-  .exp-stack__iso { position: relative; width: 104px; height: 104px; transform: translateY(52px) rotateX(58deg) rotateZ(-42deg); /* the base plate sits low: the layers rise from it */ transform-style: preserve-3d; }
+  .exp-stack__iso { position: relative; width: 104px; height: 104px; transform: translateY(62px) rotateX(58deg) rotateZ(-42deg); /* the base plate sits low: the layers rise from it */ transform-style: preserve-3d; }
   .exp-stack__plate {
     position: absolute; inset: 0; display: grid; place-items: end start; padding: 10px; border-radius: 18px;
     background: color-mix(in oklab, var(--ink) 9%, var(--bg)); border: 1px solid color-mix(in oklab, var(--ink) 20%, transparent);
@@ -207,7 +207,7 @@
   }
   .exp-stack__plate.is-top { background: color-mix(in oklab, var(--p-accent) 34%, var(--bg)); border-color: color-mix(in oklab, var(--p-accent) 70%, transparent); }
   .exp-stack__plate img { width: 30px; height: 30px; padding: 5px; border-radius: 10px; background: #fff; transform: rotateZ(42deg); }
-  .exp-card--lead:hover .exp-stack__plate, .exp-stack:hover .exp-stack__plate { transform: translateZ(calc(var(--i) * 64px)); }
+  .exp-card--lead:hover .exp-stack__plate, .exp-stack:hover .exp-stack__plate { transform: translateZ(calc(var(--i) * 54px)); }
   @media (prefers-reduced-motion: reduce) { .exp-stack__plate { transition: none; } }
   /* the wide-screen margins of the two work sections: each section's own tools as white tiles at three depths,
      set in the gutters outside the content column; they shift with the pointer (nearer tiles more), never on their own */
@@ -239,10 +239,21 @@
   .mq__pause[aria-pressed="true"] .i-play { display: block; }
   @media (max-width: 639px) { .mq__track li { width: 72px; } .mq__track img { width: 56px; height: 56px; padding: 13px; } .mq { gap: var(--s-5); } }
   @media (prefers-reduced-motion: reduce) { .mq__rail { animation: none; } .mq__track { flex-wrap: wrap; row-gap: var(--s-5); } .mq__row { -webkit-mask: none; mask: none; } .mq__pause { display: none; } }
+  /* tenure: every role on one 2021-to-now scale; current roles in the accent and running to the edge */
+  .tenure-wrap { margin-top: auto; padding-top: var(--s-5); }
+  .tenure { position: relative; height: 4px; border-radius: 2px;
+    background: color-mix(in oklab, var(--ink) 10%, transparent); }
+  .tenure i { position: absolute; top: 0; bottom: 0; left: calc(var(--a) * 100%); width: max(4px, calc((var(--b) - var(--a)) * 100%)); border-radius: 2px;
+    background: color-mix(in oklab, var(--ink) 50%, transparent); transition: background-color 300ms ease, box-shadow 300ms ease; }
+  .tenure i.is-now { background: #7d95ff; }
+  .exp-card:hover .tenure i { background: var(--ink); }
+  .exp-card:hover .tenure i.is-now { background: #9fb1ff; box-shadow: 0 0 12px rgb(125 149 255 / .6); }
+  #experience :is(.card > h3, .card__title) { font-size: 20px; line-height: 28px; }
+  .exp-card--pair > div { display: flex; flex-direction: column; }
   /* experience cards: a soft light follows the pointer, the card lifts 2px and its edge brightens */
   .exp-card { --mx: 50%; --my: 0%; transition: transform 400ms cubic-bezier(.16, 1, .3, 1), border-color 300ms ease; }
   .exp-card::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity 300ms ease;
-    background: radial-gradient(360px circle at var(--mx) var(--my), color-mix(in oklab, var(--p-accent) 26%, transparent), transparent 70%); }
+    background: radial-gradient(360px circle at var(--mx) var(--my), color-mix(in oklab, var(--p-accent) 16%, transparent), transparent 70%); }
   .exp-card > * { position: relative; z-index: 1; }
   .exp-card:hover { transform: translateY(-2px); border-color: color-mix(in oklab, var(--ink) 26%, transparent); }
   .exp-card:hover::before { opacity: 1; }
@@ -503,17 +514,17 @@
       <div class="grid exp-grid">
         <article class="card exp-card exp-card--lead span-8">
           <div class="exp-card__body">
-            <span class="exp-card__when">Jul 2025 to now</span>
-            <h3 class="card__title">Full Stack Developer</h3>
-            <p>Taabi Mobility, a CEAT company, Bengaluru</p>
-            <span class="exp-card__award"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="6" r="4"/><path d="M5.6 9.2 4.5 15l3.5-2 3.5 2-1.1-5.8"/></svg>Excellence in execution award, 2026</span>
-            <ul class="exp-card__tools" aria-label="Tools in this role">
+            <div class="exp-card__head"><span class="exp-card__when">Jul 2025 to now</span><ul class="exp-card__tools" aria-label="Tools in this role">
               <li><img src="assets/icons/react.svg" alt="React" width="32" height="32"></li>
               <li><img src="assets/icons/nodejs.svg" alt="Node.js" width="32" height="32"></li>
               <li><img src="assets/icons/graphql.svg" alt="GraphQL" width="32" height="32"></li>
               <li><img src="assets/icons/postgres.svg" alt="PostgreSQL" width="32" height="32"></li>
               <li><img src="assets/icons/github-actions.svg" alt="GitHub Actions" width="32" height="32"></li>
-            </ul>
+            </ul></div>
+            <h3 class="card__title">Full Stack Developer</h3>
+            <p>Taabi Mobility, a CEAT company, Bengaluru</p>
+            <span class="exp-card__award"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="6" r="4"/><path d="M5.6 9.2 4.5 15l3.5-2 3.5 2-1.1-5.8"/></svg>Excellence in execution award, 2026</span>
+            <div class="tenure-wrap"><div class="tenure" data-from="2025-07" data-to="now" aria-hidden="true"></div></div>
           </div>
           <div class="exp-stack" role="img" aria-label="The stack as four layers, top to bottom: React, Node.js and NestJS, PostgreSQL, AWS">
             <div class="exp-stack__iso">
@@ -536,16 +547,19 @@
           </ul></div>
           <h3>Freelance AI and cloud systems</h3>
           <p>A hospital platform and an LLM data migration, remote</p>
+          <div class="tenure-wrap"><div class="tenure" data-from="2026-05" data-to="now" aria-hidden="true"></div></div>
         </article>
         <article class="card exp-card span-4">
           <span class="exp-card__when">Aug 2024 to Jun 2025</span>
           <h3>Frontend Engineer</h3>
           <p>Taabi Mobility, Bengaluru</p>
+          <div class="tenure-wrap"><div class="tenure" data-from="2024-08" data-to="2025-06" aria-hidden="true"></div></div>
         </article>
         <article class="card exp-card span-4">
           <span class="exp-card__when">Sep 2023 to Aug 2024</span>
           <h3>Frontend Engineer</h3>
           <p>Healink, remote</p>
+          <div class="tenure-wrap"><div class="tenure" data-from="2023-09" data-to="2024-08" aria-hidden="true"></div></div>
         </article>
 
         <article class="card exp-card exp-card--pair span-8">
@@ -553,17 +567,20 @@
             <span class="exp-card__when">Nov 2022 to Feb 2023</span>
             <h3 class="card__title">Freelance web developer</h3>
             <p>Self-employed, remote</p>
+          <div class="tenure-wrap"><div class="tenure" data-from="2022-11" data-to="2023-02" aria-hidden="true"></div></div>
           </div>
           <div>
             <span class="exp-card__when">Feb to Sep 2022</span>
             <h3 class="card__title">Frontend Developer Intern</h3>
             <p>Visa2fly, remote</p>
+          <div class="tenure-wrap"><div class="tenure" data-from="2022-02" data-to="2022-09" aria-hidden="true"></div></div>
           </div>
         </article>
         <article class="card exp-card span-4">
           <span class="exp-card__when">2021 to 2026</span>
           <h3>MCA and BCA</h3>
           <p>Sikkim Manipal University, CGPA 9.0; Presidency University</p>
+          <div class="tenure-wrap"><div class="tenure" data-segs="2021-07:2023-06,2024-01:2026-06" aria-hidden="true"></div></div>
         </article>
       </div>
     </div>
@@ -681,6 +698,23 @@
 document.querySelectorAll('.exp-card').forEach(c => c.addEventListener('pointermove', e => {
   const b = c.getBoundingClientRect(); c.style.setProperty('--mx', (e.clientX - b.left) + 'px'); c.style.setProperty('--my', (e.clientY - b.top) + 'px');
 }, { passive: true }));
+/* tenure: months on a shared scale from Jan 2021 to now; the role's length goes after its dates */
+(() => {
+  const mo = s => { const [y, m] = s.split('-').map(Number); return y * 12 + m - 1; };
+  const d = new Date(), now = d.getFullYear() * 12 + d.getMonth() + 1;   // end is exclusive: this month counts
+  const a0 = mo('2021-01'), a1 = now, span = a1 - a0;   // the scale ends this month, so current roles run to the edge
+  const len = n => { const y = Math.floor(n / 12), m = n % 12; return [y && `${y} yr`, m && `${m} mo`].filter(Boolean).join(' '); };
+  document.querySelectorAll('.tenure').forEach(t => {
+    const segs = t.dataset.segs ? t.dataset.segs.split(',').map(p => p.split(':')) : [[t.dataset.from, t.dataset.to]];
+    segs.forEach(([f, e]) => {
+      const i = document.createElement('i'), s = mo(f), end = e === 'now' ? now : mo(e) + 1;
+      i.style.setProperty('--a', ((s - a0) / span).toFixed(4)); i.style.setProperty('--b', ((end - a0) / span).toFixed(4));
+      if (e === 'now') i.className = 'is-now';
+      t.append(i);
+      if (!t.dataset.segs) { const w = t.closest('.exp-card__body, .exp-card--pair > div, .exp-card').querySelector('.exp-card__when'); if (w) w.textContent += ' \u00b7 ' + len(end - s); }
+    });
+  });
+})();
 /* theme toggle: flips <html data-theme>, remembers the choice */
 (() => {
   const btn = document.querySelector('.theme-toggle'), html = document.documentElement;
